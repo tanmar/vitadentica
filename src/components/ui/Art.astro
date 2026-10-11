@@ -1,0 +1,37 @@
+---
+/**
+ * Ilustracja nagłówka: AVIF z zapasowym WebP w kilku szerokościach (Astro generuje je z mastera przy buildzie).
+ * Obraz jest ozdobą (treść niesie tekst strony), więc `alt=""`.
+ */
+import { Picture } from 'astro:assets';
+import { illustrations, type IllustrationId } from '../../assets/illustrations';
+
+interface Props {
+  id: IllustrationId;
+  /** Atrybut `sizes`: szerokość, w jakiej obraz jest faktycznie wyświetlany. */
+  sizes: string;
+  /** Hero nad zgięciem ładujemy od razu (LCP); reszta leniwie. */
+  eager?: boolean;
+  class?: string;
+}
+
+const WIDTHS = [480, 720, 960];
+const QUALITY = 72;
+
+const { id, sizes, eager = false, class: className } = Astro.props;
+const image = illustrations[id];
+---
+
+<Picture
+  src={image}
+  alt=""
+  formats={['avif']}
+  fallbackFormat="webp"
+  widths={WIDTHS}
+  sizes={sizes}
+  quality={QUALITY}
+  loading={eager ? 'eager' : 'lazy'}
+  fetchpriority={eager ? 'high' : 'auto'}
+  decoding="async"
+  class={className}
+/>

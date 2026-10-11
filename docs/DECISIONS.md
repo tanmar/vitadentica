@@ -1,0 +1,62 @@
+# VitaDentica 2.0 – decyzje projektowe (2026-10-11)
+
+Źródło: wywiad (5 rund). Zmiana decyzji = nowy wpis na dole, nie nadpisywanie.
+
+## Zapadłe decyzje
+
+| # | Obszar | Decyzja |
+|---|---|---|
+| 1 | Zakres | Faza 1: nowy design, ta sama treść (rozbudowa treści dopiero w fazie 2) |
+| 2 | Edycja treści | Treść w plikach w repo, edytuje tylko autor (bez CMS) |
+| 3 | Stack | Astro + Cloudflare Pages |
+| 4 | URL-e | Nowe czyste URL-e + 301 ze wszystkich starych |
+| 5 | Kontakt | Tylko telefon i e-mail, bez formularza |
+| 6 | Migracja treści | Scraping publicznej strony skryptem `crawl.mjs` |
+| 7 | Design | Zachować obecne kolory i logo, tylko odświeżyć |
+| 8 | Wdrożenie | Staging na `*.pages.dev` z `noindex`, potem przełączenie DNS |
+| 9 | Analityka | GTM + Consent Mode v2; mierzymy kliknięcia `tel:` i `mailto:` |
+| 10 | Promocja | „Implanty – Promocja!" przenosimy 1:1 |
+| 11 | Języki | Tylko polski |
+| 12 | Zgody | CMP: CookieConsent (orestbida) |
+| 13 | Style | Tailwind CSS |
+| 14 | AI | JSON-LD (Dentist, Physician, godziny, adres), `llms.txt` + wersje `.md` stron, `robots.txt` otwarty dla botów AI |
+| 15 | Motyw | Jasny i ciemny, domyślnie wg systemu (`prefers-color-scheme`); przełącznik w nagłówku (system → jasny → ciemny) zapisuje wybór w `localStorage` (`vd-theme`). Hash skryptu inicjalizującego jest w CSP (`public/_headers`), pilnuje go `tests/theme.test.ts` |
+| 16 | Fonty | Roboto Condensed (tekst) + Lora (nagłówki), self-hosted, tylko podzbiory latin + latin-ext z `unicode-range` (`src/styles/fonts.css`). Quattrocento odpadł: nie ma ą ć ę ł ń ś ź ż. Pokrycie polskich liter pilnuje `tests/fonts.test.ts` |
+| 17 | Wydajność | CSS inline w HTML (`inlineStylesheets: 'always'`), reveal przy scrollu tylko poniżej pierwszego ekranu (nie opóźnia LCP), preload dwóch krytycznych fontów, obrazy w treści nie większe niż 2× wyświetlany rozmiar |
+| 18 | Telefon | Układ mobilny w `src/styles/mobile.css` (≤ 640 px i ≤ 380 px): cele dotyku ≥ 44 px, tekst ≥ 12 px, brak poziomego przewijania od 320 px. Weryfikacja: Playwright (`npm run test:e2e`, systemowy Chrome), 99 przypadków w obu motywach |
+| 19 | Styl wizualny | Liquid Glass: przezroczyste powierzchnie z rozmyciem, rozjaśnioną krawędzią i cieniem, w kolorach i z logo marki (doprecyzowanie decyzji 7, nie jej zmiana). Tokeny `--glass-*` i `--aurora-*` w `tokens.css`, materiał i kompozycje w `src/styles/glass.css`. Kontrast tekstu na szkle pilnuje `tests/glass.test.ts`. Fallbacki: `prefers-reduced-transparency`, brak `backdrop-filter`. Uzasadnienie i lista zmian: `docs/AUDYT-UX.md` |
+| 20 | Hero | Oryginalny wizual ze szkła (SVG „ząb" nad plamami koloru marki) z plakietkami: twarze lekarzy i staż. Zastępnik do czasu dostarczenia zdjęcia gabinetu lub zespołu (rekomendacja R1 w `docs/AUDYT-UX.md`); wizual jest osobnym komponentem `HeroVisual.astro` |
+| 21 | Mapa dojazdu | Statyczny SVG narysowany z danych OpenStreetMap (`src/data/route-map.ts`, generator `npm run map:generate`), bez iframe i skryptów: CSP (`frame-src 'none'`, `img-src 'self'`) zostaje bez zmian, mapa przełącza się z motywem, ładuje się natychmiast i nie przekazuje danych odwiedzających firmom trzecim. Pokazuje gabinet, ulice, numerowane przystanki autobusowe z odległością w linii prostej oraz linki „Trasa w Mapach Google/Apple”. Bez numerów linii: zmieniają się często, a błędny numer to realna szkoda dla pacjenta. Źródło podajemy zgodnie z ODbL („© współtwórcy OpenStreetMap”). Współrzędne gabinetu w `clinic.geo` (też w JSON-LD `geo` i `hasMap`) |
+| 22 | Ilustracje nagłówków | Ilustracje 3D w stylu Liquid Glass (wygenerowane z promptów z `docs/PROMPTY-ILUSTRACJI.md`) zastępują SVG-owego zęba w hero strony głównej i w nagłówkach podstron; ząb SVG zostaje tylko na stronie 404 (brak ilustracji). Mastery 1280 px (WebP) w `src/assets/illustrations/`, a `astro:assets` (`<Picture>`) wystawia AVIF z zapasowym WebP w szerokościach 480/720/960 px: na stronę trafia 10–25 kB zamiast ok. 2,3 MB oryginału. Obraz jest ozdobą (`alt=""`), a tekst strony niesie treść. Doprecyzowanie decyzji 20 (zdjęcie gabinetu nadal zalecane, R1) |
+| 23 | Nagłówek i widoczność (SEO, AI) | H1 strony głównej mówi, czym jest strona i gdzie („Gabinet stomatologiczny na Gocławiu”), bez haseł reklamowych. Powód: hasło bez treści („Stomatologia z głową”) nic nie mówi wyszukiwarce ani asystentom AI (nie wskazuje usługi ani miejsca), a reklama podmiotów leczniczych w Polsce jest ograniczona do informacji o rodzaju i zakresie świadczeń (otwarta sprawa nr 6). Dane strukturalne: każda strona ma `WebSite` + `WebPage` + `Dentist` (+ `FAQPage` z pytań widocznych na stronie), karta Open Graph 1200×630, `llms.txt` w sekcjach i `llms-full.txt`, rozszerzona lista botów AI w `robots.txt` (także agenci działający na prośbę użytkownika). Doprecyzowanie decyzji 14 |
+
+## Konsekwencje wynikające z decyzji
+
+- **Brak formularza (5)**: zero funkcji serwerowych, zero anty-spamu; konwersje to zdarzenia `click_tel` / `click_mail` w GTM.
+- **Treść w repo (2) + Content Collections (3)**: cennik, lekarze i dane gabinetu jako pliki danych, z których generują się strony i JSON-LD.
+- **Consent Mode v2 (9, 12)**: GTM ładowany po zgodzie lub z opóźnieniem, żeby nie pogarszać LCP.
+- **Motyw (15)**: kolory marki jako tekst (`--color-brand-ink`) i jako wypełnienie (`--color-brand`) to osobne tokeny, bo w trybie ciemnym tekst musi być jaśniejszy. Ciemne sekcje (hero, stopka, statystyki) mają stałe kolory w obu motywach.
+- **Liquid Glass (19)**: szkło bez koloru pod spodem wygląda jak biała karta, więc sekcje z kartami mają plamy aurory (`.section--aurora`). Zmiana tokenów szkła wymaga `npm test` (kontrast liczony jest po złożeniu warstw). Ząb w hero i w nagłówkach podstron to ozdoba (`aria-hidden`); informacja jest w tekście plakietek.
+- **Mapa dojazdu (21)**: dane mapy są migawką z OpenStreetMap, więc przy zmianie adresu lub dużych zmianach okolicy trzeba uruchomić `npm run map:generate` i sprawdzić zrzuty (Node ≥ 22.18, bo skrypt jest w TypeScript). Parytet adresu pilnuje `tests/route-map-data.test.ts` (pin w `mapsUrl` = `clinic.geo` = środek mapy). Styl mapy (`src/styles/routemap.css`) ładuje się tylko na `/kontakt`.
+- **Tailwind (13)**: domyślnie skanuje cały projekt, więc `global.css` wyklucza `docs/`, `tests/`, `e2e/` i `scripts/` (`@source not`); inaczej słowa z dokumentów stawały się klasami w CSS każdej strony. Nie używać `source('../')`: gubi klasy `focus:*` z `BaseLayout` (link „przejdź do treści”). `npm run verify` sprawdza, że każda klasa wariantowa (`focus:`, `md:` …) z HTML ma regułę w CSS.
+- **Ilustracje (22)**: nowy obraz = plik w `img/` + wpis w `scripts/optimize-illustrations.mjs` (mapa slug → plik) + `npm run img:optimize` + import w `src/assets/illustrations/index.ts`. `tests/illustrations.test.ts` pilnuje kompletności, wagi (≤ 120 kB master) i proporcji; `npm run verify` wymaga `width`/`height` na każdym `<img>`. Katalog `img/` (oryginały, ok. 18 MB) nie trafia na stronę; nie wrzucać go do `public/`.
+- **Wersje `.md` (14)**: crawler już produkuje Markdown, więc endpointy `<ścieżka>.md` wynikają wprost z kolekcji treści.
+- **Hasła (23)**: zmiana H1 strony głównej na hasło wymaga decyzji właściciela i oceny prawnej; `npm run verify` wymaga w nim słów „stomatolog…” i „Gocław”. Metadane strony głównej są w `src/data/home.ts` (limity pilnuje `tests/home-meta.test.ts`).
+- **JSON-LD (23)**: `buildPageGraph` (wywoływany w `BaseLayout`) dokłada `WebSite`, `WebPage` i `Dentist` na każdej stronie; strona podaje tylko swoje encje (`jsonLd`), `kind` i `faq`. `FAQPage` powstaje z tej samej sekcji „… pytania i odpowiedzi” / „FAQ …” (h2 → h3), z której wtyczka rehype (`src/plugins/rehype-content.mjs`) buduje akordeon: jeden parser, wynik w `remarkPluginFrontmatter.faq`, odczyt w `src/lib/faq.ts`. Dane strukturalne mają więc ten sam tekst co strona (po typografii, np. cudzysłowy drukarskie), a `npm run verify` porównuje zarówno pytania, jak i odpowiedzi. `availableService` nie jest właściwością `Dentist` (jest na `MedicalClinic`/`Physician`), więc zakres usług niesie `hasOfferCatalog` + cennik.
+- **Zasoby marki (23)**: `public/og-image.jpg` (1200×630) i `public/logo.png` generuje `node scripts/generate-brand-images.mjs` z `home.webp` i logo; ścieżki są w `clinic.image` i `clinic.logo`, rozmiary pilnuje `tests/brand-images.test.ts`. Po zmianie ilustracji głównej: `npm run brand:generate`.
+- **llms (23)**: `llms.txt` grupuje linki wg menu (oferta, informacje), `llms-full.txt` to cała treść w jednym pliku. Treść stron składa `src/lib/page-markdown.ts`, jedno źródło dla endpointów `.md` i `llms-full.txt`. W `llms-full.txt` linki względne i kotwice są zamieniane na bezwzględne, a linie poziome z treści pomijane (`---` rozdziela tylko strony). Fakt „bez formularza rezerwacji online” jest wpisany w `src/lib/llms.ts`: po dodaniu formularza (decyzja 5) trzeba go zmienić.
+- **robots.txt (23)**: grupa nazwana zastępuje `User-agent: *` dla tego bota (RFC 9309), więc każdy `Disallow` dopisany kiedyś do `*` trzeba powtórzyć w grupach botów AI. Dziś niczego to nie zmienia, bo `*` pozwala na wszystko.
+- **verify (23)**: tryb (produkcja czy staging) wynika z `robots.txt` w `dist/`: produkcja wymaga `index, follow`, staging i strona 404 wymagają `noindex`, a 404 nie może mieć JSON-LD. H1 wersji `.md` musi być taki sam jak w HTML.
+
+## Otwarte sprawy
+
+1. **Wynik crawla**: przejrzeć `inventory.csv` (kolumna `notes`), poprawić `redirects.csv`.
+2. **Polityka ukośnika końcowego**: domyślnie bez (`/implanty`). Zweryfikować zachowanie na stagingu; reguły różniące się tylko ukośnikiem crawler celowo pomija.
+3. **Dane gabinetu**: godziny otwarcia, lista lekarzy (imię i nazwisko, specjalizacja, zdjęcie, opis); braki uzupełnić po crawlu.
+4. **Dostępy**: repozytorium, konto Cloudflare, DNS domeny vitadentica.pl.
+5. **Kontener GTM `GTM-P7RZV8S`**: przejrzeć tagi i zdecydować, które przenosimy.
+6. **Promocja (10)**: reklama usług medycznych w Polsce podlega ograniczeniom prawnym; decyzja o 1:1 jest świadoma, zalecana weryfikacja treści z prawnikiem. Rozważyć wyłączalną flagę w danych, gdyby okazała się potrzebna.
+7. **Profile zewnętrzne**: uzupełnić `clinic.sameAs` (Facebook, Instagram, ZnanyLekarz/Doctoralia). Dziś jest tylko wpis w Mapach Google; im więcej oficjalnych profili, tym pewniej wyszukiwarki i asystenci AI łączą dane z jednym gabinetem.
+8. **Boty AI na brzegu Cloudflare**: `robots.txt` zezwala, ale Cloudflare ma osobne ustawienie blokowania crawlerów AI (Security → Bots) i działa ono niezależnie od `robots.txt`. Sprawdzić po przełączeniu DNS (cutover).
+9. **Treści marketingowe z poprzedniej strony (faza 2)**: do przeglądu z prawnikiem i właścicielem: gwarancje i superlatywy („gwarantujemy … na najwyższym poziomie”, „numer 1 wśród systemów nakładek”), twierdzenia bez zastrzeżeń („nie jest bolesnym zabiegiem”), presja terminów („ograniczona liczba terminów w tym miesiącu”, „szybkie terminy”) oraz liczby, które się starzeją („ponad 14 mln pacjentów”). Występują m.in. w `implanty.md`, `ortodoncja.md`, `invisalign.md`, `nasz-zespol.md`.
+10. **Duplikaty `.md` i `llms-full.txt`**: to indeksowalny tekst powielający HTML. Gdyby Google zaczął pokazywać je w wynikach, rozważyć w `public/_headers` nagłówek `Link: <adres strony>; rel="canonical"` dla każdego `.md` albo `X-Robots-Tag: noindex`. To kompromis: część crawlerów AI może odczytać `noindex` jako „nie używaj”, więc na razie zostawiamy bez dyrektywy.

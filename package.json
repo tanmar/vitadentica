@@ -1,0 +1,41 @@
+{
+  "name": "vitadentica",
+  "type": "module",
+  "version": "2.0.0",
+  "private": true,
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "build:staging": "SITE_ENV=staging astro build",
+    "preview": "astro preview",
+    "check": "astro check",
+    "test": "vitest run",
+    "verify": "node scripts/check-dist.mjs",
+    "map:generate": "node scripts/generate-route-map.ts",
+    "img:optimize": "node scripts/optimize-illustrations.mjs",
+    "brand:generate": "node scripts/generate-brand-images.mjs",
+    "test:e2e": "playwright test"
+  },
+  "dependencies": {
+    "@astrojs/markdown-remark": "^7.3.2",
+    "@astrojs/sitemap": "^3.7.4",
+    "@fontsource/lora": "^5.3.0",
+    "@fontsource/roboto-condensed": "^5.3.0",
+    "@tailwindcss/vite": "^4.3.3",
+    "astro": "^7.3.8",
+    "tailwindcss": "^4.3.3",
+    "vanilla-cookieconsent": "^3.1.0"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.10",
+    "@playwright/test": "^1.64.0",
+    "@types/fontkit": "^2.0.9",
+    "fontkit": "^2.0.4",
+    "typescript": "^6.0.3",
+    "vitest": "^5.0.3",
+    "yaml": "^2.9.1"
+  }
+}

@@ -1,0 +1,18 @@
+---
+import { clinic, formatHours } from '../../lib/clinic';
+
+const hours = formatHours(clinic.hours);
+---
+
+<div class="topbar">
+  <div class="wrap topbar__i">
+    <span>
+      {clinic.address.districts.join(' · ')}
+      {hours.length > 0 && <> · {hours.join('; ')}</>}
+    </span>
+    <span class="topbar__r">
+      <a href={clinic.phone.href}>{clinic.phone.display}</a>
+      <a href={`mailto:${clinic.email}`}>{clinic.email}</a>
+    </span>
+  </div>
+</div>

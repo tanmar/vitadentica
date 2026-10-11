@@ -1,0 +1,140 @@
+---
+import { render } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/layout/PageHero.astro';
+import CtaSection from '../components/layout/CtaSection.astro';
+import { clinic } from '../lib/clinic';
+import { faqFromFrontmatter } from '../lib/faq';
+import { buildBreadcrumbs, buildPriceCatalog } from '../lib/jsonld';
+import { getPriceItems, getRequiredPage } from '../lib/content';
+import { formatPrice, groupByCategory } from '../lib/price';
+import { priceCategories } from '../data/price-categories';
+
+const page = await getRequiredPage('cennik');
+const { Content, remarkPluginFrontmatter } = await render(page);
+
+const items = await getPriceItems();
+const groups = groupByCategory(items, priceCategories);
+// Karty u góry: najpierw aparaty, potem implanty (jak na dotychczasowej stronie).
+const HIGHLIGHT_CATEGORY_ORDER = ['ortodoncja-aparaty-stale', 'implanty'];
+const highlights = items
+  .filter((item) => item.highlight)
+  .sort(
+    (a, b) =>
+      HIGHLIGHT_CATEGORY_ORDER.indexOf(a.category) - HIGHLIGHT_CATEGORY_ORDER.indexOf(b.category) ||
+      a.order - b.order,
+  );
+const heading = page.data.h1 ?? page.data.title;
+const faq = faqFromFrontmatter(remarkPluginFrontmatter);
+---
+
+<BaseLayout
+  title={page.data.title}
+  description={page.data.description}
+  path="/cennik"
+  faq={faq}
+  jsonLd={[
+    buildPriceCatalog(clinic, items),
+    buildBreadcrumbs(clinic, [
+      { name: clinic.name, path: '/' },
+      { name: heading, path: '/cennik' },
+    ]),
+  ]}
+>
+  <PageHero title={heading} kicker="Ceny i promocje" lead={page.data.description} art="cennik" />
+
+  <section class="section section--off section--aurora" aria-labelledby="highlights-heading" style="padding: 56px 0;">
+    <div class="wrap">
+      <h2 id="highlights-heading" class="sr-only">Wyróżnione ceny</h2>
+      <ul class="price-hl stg">
+        {
+          highlights.map((item) => (
+            <li class="price-hl__card glass">
+              <p class="price-hl__title">{item.highlight}</p>
+              <p class="price-hl__sub">{item.name}</p>
+              <p class="price-hl__v">
+                <span class="price-hl__now">{formatPrice(item)}</span>
+                {item.regularPrice !== undefined && (
+                  <del class="price-hl__was">
+                    <span class="sr-only">Cena regularna: </span>
+                    {formatPrice({ ...item, price: item.regularPrice })}
+                  </del>
+                )}
+              </p>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top: 56px;">
+    <div class="wrap">
+      <nav aria-label="Kategorie cennika">
+        <p class="kicker">Sprawdź nasze ceny</p>
+        <ul class="chips">
+          {
+            groups.map(({ category }) => (
+              <li><a class="chip" href={`#${category.id}`}>{category.title}</a></li>
+            ))
+          }
+        </ul>
+      </nav>
+
+      <div style="margin-top: 56px;">
+        {
+          groups.map(({ category, items: rows }) => (
+            <section
+              id={category.id}
+              aria-labelledby={`${category.id}-heading`}
+              class="price-section"
+            >
+              <h2 id={`${category.id}-heading`}>
+                {category.title}
+                {category.promoLabel && <span class="promo">{category.promoLabel}</span>}
+              </h2>
+              <span class="rule"></span>
+              <div class="cmp-w">
+                <table class="cmp">
+                  <thead>
+                    <tr>
+                      <th scope="col">Usługa</th>
+                      <th scope="col">Cena</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {rows.map((item) => (
+                      <tr>
+                        <th scope="row">
+                          {item.name}
+                          {item.note && <span class="cmp__note">{item.note}</span>}
+                        </th>
+                        <td>
+                          {item.regularPrice !== undefined && (
+                            <del class="cmp__was">
+                              <span class="sr-only">Cena regularna: </span>
+                              {formatPrice({ ...item, price: item.regularPrice })}
+                            </del>
+                          )}
+                          <span class:list={[item.regularPrice !== undefined && 'cmp__now']}>
+                            {formatPrice(item)}
+                          </span>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </section>
+          ))
+        }
+      </div>
+
+      <div class="prose-vd" style="margin-top: 56px; font-size: 0.9rem; color: var(--color-muted);">
+        <Content />
+      </div>
+    </div>
+  </section>
+
+  <CtaSection />
+</BaseLayout>

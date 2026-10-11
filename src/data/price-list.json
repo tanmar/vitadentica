@@ -1,0 +1,355 @@
+[
+  {
+    "id": "implanty-konsultacja",
+    "order": 1,
+    "category": "implanty",
+    "name": "Konsultacja",
+    "price": 100
+  },
+  {
+    "id": "implanty-wszczepienie-implantu-bego",
+    "order": 2,
+    "category": "implanty",
+    "name": "Wszczepienie implantu Bego",
+    "price": 2600,
+    "regularPrice": 3000,
+    "highlight": "Wszczepienie implantu"
+  },
+  {
+    "id": "implanty-odsloniecie-implantu-sruba-gojaca-bego",
+    "order": 3,
+    "category": "implanty",
+    "name": "Odsłonięcie implantu (śruba gojąca) Bego",
+    "price": 0,
+    "regularPrice": 300
+  },
+  {
+    "id": "implanty-korona-porcelanowa-na-podbudowie-metalowej-na-implancie-bego",
+    "order": 4,
+    "category": "implanty",
+    "name": "Korona porcelanowa na podbudowie metalowej na implancie Bego",
+    "price": 1800,
+    "highlight": "Korona na implancie"
+  },
+  {
+    "id": "implanty-korona-pelnoceramiczna-na-implancie-bego",
+    "order": 5,
+    "category": "implanty",
+    "name": "Korona pełnoceramiczna na implancie Bego",
+    "price": 2400,
+    "note": "Ceny koron zawierają koszt łącznika protetycznego"
+  },
+  {
+    "id": "implanty-koszt-calkowity-odbudowy-pojedynczego-braku-zebowego-na-impl",
+    "order": 6,
+    "category": "implanty",
+    "name": "Koszt całkowity odbudowy pojedynczego braku zębowego na implancie Bego",
+    "price": 4400,
+    "regularPrice": 4900,
+    "highlight": "Koszt całkowity"
+  },
+  {
+    "id": "implanty-wszczepienie-implantu-straumann",
+    "order": 7,
+    "category": "implanty",
+    "name": "Wszczepienie implantu Straumann",
+    "price": 3200,
+    "regularPrice": 3500
+  },
+  {
+    "id": "implanty-odsloniecie-implantu-sruba-gojaca-straumann",
+    "order": 8,
+    "category": "implanty",
+    "name": "Odsłonięcie implantu (śruba gojąca) Straumann",
+    "price": 0,
+    "regularPrice": 300
+  },
+  {
+    "id": "implanty-korona-porcelanowa-na-podbudowie-metalowej-na-implancie-stra",
+    "order": 9,
+    "category": "implanty",
+    "name": "Korona porcelanowa na podbudowie metalowej na implancie Straumann",
+    "price": 2200,
+    "regularPrice": 2500
+  },
+  {
+    "id": "implanty-koszt-calkowity-odbudowy-pojedynczego-braku-zebowego-na-impl-2",
+    "order": 10,
+    "category": "implanty",
+    "name": "Koszt całkowity odbudowy pojedynczego braku zębowego na implancie Straumann",
+    "price": 5400,
+    "regularPrice": 6000
+  },
+  {
+    "id": "implanty-proteza-calkowita-na-implantach",
+    "order": 11,
+    "category": "implanty",
+    "name": "Proteza całkowita na implantach",
+    "price": 4000,
+    "isFrom": true,
+    "note": "Plus koszt 2 lub 4 implantów"
+  },
+  {
+    "id": "implanty-calkowita-odbudowa-luku-zebowego-przy-pomocy-mostow",
+    "order": 12,
+    "category": "implanty",
+    "name": "Całkowita odbudowa łuku zębowego przy pomocy mostów",
+    "price": 10000,
+    "isFrom": true,
+    "note": "Plus koszt 6 lub 8 implantów"
+  },
+  {
+    "id": "implanty-podniesienie-dna-zatoki-szczekowej-metoda-zamknieta",
+    "order": 13,
+    "category": "implanty",
+    "name": "Podniesienie dna zatoki szczękowej metodą zamkniętą",
+    "price": 1500,
+    "priceTo": 2000
+  },
+  {
+    "id": "implanty-podniesienie-dna-zatoki-szczekowej-metoda-otwarta",
+    "order": 14,
+    "category": "implanty",
+    "name": "Podniesienie dna zatoki szczękowej metodą otwartą",
+    "price": 3000,
+    "priceTo": 4000
+  },
+  {
+    "id": "ortodoncja-aparaty-stale-konsultacja-ortodontyczna-z-modelami",
+    "order": 15,
+    "category": "ortodoncja-aparaty-stale",
+    "name": "Konsultacja ortodontyczna z modelami",
+    "price": 350
+  },
+  {
+    "id": "ortodoncja-aparaty-stale-zalozenie-separacji",
+    "order": 16,
+    "category": "ortodoncja-aparaty-stale",
+    "name": "Założenie separacji",
+    "price": 0
+  },
+  {
+    "id": "ortodoncja-aparaty-stale-aparat-staly-metalowy-1-luk",
+    "order": 17,
+    "category": "ortodoncja-aparaty-stale",
+    "name": "Aparat stały metalowy (1 łuk)",
+    "price": 2000,
+    "regularPrice": 2200,
+    "highlight": "Aparat stały metalowy"
+  },
+  {
+    "id": "ortodoncja-aparaty-stale-aparat-staly-metalowy-samoligaturujacy-1-luk",
+    "order": 18,
+    "category": "ortodoncja-aparaty-stale",
+    "name": "Aparat stały metalowy samoligaturujący (1 łuk)",
+    "price": 3200,
+    "regularPrice": 3500,
+    "highlight": "Aparat samoligaturujący"
+  },
+  {
+    "id": "ortodoncja-aparaty-stale-aparat-staly-krysztalowy-1-luk",
+    "order": 19,
+    "category": "ortodoncja-aparaty-stale",
+    "name": "Aparat stały kryształowy (1 łuk)",
+    "price": 3200,
+    "regularPrice": 3500,
+    "highlight": "Aparat stały kryształowy"
+  },
+  {
+    "id": "ortodoncja-dziecieca-konsultacja-ortodontyczna",
+    "order": 20,
+    "category": "ortodoncja-dziecieca",
+    "name": "Konsultacja ortodontyczna",
+    "price": 150
+  },
+  {
+    "id": "ortodoncja-dziecieca-aparat-ruchomy",
+    "order": 21,
+    "category": "ortodoncja-dziecieca",
+    "name": "Aparat ruchomy",
+    "price": 850,
+    "priceTo": 1200
+  },
+  {
+    "id": "chirurgia-konsultacja",
+    "order": 22,
+    "category": "chirurgia",
+    "name": "Konsultacja",
+    "price": 100
+  },
+  {
+    "id": "chirurgia-ekstrakcja-zeba-stalego",
+    "order": 23,
+    "category": "chirurgia",
+    "name": "Ekstrakcja zęba stałego",
+    "price": 300,
+    "priceTo": 350
+  },
+  {
+    "id": "chirurgia-chirurgiczne-usuniecie-zeba-z-dlutowaniem",
+    "order": 24,
+    "category": "chirurgia",
+    "name": "Chirurgiczne usunięcie zęba z dłutowaniem",
+    "price": 600,
+    "priceTo": 700
+  },
+  {
+    "id": "chirurgia-usuniecie-osemki",
+    "order": 25,
+    "category": "chirurgia",
+    "name": "Usunięcie ósemki",
+    "price": 400,
+    "priceTo": 700
+  },
+  {
+    "id": "stomatologia-zachowawcza-porada-stomatologiczna",
+    "order": 26,
+    "category": "stomatologia-zachowawcza",
+    "name": "Porada stomatologiczna",
+    "price": 150
+  },
+  {
+    "id": "stomatologia-zachowawcza-wypelnienie",
+    "order": 27,
+    "category": "stomatologia-zachowawcza",
+    "name": "Wypełnienie",
+    "price": 300,
+    "priceTo": 450
+  },
+  {
+    "id": "stomatologia-zachowawcza-wypelnienie-pierwszego-kanalu",
+    "order": 28,
+    "category": "stomatologia-zachowawcza",
+    "name": "Wypełnienie pierwszego kanału",
+    "price": 250
+  },
+  {
+    "id": "stomatologia-zachowawcza-skaling-piaskowanie-lakierowanie",
+    "order": 29,
+    "category": "stomatologia-zachowawcza",
+    "name": "Skaling + piaskowanie + lakierowanie",
+    "price": 350
+  },
+  {
+    "id": "stomatologia-zachowawcza-wybielanie-z-uzyciem-szyn",
+    "order": 30,
+    "category": "stomatologia-zachowawcza",
+    "name": "Wybielanie z użyciem szyn",
+    "price": 950
+  },
+  {
+    "id": "stomatologia-zachowawcza-mleczne-przeglad",
+    "order": 31,
+    "category": "stomatologia-zachowawcza-mleczne",
+    "name": "Przegląd",
+    "price": 150
+  },
+  {
+    "id": "stomatologia-zachowawcza-mleczne-wypelnienie",
+    "order": 32,
+    "category": "stomatologia-zachowawcza-mleczne",
+    "name": "Wypełnienie",
+    "price": 250
+  },
+  {
+    "id": "stomatologia-zachowawcza-mleczne-lakowanie",
+    "order": 33,
+    "category": "stomatologia-zachowawcza-mleczne",
+    "name": "Lakowanie",
+    "price": 150
+  },
+  {
+    "id": "stomatologia-zachowawcza-mleczne-lakierowanie",
+    "order": 34,
+    "category": "stomatologia-zachowawcza-mleczne",
+    "name": "Lakierowanie",
+    "price": 150
+  },
+  {
+    "id": "protetyka-konsultacja",
+    "order": 35,
+    "category": "protetyka",
+    "name": "Konsultacja",
+    "price": 150
+  },
+  {
+    "id": "protetyka-korona-porcelanowa",
+    "order": 36,
+    "category": "protetyka",
+    "name": "Korona porcelanowa",
+    "price": 1700
+  },
+  {
+    "id": "protetyka-korona-pelnoceramiczna",
+    "order": 37,
+    "category": "protetyka",
+    "name": "Korona pełnoceramiczna",
+    "price": 2600
+  },
+  {
+    "id": "protetyka-wklad-koronowo-korzeniowy-metalowy-pojedynczy",
+    "order": 38,
+    "category": "protetyka",
+    "name": "Wkład koronowo - korzeniowy metalowy pojedynczy",
+    "price": 600
+  },
+  {
+    "id": "protetyka-wklad-koronowo-korzeniowy-z-wlokna-szklanego-pojedynczy",
+    "order": 39,
+    "category": "protetyka",
+    "name": "Wkład koronowo - korzeniowy z włókna szklanego pojedynczy",
+    "price": 500
+  },
+  {
+    "id": "protetyka-proteza-calkowita",
+    "order": 40,
+    "category": "protetyka",
+    "name": "Proteza całkowita",
+    "price": 2000
+  },
+  {
+    "id": "protetyka-proteza-szkieletowa",
+    "order": 41,
+    "category": "protetyka",
+    "name": "Proteza szkieletowa",
+    "price": 2800
+  },
+  {
+    "id": "protetyka-szyna-relaksacyjna-miekka",
+    "order": 42,
+    "category": "protetyka",
+    "name": "Szyna relaksacyjna miękka",
+    "price": 550
+  },
+  {
+    "id": "badania-radiologiczne-zdjecie-zebowe",
+    "order": 43,
+    "category": "badania-radiologiczne",
+    "name": "Zdjęcie zębowe",
+    "price": 50
+  },
+  {
+    "id": "ogolne-kopia-dokumentacji-medycznej",
+    "order": 44,
+    "category": "ogolne",
+    "name": "Kopia dokumentacji medycznej",
+    "price": 0.3,
+    "unit": "strona"
+  },
+  {
+    "id": "ogolne-wyciag-lub-odpis-dokumentacji-medycznej",
+    "order": 45,
+    "category": "ogolne",
+    "name": "Wyciąg lub odpis dokumentacji medycznej",
+    "price": 7,
+    "unit": "strona"
+  },
+  {
+    "id": "ogolne-sporzadzenie-wyciagu-odpisu-lub-kopii-dokumentacji-medycznej",
+    "order": 46,
+    "category": "ogolne",
+    "name": "Sporządzenie wyciągu, odpisu lub kopii dokumentacji medycznej na elektronicznym nośniku danych, jeżeli dokumentacja medyczna prowadzona jest w postaci elektronicznej – wynosi",
+    "price": 2,
+    "unit": "nośnik"
+  }
+]

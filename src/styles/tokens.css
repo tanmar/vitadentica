@@ -1,0 +1,134 @@
+/*
+ * Tokeny przeniesione 1:1 z https://www.vitadentica.pl/invisalign.html
+ * (zmienne --red, --dark, --inv, --sans, --serif, --ease, --spring, --r, --sh…).
+ */
+@theme {
+  --color-brand: #730017;
+  --color-brand-deep: #5a0012;
+  --color-brand-tint: #fdf0f2;
+  --color-brand-bright: #c0002a;
+  /* Brand jako kolor TEKSTU i linków na powierzchniach strony (w trybie ciemnym jaśniejszy). */
+  --color-brand-ink: #730017;
+  --color-brand-ink-hover: #5a0012;
+
+  --color-night: #0d0f23;
+  --color-night-2: #161829;
+  --color-night-3: #1e2040;
+  --color-footer: #181724;
+
+  --color-ink: #1a1829;
+  --color-body: #3d3c55;
+  --color-muted: #5b5975;
+  --color-paper: #ffffff;
+  /* Karty, nagłówek, FAQ: powierzchnia nad tłem strony */
+  --color-surface: #ffffff;
+  --color-off: #faf8f9;
+  --color-line: #e8e4e6;
+  /* Płytka pod przezroczystymi logotypami z ciemnym znakiem (w trybie ciemnym biała) */
+  --color-logo-plate: transparent;
+
+  /* Błękit marki Invisalign: akcent na ciemnym tle i w gradientach */
+  --color-accent: #009ace;
+  --color-accent-deep: #007da8;
+
+  --font-sans: 'Roboto Condensed', 'Roboto Condensed Fallback', Arial, Helvetica, sans-serif;
+  --font-display: 'Lora', 'Lora Fallback', Georgia, 'Times New Roman', serif;
+
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  --radius-ui: 6px;
+  --shadow-soft: 0 4px 24px rgb(0 0 0 / 0.08);
+  --shadow-lift: 0 12px 48px rgb(0 0 0 / 0.14);
+
+  /*
+   * Liquid Glass. Dwa materiały:
+   *  - matowe (fill): karty i panele na stronie; tekst na nich ma kontrast ≥ 4.5:1 nawet nad plamą aurory
+   *  - dymione (smoke): elementy na ciemnym hero; biały tekst ≥ 4.5:1 nawet nad białym refleksem
+   * Parametry pilnuje tests/glass.test.ts.
+   */
+  --glass-blur: 18px;
+  --glass-saturate: 1.7;
+  --glass-fill: rgb(255 255 255 / 0.72);
+  --glass-fill-strong: rgb(255 255 255 / 0.86);
+  --glass-border: rgb(255 255 255 / 0.7);
+  --glass-edge: rgb(255 255 255 / 0.95);
+  --glass-sheen: rgb(255 255 255 / 0.3);
+  --glass-rim: rgb(13 15 35 / 0.07);
+  --glass-shadow: 0 14px 44px rgb(13 15 35 / 0.12), 0 2px 10px rgb(13 15 35 / 0.06);
+  --glass-smoke: rgb(13 15 35 / 0.7);
+  --glass-smoke-edge: rgb(255 255 255 / 0.3);
+  --glass-smoke-sheen: rgb(255 255 255 / 0.06);
+  /* Plamy koloru pod szkłem: bez nich szkło nie ma czego załamywać (na białym tle wygląda jak biała karta). */
+  --aurora-burgundy: rgb(192 0 42 / 0.2);
+  --aurora-cyan: rgb(0 154 206 / 0.26);
+
+  --text-hero: clamp(2rem, 1.2rem + 3.6vw, 3.4rem);
+  --text-section: clamp(1.55rem, 1.2rem + 1.6vw, 2.2rem);
+  --spacing-section: clamp(3.5rem, 2.5rem + 4vw, 5.5rem);
+}
+
+/*
+ * Motyw ciemny. Domyślnie wg systemu (prefers-color-scheme); ręczny wybór z przełącznika w nagłówku
+ * ustawia data-theme="light|dark" na <html> (src/scripts/theme.ts). Dwa bloki poniżej MUSZĄ mieć
+ * identyczną treść; pilnuje tego tests/theme.test.ts. Ciemne sekcje (hero, panel zespołu, CTA, stopka)
+ * mają stałe kolory --color-night*, więc w obu motywach wyglądają tak samo.
+ */
+:root { color-scheme: light dark; }
+:root[data-theme='light'] { color-scheme: light; }
+:root[data-theme='dark'] { color-scheme: dark; }
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    --color-paper: #0f1120;
+    --color-off: #151831;
+    --color-surface: #1b1e3a;
+    --color-line: #2c3055;
+    --color-ink: #f3f1f7;
+    --color-body: #d2d0e3;
+    --color-muted: #a9a7c4;
+    --color-brand: #8f1030;
+    --color-brand-deep: #730017;
+    --color-brand-tint: #3a1226;
+    --color-logo-plate: #ffffff;
+    --color-brand-ink: #ff8fa6;
+    --color-brand-ink-hover: #ffb3c2;
+    --shadow-soft: 0 4px 24px rgb(0 0 0 / 0.35);
+    --shadow-lift: 0 12px 48px rgb(0 0 0 / 0.5);
+    --glass-fill: rgb(27 30 58 / 0.62);
+    --glass-fill-strong: rgb(27 30 58 / 0.82);
+    --glass-border: rgb(255 255 255 / 0.16);
+    --glass-edge: rgb(255 255 255 / 0.3);
+    --glass-sheen: rgb(255 255 255 / 0.08);
+    --glass-rim: rgb(0 0 0 / 0.4);
+    --glass-shadow: 0 14px 44px rgb(0 0 0 / 0.45), 0 2px 10px rgb(0 0 0 / 0.3);
+    --aurora-burgundy: rgb(192 0 42 / 0.3);
+    --aurora-cyan: rgb(0 154 206 / 0.24);
+  }
+}
+:root[data-theme='dark'] {
+  --color-paper: #0f1120;
+  --color-off: #151831;
+  --color-surface: #1b1e3a;
+  --color-line: #2c3055;
+  --color-ink: #f3f1f7;
+  --color-body: #d2d0e3;
+  --color-muted: #a9a7c4;
+  --color-brand: #8f1030;
+  --color-brand-deep: #730017;
+  --color-brand-tint: #3a1226;
+  --color-logo-plate: #ffffff;
+  --color-brand-ink: #ff8fa6;
+  --color-brand-ink-hover: #ffb3c2;
+  --shadow-soft: 0 4px 24px rgb(0 0 0 / 0.35);
+  --shadow-lift: 0 12px 48px rgb(0 0 0 / 0.5);
+  --glass-fill: rgb(27 30 58 / 0.62);
+  --glass-fill-strong: rgb(27 30 58 / 0.82);
+  --glass-border: rgb(255 255 255 / 0.16);
+  --glass-edge: rgb(255 255 255 / 0.3);
+  --glass-sheen: rgb(255 255 255 / 0.08);
+  --glass-rim: rgb(0 0 0 / 0.4);
+  --glass-shadow: 0 14px 44px rgb(0 0 0 / 0.45), 0 2px 10px rgb(0 0 0 / 0.3);
+  --aurora-burgundy: rgb(192 0 42 / 0.3);
+  --aurora-cyan: rgb(0 154 206 / 0.24);
+}

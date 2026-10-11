@@ -1,0 +1,42 @@
+---
+import { clinic, formatAddress, formatHours } from '../../lib/clinic';
+import { mainNav } from '../../data/specialties';
+
+const hours = formatHours(clinic.hours);
+const year = new Date().getFullYear();
+---
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer__g">
+      <div>
+        <p class="footer__logo">Vita<em>Dentica</em></p>
+        <p>{clinic.legalName}. Implantologia, ortodoncja, Invisalign® i stomatologia ogólna na Gocławiu w Warszawie.</p>
+      </div>
+
+      <div>
+        <h2>Kontakt</h2>
+        <address>
+          <p>{clinic.address.street}</p>
+          <p>{clinic.address.postalCode} {clinic.address.city}</p>
+          <p class="mt-2"><a href={clinic.phone.href}>{clinic.phone.display}</a></p>
+          <p><a href={`mailto:${clinic.email}`}>{clinic.email}</a></p>
+          {hours.map((h) => <p class="mt-2">{h}</p>)}
+        </address>
+      </div>
+
+      <nav aria-label="Mapa serwisu">
+        <h2>Strony</h2>
+        <ul>
+          {mainNav.map((item) => <li><a href={item.path}>{item.label}</a></li>)}
+        </ul>
+      </nav>
+    </div>
+
+    <hr class="footer__hr" />
+    <div class="footer__bot">
+      <p>© {year} {clinic.legalName}. {formatAddress(clinic.address)}</p>
+      <button type="button" data-cc="show-preferencesModal">Ustawienia plików cookie</button>
+    </div>
+  </div>
+</footer>

@@ -1,0 +1,95 @@
+---
+import { Image } from 'astro:assets';
+import logo from '../../assets/logo-vitadentica.png';
+import { clinic } from '../../lib/clinic';
+import { mainNav } from '../../data/specialties';
+import ThemeToggle from './ThemeToggle.astro';
+
+// build.format 'file' daje pathname `/implanty.html` (dev: `/implanty`), więc normalizujemy oba.
+const current = Astro.url.pathname.replace(/(\/index)?\.html$/, '').replace(/\/$/, '') || '/';
+
+// „Implanty – Promocja!" → nazwa + plakietka. Czytnik ekranu nadal słyszy pełną etykietę (myślnik jest w .sr-only).
+const TAG_SEPARATOR = ' – ';
+const navItems = mainNav.map((item) => {
+  const at = item.label.indexOf(TAG_SEPARATOR);
+  return at < 0
+    ? { path: item.path, name: item.label, tag: undefined }
+    : { path: item.path, name: item.label.slice(0, at), tag: item.label.slice(at + TAG_SEPARATOR.length) };
+});
+---
+
+<header class="hdr" id="hdr">
+  <div class="hdr__i glass">
+    <a href="/" class="hdr__logo" aria-label="Vitadentica: strona główna">
+      <Image
+        src={logo}
+        alt="Vitadentica"
+        width={124}
+        height={40}
+        densities={[1, 2]}
+        loading="eager"
+        fetchpriority="high"
+        class="h-10 w-auto"
+      />
+    </a>
+
+    <nav aria-label="Główna nawigacja" class="hdr__nav hdr__nav--desk">
+      {
+        navItems.map((item) => (
+          <a href={item.path} class="hdr__a" aria-current={current === item.path ? 'page' : undefined}>
+            {item.name}
+            {item.tag && (
+              <>
+                <span class="sr-only">{TAG_SEPARATOR}</span>
+                <span class="hdr__tag">{item.tag}</span>
+              </>
+            )}
+          </a>
+        ))
+      }
+      <a href={clinic.phone.href} class="btn btn--red btn--glow" style="padding: 11px 20px;">
+        <span class="sr-only">Zadzwoń: </span>{clinic.phone.display}
+      </a>
+    </nav>
+
+    <a href={clinic.phone.href} class="hdr__ph hdr__ph--m">
+      <span class="sr-only">Zadzwoń: </span>{clinic.phone.display}
+    </a>
+    <ThemeToggle />
+
+    <!-- Menu na telefonie i tablecie: natywne <details>, działa bez JS; Esc i klik poza panelem zamyka src/scripts/menu.ts -->
+    <details class="hdr__menu" data-menu>
+      <summary class="hdr__burger" aria-label="Menu">
+        <svg class="hdr__burger-open" viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" focusable="false">
+          <path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" />
+        </svg>
+        <svg class="hdr__burger-close" viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" focusable="false">
+          <path d="M5 5l14 14M19 5L5 19" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" />
+        </svg>
+      </summary>
+      <nav aria-label="Nawigacja mobilna" class="hdr__panel">
+        <ul>
+          {
+            navItems.map((item) => (
+              <li>
+                <a href={item.path} class="hdr__pa" aria-current={current === item.path ? 'page' : undefined}>
+                  {item.name}
+                  {item.tag && (
+                    <>
+                      <span class="sr-only">{TAG_SEPARATOR}</span>
+                      <span class="hdr__tag">{item.tag}</span>
+                    </>
+                  )}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+        <a href={clinic.phone.href} class="btn btn--red hdr__panel-cta">
+          <span class="sr-only">Zadzwoń: </span>{clinic.phone.display}
+        </a>
+      </nav>
+    </details>
+  </div>
+
+</header>

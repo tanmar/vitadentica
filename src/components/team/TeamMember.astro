@@ -1,0 +1,60 @@
+---
+import { Image } from 'astro:assets';
+import { render } from 'astro:content';
+import { displayName, type TeamEntry } from '../../lib/content';
+
+interface Props {
+  member: TeamEntry;
+  /** Co drugą osobę odwracamy, żeby lista nie była jednostajna. */
+  flip?: boolean;
+}
+
+const { member, flip = false } = Astro.props;
+const { data } = member;
+const { Content } = await render(member);
+const hasBio = Boolean(member.body?.trim());
+const headingId = `team-${member.id}`;
+---
+
+<article id={headingId} aria-labelledby={`${headingId}-name`} class:list={['person', 'glass', flip && 'person--flip']}>
+  {
+    data.photo && (
+      <figure class="person__photo">
+        <Image
+          src={data.photo}
+          alt={displayName(member)}
+          width={576}
+          height={720}
+          widths={[288, 432, 576]}
+          sizes="(min-width: 1040px) 288px, 90vw"
+          loading="lazy"
+        />
+      </figure>
+    )
+  }
+
+  <div>
+    <h2 id={`${headingId}-name`}>{displayName(member)}</h2>
+    {data.roles.length > 0 && <p class="person__roles">{data.roles.join(' · ')}</p>}
+    {
+      hasBio && (
+        <div class="prose-vd" style="margin-top: 22px;">
+          <Content />
+        </div>
+      )
+    }
+    {
+      data.schedule && (
+        <p class="person__sched">
+          {data.schedule}
+          {data.kind === 'doctor' && (
+            <>
+              {' · '}
+              <a href="/kontakt">Umów wizytę</a>
+            </>
+          )}
+        </p>
+      )
+    }
+  </div>
+</article>

@@ -1,0 +1,98 @@
+@import 'tailwindcss';
+@import './tokens.css';
+
+@import './fonts.css';
+
+@import './glass.css';
+@import './components.css';
+@import './motion.css';
+@import './prose.css';
+@import './mobile.css';
+@import './transparency.css';
+
+/*
+ * Tailwind domyślnie skanuje cały projekt, więc słowa z dokumentów i testów (np. „invisible", „ring") stawały się
+ * klasami w CSS każdej strony (+1,7 kB gzip). Klasy są tylko w src/ i w treści, więc wykluczamy resztę.
+ * Uwaga: `source('../')` w @import zawęża za bardzo i gubi `focus:*` z BaseLayout (link „przejdź do treści").
+ */
+@source not '../../docs';
+@source not '../../tests';
+@source not '../../e2e';
+@source not '../../scripts';
+@source not '../../test-results';
+
+
+@layer base {
+  html {
+    scroll-padding-top: calc(var(--hdr-h) + 16px);
+    scroll-behavior: smooth;
+    font-size: 16px;
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    font-family: var(--font-sans);
+    color: var(--color-body);
+    background: var(--color-paper);
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  h1,
+  h2 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    color: var(--color-ink);
+  }
+  h1 {
+    font-size: var(--text-hero);
+    line-height: 1.2;
+  }
+  h2 {
+    font-size: var(--text-section);
+    line-height: 1.25;
+  }
+  h3 {
+    font-weight: 700;
+    color: var(--color-ink);
+  }
+  :focus-visible {
+    outline: 3px solid var(--color-accent);
+    outline-offset: 3px;
+  }
+}
+
+/* CookieConsent dopasowany do marki. Zmienne z tokenów, więc baner podąża za motywem jasnym/ciemnym.
+   `html #cc-main` przebija domyślne `#cc-main` z arkusza biblioteki niezależnie od kolejności ładowania. */
+html #cc-main {
+  --cc-font-family: var(--font-sans);
+  --cc-bg: var(--color-surface);
+  --cc-primary-color: var(--color-ink);
+  --cc-secondary-color: var(--color-muted);
+  --cc-link-color: var(--color-brand-ink);
+  --cc-btn-primary-bg: var(--color-brand);
+  --cc-btn-primary-color: #fff;
+  --cc-btn-primary-border-color: var(--color-brand);
+  --cc-btn-primary-hover-bg: var(--color-brand-deep);
+  --cc-btn-primary-hover-color: #fff;
+  --cc-btn-primary-hover-border-color: var(--color-brand-deep);
+  --cc-btn-secondary-bg: var(--color-brand-tint);
+  --cc-btn-secondary-color: var(--color-brand-ink);
+  --cc-btn-secondary-border-color: var(--color-brand-tint);
+  --cc-btn-secondary-hover-bg: var(--color-line);
+  --cc-btn-secondary-hover-color: var(--color-ink);
+  --cc-btn-secondary-hover-border-color: var(--color-line);
+  --cc-toggle-on-bg: var(--color-brand);
+  --cc-toggle-off-bg: var(--color-muted);
+  --cc-toggle-readonly-bg: var(--color-line);
+  --cc-toggle-readonly-knob-bg: var(--color-muted);
+  --cc-separator-border-color: var(--color-line);
+  --cc-section-category-border: var(--color-line);
+  --cc-cookie-category-block-bg: var(--color-off);
+  --cc-cookie-category-block-border: var(--color-line);
+  --cc-cookie-category-block-hover-bg: var(--color-line);
+  --cc-cookie-category-block-hover-border: var(--color-line);
+  --cc-cookie-category-expanded-block-hover-bg: var(--color-line);
+  --cc-footer-bg: var(--color-off);
+  --cc-footer-color: var(--color-muted);
+  --cc-footer-border-color: var(--color-line);
+}

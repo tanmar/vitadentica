@@ -1,0 +1,177 @@
+/*
+ * Mapa dojazdu (RouteMap.astro). Kolory pochodzą z tokenów strony, więc mapa przełącza się razem z motywem.
+ * Jednostką w SVG jest metr (viewBox ±480 × ±440 m), więc rozmiary linii i tekstu podajemy w metrach:
+ * na pulpicie 1 m ≈ 0,59–0,66 px, na telefonie ≈ 0,29–0,33 px. Stąd osobny, większy rozmiar tekstu na telefonie
+ * (--rm-fs-sm; położenia etykiet na telefonie liczy generator osobno, patrz scripts/generate-route-map.ts).
+ * Cel: tekst na ekranie ≥ 12 px od 320 px szerokości (pilnuje e2e/route-map.spec.ts).
+ */
+.rmap-g {
+  display: grid;
+  grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr);
+  gap: 28px;
+  align-items: start;
+  margin-top: 36px;
+}
+
+/* ── Rama mapy (szkło) ── */
+.rmap {
+  --rm-land: var(--color-off);
+  --rm-block: color-mix(in srgb, var(--color-ink) 8%, var(--color-off));
+  /* zieleń tylko jako znaczenie mapy (park ≠ woda); stonowana, żeby nie wprowadzać nowego akcentu do strony */
+  --rm-park: color-mix(in srgb, #4d9c6a 20%, var(--color-off));
+  --rm-water: color-mix(in srgb, var(--color-accent) 42%, var(--color-off));
+  --rm-casing: color-mix(in srgb, var(--color-ink) 18%, var(--color-off));
+  --rm-casing-main: color-mix(in srgb, var(--color-brand-bright) 38%, var(--color-off));
+  --rm-road: var(--color-surface);
+  --rm-road-main: var(--color-brand-tint);
+  margin: 0;
+  padding: 10px;
+  border-radius: 30px;
+}
+.rmap__svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 22px;
+  /* tło także tam, gdzie mapa jest przycięta zaokrągleniem */
+  background: var(--rm-land);
+}
+.rmap__credit {
+  padding: 10px 12px 4px;
+  font-size: 0.8rem;
+  line-height: 1.4;
+  color: var(--color-muted);
+}
+.rmap__credit a { color: var(--color-brand-ink); text-underline-offset: 3px; }
+
+/* ── Warstwy mapy ── */
+.rm-land { fill: var(--rm-land); }
+.rm-park { fill: var(--rm-park); }
+.rm-water { fill: var(--rm-water); }
+.rm-canal { fill: none; stroke: var(--rm-water); stroke-width: 6; stroke-linecap: round; stroke-linejoin: round; }
+.rm-block { fill: var(--rm-block); }
+
+.rm-road { fill: none; stroke-linecap: round; stroke-linejoin: round; }
+.rm-casing--local { stroke: var(--rm-casing); stroke-width: 9; }
+.rm-casing--collector { stroke: var(--rm-casing); stroke-width: 14; }
+.rm-casing--arterial { stroke: var(--rm-casing-main); stroke-width: 18; }
+.rm-fill--local { stroke: var(--rm-road); stroke-width: 6; }
+.rm-fill--collector { stroke: var(--rm-road); stroke-width: 10; }
+.rm-fill--arterial { stroke: var(--rm-road-main); stroke-width: 14; }
+
+/* ── Etykiety ulic ── */
+.rm-label {
+  font-size: calc(var(--rm-fs) * 1px);
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  text-anchor: middle;
+  dominant-baseline: central;
+  fill: var(--color-body);
+  /* obrys w kolorze tła: tekst czytelny także nad ulicą i budynkiem */
+  stroke: var(--rm-land);
+  stroke-width: 6px;
+  stroke-linejoin: round;
+  paint-order: stroke;
+}
+.rm-label--0 { font-weight: 700; fill: var(--color-ink); }
+.rm-label--2 { fill: var(--color-muted); }
+/* dwa zestawy etykiet: każdy ma położenie policzone dla swojego rozmiaru pisma */
+.rm-label--sm { display: none; font-size: calc(var(--rm-fs-sm) * 1px); stroke-width: 9px; }
+
+/* ── Przystanki: numer na mapie odpowiada numerowi na liście ── */
+.rm-stop circle { fill: var(--color-accent-deep); stroke: #fff; stroke-width: 3; }
+.rm-stop text {
+  font-size: 22px;
+  font-weight: 700;
+  fill: #fff;
+  text-anchor: middle;
+  dominant-baseline: central;
+}
+
+/* ── Gabinet: pin z plakietką ── */
+.rm-pin__body { fill: var(--color-brand-bright); stroke: #fff; stroke-width: 3; stroke-linejoin: round; }
+.rm-pin__dot { fill: #fff; }
+.rm-pulse {
+  fill: var(--color-brand-bright);
+  opacity: 0;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+/*
+ * Puls (3 razy) tylko gdy ruch jest dozwolony i dopiero po odsłonięciu mapy: reveal zdejmuje .is-hidden z kontenera
+ * przy wejściu w widok. Animacja jest w no-preference, a nie wyłączana osobną regułą, żeby nie przegrać specyficznością.
+ */
+@media (prefers-reduced-motion: no-preference) {
+  .rmap-g:not(.is-hidden) .rm-pulse { animation: rm-pulse 2.4s var(--ease-out) 3; }
+}
+@keyframes rm-pulse {
+  from { transform: scale(0.7); opacity: 0.45; }
+  to { transform: scale(2.6); opacity: 0; }
+}
+.rm-plate { filter: drop-shadow(0 3px 7px rgb(13 15 35 / 0.28)); }
+.rm-plate rect { fill: var(--color-surface); stroke: var(--color-line); stroke-width: 1.5; }
+.rm-plate__name { font-size: 24px; font-weight: 700; fill: var(--color-ink); }
+.rm-plate__addr { font-size: 21px; fill: var(--color-body); }
+
+/* ── Skala: odcinek ma prawdziwe 100 m, nie skalujemy go na telefonie ── */
+.rm-scale path { fill: none; stroke: var(--color-ink); stroke-width: 2.5; stroke-linecap: round; }
+.rm-scale text {
+  font-size: calc(var(--rm-fs) * 1px);
+  text-anchor: middle;
+  fill: var(--color-ink);
+  stroke: var(--rm-land);
+  stroke-width: 5px;
+  paint-order: stroke;
+}
+
+/* ── Panel z przystankami i trasą ── */
+.rmap__info { border-radius: 30px; padding: clamp(22px, 3vw, 34px); }
+.rmap__info h3 { font-family: var(--font-display); font-size: 1.25rem; line-height: 1.3; color: var(--color-ink); margin-bottom: 14px; }
+.rmap__stops { list-style: none; margin: 0; padding: 0; }
+.rmap__stops li {
+  display: grid;
+  grid-template-columns: 30px 1fr auto;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--color-line);
+}
+.rmap__stops li:last-child { border-bottom: 0; }
+.rmap__num {
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #fff;
+  background: var(--color-accent-deep);
+}
+.rmap__stop-name { font-weight: 700; color: var(--color-ink); }
+.rmap__stop-dist { font-size: 0.92rem; color: var(--color-muted); white-space: nowrap; }
+.rmap__note { margin-top: 14px; font-size: 0.9rem; line-height: 1.5; color: var(--color-muted); }
+.rmap__btns { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin-top: 20px; }
+
+@media (max-width: 1040px) {
+  .rmap-g { grid-template-columns: 1fr; }
+}
+
+/* Telefon: tekst w mapie jest większy (mapa jest 2,5× mniejsza), a mniej ważne etykiety znikają. */
+@media (max-width: 640px) {
+  .rmap { padding: 6px; border-radius: 24px; }
+  .rmap__svg { border-radius: 18px; }
+  .rm-label--desk { display: none; }
+  .rm-label--sm { display: inline; }
+  .rm-stop { transform: scale(1.7); }
+  .rm-stop text { font-size: 26px; }
+  /* skalowanie wokół (0, 0), czyli czubka pinu: gabinet zostaje w tym samym miejscu mapy */
+  .rm-pin { transform: scale(1.7); transform-origin: 0 0; }
+  /* plakietka po lewej stronie pinu: po prawej zasłaniałaby przystanek (strefy w scripts/generate-route-map.ts) */
+  .rm-plate { transform: translateX(-242px); }
+  /* adres (drugi wiersz) byłby tu mniejszy niż 12 px; ten sam adres jest tuż nad mapą */
+  .rm-plate__addr { display: none; }
+  .rm-plate__name { font-size: 26px; transform: translateY(9px); }
+  .rm-scale text { font-size: calc(var(--rm-fs-sm) * 1px); stroke-width: 7px; }
+  .rmap__btns .btn { width: 100%; justify-content: center; }
+}

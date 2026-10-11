@@ -1,0 +1,112 @@
+---
+import '../styles/global.css';
+import Topbar from '../components/layout/Topbar.astro';
+import Header from '../components/layout/Header.astro';
+import MobileBar from '../components/layout/MobileBar.astro';
+import Footer from '../components/layout/Footer.astro';
+import JsonLd from '../components/seo/JsonLd.astro';
+import { clinic } from '../lib/clinic';
+import type { FaqItem } from '../lib/faq';
+import { buildPageGraph, type PageKind } from '../lib/jsonld';
+import { isStaging } from '../lib/site';
+import themeInit from '../scripts/theme-init.js?raw';
+// Tylko dwa krytyczne fonty (tekst bazowy i nagłówki); reszta ładuje się, gdy potrzebna.
+import textFont from '@fontsource/roboto-condensed/files/roboto-condensed-latin-400-normal.woff2?url';
+import headingFont from '@fontsource/lora/files/lora-latin-700-normal.woff2?url';
+
+interface Props {
+  title: string;
+  description: string;
+  /** Ścieżka kanoniczna, np. `/implanty`; `/` dla strony głównej. */
+  path: string;
+  /** Encje strony (lekarze, cennik, okruszki). Witrynę, stronę i gabinet dokłada layout (`buildPageGraph`). */
+  jsonLd?: Record<string, unknown>[];
+  /** Typ strony w schema.org (domyślnie `WebPage`). */
+  kind?: PageKind;
+  /** Pytania i odpowiedzi widoczne na stronie: trafiają do FAQPage w JSON-LD. */
+  faq?: readonly FaqItem[];
+  /** Strona błędu (404): bez canonical, wersji .md, og:url i JSON-LD, z noindex. */
+  errorPage?: boolean;
+}
+
+const { title, description, path, jsonLd = [], kind, faq, errorPage = false } = Astro.props;
+const canonical = new URL(path, Astro.site).toString();
+const markdownHref = `${path === '/' ? '/index' : path}.md`;
+const isIndexable = !isStaging && !errorPage;
+
+// Karta Open Graph jest wspólna dla wszystkich stron (1200×630, public/og-image.jpg).
+const IMAGE_WIDTH = 1200;
+const IMAGE_HEIGHT = 630;
+const imageUrl = new URL(clinic.image, Astro.site).toString();
+const imageAlt = `${clinic.name}: gabinet stomatologiczny, ${clinic.address.districts[0]}, ${clinic.address.city}`;
+
+const graph = errorPage ? [] : buildPageGraph(clinic, { title, description, path, kind, faq }, jsonLd);
+---
+
+<!doctype html>
+<html lang="pl" data-gtm-id={clinic.gtmId} data-gtm-mode={clinic.gtmLoadMode}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0f1120" media="(prefers-color-scheme: dark)" />
+    <!-- Zapisany wybór motywu przed pierwszym renderem (hash skryptu jest w public/_headers, pilnuje go tests/theme.test.ts). -->
+    <script is:inline set:html={themeInit.trim()} />
+    {!errorPage && <link rel="canonical" href={canonical} />}
+    {!errorPage && <link rel="alternate" type="text/markdown" href={markdownHref} />}
+    {
+      isIndexable ? (
+        <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+      ) : (
+        <meta name="robots" content="noindex, nofollow" />
+      )
+    }
+
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="pl_PL" />
+    <meta property="og:site_name" content={clinic.name} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    {!errorPage && <meta property="og:url" content={canonical} />}
+    <meta property="og:image" content={imageUrl} />
+    <meta property="og:image:width" content={String(IMAGE_WIDTH)} />
+    <meta property="og:image:height" content={String(IMAGE_HEIGHT)} />
+    <meta property="og:image:alt" content={imageAlt} />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={imageUrl} />
+    <meta name="twitter:image:alt" content={imageAlt} />
+
+    <link rel="preload" href={textFont} as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href={headingFont} as="font" type="font/woff2" crossorigin />
+    <link rel="icon" href="/favicon-32.png" type="image/png" sizes="32x32" />
+    <link rel="apple-touch-icon" href="/favicon.png" />
+    <JsonLd data={graph} />
+  </head>
+  <body class="min-h-screen">
+    <a
+      href="#main"
+      class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[500] focus:rounded focus:bg-brand focus:px-4 focus:py-2 focus:text-paper"
+    >
+      Przejdź do treści
+    </a>
+    <Topbar />
+    <Header />
+    <main id="main">
+      <slot />
+    </main>
+    <Footer />
+    <MobileBar />
+    <script>
+      import '../scripts/consent';
+      import '../scripts/theme';
+      import '../scripts/menu';
+      import '../scripts/motion';
+    </script>
+  </body>
+</html>

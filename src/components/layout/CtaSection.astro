@@ -1,0 +1,31 @@
+---
+import { clinic, formatHours } from '../../lib/clinic';
+
+interface Props {
+  title?: string;
+  text?: string;
+}
+
+const {
+  title = 'Umów wizytę w Vitadentica',
+  text = 'Zadzwoń lub napisz. Oddzwonimy albo odpiszemy z propozycją terminu.',
+} = Astro.props;
+const hours = formatHours(clinic.hours);
+---
+
+<section class="cta" aria-labelledby="cta-heading">
+  <div class="wrap">
+    <div class="cta__i glass-smoke">
+      <h2 id="cta-heading" class="reveal">{title}</h2>
+      <p class="reveal">{text}</p>
+      <div class="cta__btns reveal">
+        <a href={clinic.phone.href} class="btn btn--white">Zadzwoń: {clinic.phone.display}</a>
+        <a href={`mailto:${clinic.email}`} class="btn btn--ghost">Napisz e-mail</a>
+      </div>
+      <div class="cta__meta">
+        <span>{clinic.address.street}, {clinic.address.postalCode} {clinic.address.city}</span>
+        {hours.map((h) => <span>{h}</span>)}
+      </div>
+    </div>
+  </div>
+</section>

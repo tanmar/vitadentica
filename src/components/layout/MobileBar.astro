@@ -1,0 +1,10 @@
+---
+import { clinic } from '../../lib/clinic';
+---
+
+<div class="mobbar glass-smoke">
+  <span>Umów wizytę</span>
+  <a href={clinic.phone.href} class="btn btn--red btn--glow">
+    <span class="sr-only">Zadzwoń: </span>{clinic.phone.display}
+  </a>
+</div>

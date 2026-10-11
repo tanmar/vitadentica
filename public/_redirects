@@ -1,0 +1,16 @@
+# Stare adresy WordPressa → nowe ścieżki (301). Format Cloudflare Pages.
+# Źródło prawdy: pole `oldUrl` w src/content/pages/*.md (pilnuje tego tests/redirects.test.ts).
+# Wersje z ukośnikiem i bez są zapisane jawnie, bo nie zakładamy, że Pages je utożsamia.
+# Pomijamy tylko adresy, które po usunięciu ukośnika są identyczne z celem (to obsługuje Pages).
+# Zweryfikować na stagingu (DECISIONS.md, otwarta sprawa nr 2).
+
+/implanty-warszawa                  /implanty              301
+/implanty-warszawa/                 /implanty              301
+/zakres-zabiegow-stomatologicznych  /stomatologia-ogolna   301
+/zakres-zabiegow-stomatologicznych/ /stomatologia-ogolna   301
+/invisalign.html                    /invisalign            301
+/cennik.html                        /cennik                301
+/kontakt.html                       /kontakt               301
+/index.php                          /                      301
+/feed                               /                      301
+/feed/                              /                      301

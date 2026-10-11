@@ -1,0 +1,110 @@
+/*
+ * Telefon (≤ 640 px) i bardzo wąskie ekrany (≤ 380 px). Ładowany ostatni, więc nadpisuje reguły bazowe.
+ * Zasady: cele dotyku ≥ 44 px, brak poziomego przewijania od 320 px, zwarte karty (krótsze strony).
+ * Weryfikuje to e2e/mobile.spec.ts (Playwright).
+ */
+@media (max-width: 640px) {
+  /* ── Szkło: mniejszy blur oszczędza GPU na telefonie ── */
+  :root { --glass-blur: 12px; --hdr-h: 72px; }
+
+  /* ── Nagłówek i nawigacja ── */
+  .hdr { padding: 8px 10px 0; }
+  .hdr__i { padding: 0 12px 0 16px; gap: 10px; min-height: 64px; border-radius: 20px; }
+  /* Numer jest w przyklejonym pasku „Umów wizytę" i w menu, więc w nagłówku robimy miejsce na ikony */
+  .hdr__ph--m { display: none; }
+  .hdr__i > :nth-last-child(2) { margin-left: auto; }
+  .theme-toggle { width: 44px; height: 44px; }
+
+  /* ── Hero ── */
+  .hero__lead { font-size: 1rem; line-height: 1.7; margin-bottom: 24px; }
+  .hero__btns { flex-direction: column; gap: 10px; margin-bottom: 26px; }
+  .hero__btns .btn { width: 100%; justify-content: center; text-align: center; white-space: normal; }
+  .hero__pills { gap: 8px; }
+  .hero__media { margin-top: 12px; }
+  .hv { max-width: 320px; }
+  .hv__chip--team { padding: 8px 16px 8px 8px; }
+  .hv__chip--years { padding: 10px 16px; }
+  .hv__chip--years strong { font-size: 1.6rem; }
+  .ribbon { margin-top: -36px; }
+  .ribbon__i { gap: 4px 16px; padding: 14px 16px; border-radius: 20px; }
+  .ribbon__item { font-size: 0.76rem; letter-spacing: 0.05em; text-align: center; }
+  .ribbon__item + .ribbon__item::before { display: none; }
+
+  /* ── Karty ofert: numer obok treści (o połowę krótsze karty) ── */
+  .ben-grid { margin-top: 32px; gap: 12px; }
+  .ben { display: grid; grid-template-columns: 52px 1fr; column-gap: 16px; padding: 20px 18px; border-radius: 20px; }
+  .ben__n { grid-row: 1 / span 3; width: 52px; height: 52px; margin: 0; font-size: 1.15rem; border-radius: 12px; }
+  .ben > :not(.ben__n) { grid-column: 2; }
+  .ben h3 { margin-bottom: 4px; }
+  .ben__go { margin-top: 8px; }
+
+  /* ── Panel zespołu: twarze w przewijanym rzędzie (7 kafli w siatce to cztery ekrany), liczby 2×2 ── */
+  .team-strip { padding: 44px 0; }
+  .team-strip__panel { border-radius: 24px; }
+  .team-strip__head { margin-bottom: 22px; }
+  .team-strip__head .btn { width: 100%; justify-content: center; }
+  .team-strip__faces {
+    display: flex;
+    gap: 12px;
+    overflow-x: auto;
+    scroll-snap-type: x proximity;
+    scroll-padding-inline: 6px;
+    margin: 0 -6px;
+    padding: 6px;
+    -webkit-overflow-scrolling: touch;
+  }
+  .team-strip__faces > li { flex: 0 0 132px; scroll-snap-align: start; }
+  .team-strip__nums { grid-template-columns: 1fr 1fr; gap: 20px 12px; margin-top: 22px; padding-top: 22px; }
+  .tn__n { font-size: 1.9rem; }
+  .tn__l { font-size: 0.8rem; }
+
+  /* ── Karta lekarza: zdjęcie obok nazwiska ── */
+  .doc-card { flex-direction: row; align-items: flex-start; gap: 16px; padding: 20px 18px; }
+  .doc-card__ring { display: none; }
+  .doc-card__photo { width: 68px; height: 68px; }
+  .doc-card__name { font-size: 1.15rem; }
+  .doc-card__roles { font-size: 0.78rem; letter-spacing: 0.06em; }
+  .doc-card__links a { display: inline-flex; align-items: center; min-height: 44px; }
+
+  /* ── Zespół ── */
+  .person { padding: 18px; gap: 18px; margin-bottom: 20px; }
+  .person__photo { aspect-ratio: 1 / 1; max-width: none; }
+  .person__photo img { object-position: center 15%; }
+  .person__sched { margin-top: 16px; }
+
+  /* ── Cennik ── */
+  .price-hl { gap: 12px; }
+  .price-hl__card { padding: 20px; }
+  .price-hl__v { margin-top: 14px; }
+  .price-hl__now { font-size: 1.9rem; }
+  .price-section + .price-section { margin-top: 40px; }
+  .cmp th, .cmp tbody th, .cmp td { padding-left: 14px; padding-right: 14px; }
+  .cmp tbody th, .cmp td { padding-top: 12px; padding-bottom: 12px; }
+  .cmp__was { display: block; margin: 0 0 1px; font-size: 0.8rem; }
+
+  /* ── Treść ── */
+  .prose-vd { font-size: 1rem; line-height: 1.75; }
+  .prose-vd h2 { margin-top: 2em; }
+  .prose-vd details.fq summary { padding: 16px; }
+  .prose-vd .fq__a { padding: 4px 16px 18px; }
+  .prose-vd p.cta-link a { width: 100%; justify-content: center; }
+
+  /* ── CTA, kontakt, stopka ── */
+  .cta__i { border-radius: 24px; }
+  .cta__btns .btn { width: 100%; max-width: 360px; justify-content: center; text-align: center; white-space: normal; }
+  .cta__meta { flex-direction: column; align-items: center; gap: 4px; }
+  .footer { padding: 40px 0 20px; }
+  .footer__g { gap: 28px; }
+  .footer ul a, .footer address a { display: inline-block; padding: 10px 0; }
+  .footer__bot button { padding: 13px 0; }
+}
+
+@media (max-width: 380px) {
+  .wrap { padding: 0 16px; }
+  .hdr__i { padding: 0 12px; gap: 8px; }
+  .hdr__logo img { height: 34px; }
+  .btn { padding: 14px 18px; font-size: 0.8rem; letter-spacing: 0.04em; }
+  .hero { padding: calc(32px + var(--hdr-h)) 0 88px; }
+  .hero__badge { letter-spacing: 0.05em; padding: 7px 14px; }
+  .contact-cta { padding: 24px 20px; }
+}

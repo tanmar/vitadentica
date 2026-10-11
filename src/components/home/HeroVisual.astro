@@ -1,0 +1,51 @@
+---
+import { Image } from 'astro:assets';
+import Art from '../ui/Art.astro';
+import type { TeamEntry } from '../../lib/content';
+
+interface Props {
+  /** Lekarze ze zdjęciem; pierwsi trzej tworzą stos twarzy w plakietce zespołu. */
+  doctors: readonly TeamEntry[];
+  doctorCount: number;
+  yearsOfPractice: number;
+}
+
+const FACE_COUNT = 3;
+const FACE_SIZE = 44;
+
+const { doctors, doctorCount, yearsOfPractice } = Astro.props;
+const faces = doctors.filter((doctor) => doctor.data.photo).slice(0, FACE_COUNT);
+---
+
+<div class="hv">
+  <div class="hv__art">
+    <Art id="home" sizes="(max-width: 1040px) 420px, 460px" eager />
+  </div>
+
+  <a href="/nasz-zespol" class="hv__chip hv__chip--team glass-smoke">
+    <span class="hv__faces" aria-hidden="true">
+      {
+        faces.map((doctor) => (
+          <Image
+            src={doctor.data.photo!}
+            alt=""
+            width={FACE_SIZE}
+            height={FACE_SIZE}
+            densities={[1, 2]}
+            loading="eager"
+            class="hv__face"
+          />
+        ))
+      }
+    </span>
+    <span>
+      <strong>{doctorCount} lekarzy w zespole</strong>
+      <small>Poznaj zespół</small>
+    </span>
+  </a>
+
+  <p class="hv__chip hv__chip--years glass-smoke">
+    <strong>{yearsOfPractice}</strong>
+    <small>lat na Osiedlu Saska</small>
+  </p>
+</div>

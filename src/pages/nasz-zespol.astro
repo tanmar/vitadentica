@@ -1,0 +1,51 @@
+---
+import { render } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/layout/PageHero.astro';
+import CtaSection from '../components/layout/CtaSection.astro';
+import TeamMember from '../components/team/TeamMember.astro';
+import { clinic } from '../lib/clinic';
+import { faqFromFrontmatter } from '../lib/faq';
+import { buildBreadcrumbs, buildClinicGraph } from '../lib/jsonld';
+import { getDoctorsForJsonLd, getRequiredPage, getTeam } from '../lib/content';
+
+const intro = await getRequiredPage('nasz-zespol');
+const { Content, remarkPluginFrontmatter } = await render(intro);
+const team = await getTeam();
+const doctors = await getDoctorsForJsonLd(team);
+const heading = intro.data.h1 ?? intro.data.title;
+const faq = faqFromFrontmatter(remarkPluginFrontmatter);
+---
+
+<BaseLayout
+  title={intro.data.title}
+  description={intro.data.description}
+  path="/nasz-zespol"
+  faq={faq}
+  kind="AboutPage"
+  jsonLd={[
+    ...buildClinicGraph(clinic, doctors),
+    buildBreadcrumbs(clinic, [
+      { name: clinic.name, path: '/' },
+      { name: heading, path: '/nasz-zespol' },
+    ]),
+  ]}
+>
+  <PageHero title={heading} kicker="Zespół" lead={intro.data.description} art="nasz-zespol" />
+
+  <section class="section">
+    <div class="wrap">
+      <div class="prose-vd">
+        <Content />
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--off" aria-label="Lekarze i personel" style="padding-top: 56px;">
+    <div class="wrap">
+      {team.map((member, i) => <TeamMember member={member} flip={i % 2 === 1} />)}
+    </div>
+  </section>
+
+  <CtaSection />
+</BaseLayout>

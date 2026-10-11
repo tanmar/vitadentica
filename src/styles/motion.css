@@ -1,0 +1,87 @@
+/* Animacje przeniesione z invisalign.html: reveal przy scrollu, keyframes, hover. */
+
+/*
+ * ── Reveal przy scrollu ──
+ * Treść jest domyślnie WIDOCZNA. Ukrywa ją dopiero src/scripts/motion.ts (klasa .is-hidden) i tylko
+ * dla elementów poniżej pierwszego ekranu, więc LCP nie czeka na JS, a bez JS nic nie znika.
+ * Po wejściu w widok skrypt zdejmuje .is-hidden i dodaje .on.
+ */
+.reveal,
+.rv-l,
+.rv-r,
+.rv-s {
+  transition:
+    opacity 0.8s var(--ease-out),
+    transform 0.8s var(--ease-out);
+}
+.reveal.is-hidden { opacity: 0; transform: translateY(40px); }
+.rv-l.is-hidden { opacity: 0; transform: translateX(-50px); }
+.rv-r.is-hidden { opacity: 0; transform: translateX(50px); }
+.rv-s.is-hidden { opacity: 0; transform: scale(0.92); }
+
+/* Kaskada: kolejne dzieci wjeżdżają z opóźnieniem 80 ms */
+.stg > * {
+  transition:
+    opacity 0.65s var(--ease-out),
+    transform 0.65s var(--ease-out);
+}
+.stg.is-hidden > * { opacity: 0; transform: translateY(30px); }
+.stg.on > *:nth-child(1) { transition-delay: 0.05s; }
+.stg.on > *:nth-child(2) { transition-delay: 0.13s; }
+.stg.on > *:nth-child(3) { transition-delay: 0.21s; }
+.stg.on > *:nth-child(4) { transition-delay: 0.29s; }
+.stg.on > *:nth-child(5) { transition-delay: 0.37s; }
+.stg.on > *:nth-child(6) { transition-delay: 0.45s; }
+
+/* ── Keyframes ── */
+@keyframes shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+@keyframes glowPulse {
+  0%, 100% { box-shadow: 0 4px 15px rgb(115 0 23 / 0.3); }
+  50% { box-shadow: 0 4px 30px rgb(115 0 23 / 0.55), 0 0 60px rgb(115 0 23 / 0.15); }
+}
+@keyframes hIn {
+  to { opacity: 1; transform: none; }
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.6; transform: scale(1.4); }
+}
+
+.shimmer-text {
+  background: linear-gradient(90deg, var(--color-ink) 40%, var(--color-brand) 50%, var(--color-ink) 60%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 4s ease-in-out infinite;
+}
+/* Trzy impulsy przyciągają wzrok; nieskończony puls trzech przycisków naraz tylko rozprasza. */
+.btn--glow { animation: glowPulse 2.5s ease-in-out 3; }
+.btn--glow:hover { animation: none; box-shadow: 0 8px 32px rgb(115 0 23 / 0.45); }
+
+.hover-line { position: relative; display: inline-block; }
+.hover-line::after {
+  content: '';
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--color-brand), var(--color-accent));
+  border-radius: 2px;
+  transition: width 0.4s var(--ease-out);
+}
+.hover-line:hover::after,
+.hover-line:focus-visible::after { width: 100%; }
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal, .rv-l, .rv-r, .rv-s, .stg > * { transition: none; }
+  .is-hidden, .stg.is-hidden > * { opacity: 1; transform: none; }
+  .shimmer-text { animation: none; background: none; -webkit-text-fill-color: currentColor; }
+  .btn--glow, .hero__badge-dot { animation: none !important; }
+  .hero__c > *, .hero__media { opacity: 1 !important; transform: none !important; animation: none !important; }
+  .ben, .btn, .btn::before, .ben::before, .pill, .person, .hv__chip, .face__ph img { transition: none; }
+}

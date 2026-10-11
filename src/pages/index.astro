@@ -1,0 +1,105 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CtaSection from '../components/layout/CtaSection.astro';
+import HeroVisual from '../components/home/HeroVisual.astro';
+import TeamStrip from '../components/home/TeamStrip.astro';
+import { clinic, formatHours } from '../lib/clinic';
+import { buildClinicGraph } from '../lib/jsonld';
+import { getDoctorsForJsonLd, getTeam } from '../lib/content';
+import { homeMeta } from '../data/home';
+import { specialties } from '../data/specialties';
+
+const team = await getTeam();
+const doctors = await getDoctorsForJsonLd(team);
+const doctorEntries = team.filter((member) => member.data.kind === 'doctor');
+const doctorCount = doctorEntries.length;
+const yearsOfPractice = new Date().getFullYear() - clinic.foundingYear;
+const hours = formatHours(clinic.hours);
+const firstHours = clinic.hours[0];
+const openingRange = firstHours ? `${firstHours.opens.slice(0, 2)}–${firstHours.closes.slice(0, 2)}` : '–';
+const openDays = firstHours?.days.length ?? 0;
+
+const figures = [
+  { value: yearsOfPractice, label: 'lat działalności', count: true },
+  { value: doctorCount, label: 'lekarzy w zespole', count: true },
+  { value: specialties.length, label: 'działy oferty', count: true },
+  { value: `${openDays} dni`, label: `w tygodniu, ${openingRange}` },
+];
+---
+
+<BaseLayout
+  title={homeMeta.title}
+  description={homeMeta.description}
+  path="/"
+  jsonLd={buildClinicGraph(clinic, doctors)}
+>
+  <section aria-labelledby="hero-heading" class="hero on-night">
+    <div class="wrap hero__g">
+      <div class="hero__c">
+        <p class="hero__badge">
+          <span class="hero__badge-dot" aria-hidden="true"></span>
+          {clinic.address.districts.join(' · ')}
+        </p>
+        <h1 id="hero-heading">{homeMeta.heading.lead} <em>{homeMeta.heading.accent}</em></h1>
+        <p class="hero__lead">
+          Implantologia, ortodoncja, Invisalign® i&nbsp;stomatologia ogólna. Przyjmujemy dorosłych
+          i&nbsp;dzieci przy ul.&nbsp;Skalskiego&nbsp;3 w&nbsp;Warszawie.
+        </p>
+        <div class="hero__btns">
+          <a href={clinic.phone.href} class="btn btn--red btn--glow">Zadzwoń: {clinic.phone.display}</a>
+          <a href={`mailto:${clinic.email}`} class="btn btn--ghost">Napisz e-mail</a>
+        </div>
+        <ul class="hero__pills">
+          {specialties.map((s) => <li><a class="pill" href={s.path}>{s.label}</a></li>)}
+        </ul>
+      </div>
+
+      <div class="hero__media">
+        <HeroVisual doctors={doctorEntries} doctorCount={doctorCount} yearsOfPractice={yearsOfPractice} />
+      </div>
+    </div>
+  </section>
+
+  <div class="ribbon">
+    <div class="wrap">
+      <div class="ribbon__i glass glass--strong">
+        <span class="ribbon__item">Od {clinic.foundingYear} roku</span>
+        {hours[0] && <span class="ribbon__item">{hours[0]}</span>}
+        <span class="ribbon__item">Rejestracja telefoniczna</span>
+      </div>
+    </div>
+  </div>
+
+  <section aria-labelledby="offer-heading" class="section section--aurora">
+    <div class="wrap">
+      <div class="reveal">
+        <p class="kicker">Oferta</p>
+        <h2 id="offer-heading">Usługi stomatologiczne</h2>
+        <span class="rule"></span>
+        <p class="lead" style="margin: 0;">
+          Przyjmujemy dorosłych i&nbsp;dzieci. Oferta obejmuje implantologię, ortodoncję, leczenie nakładkami
+          Invisalign® oraz stomatologię ogólną: leczenie zachowawcze, endodoncję pod mikroskopem, chirurgię
+          i&nbsp;protetykę.
+        </p>
+      </div>
+      <ul class="ben-grid stg">
+        {
+          specialties.map((s, i) => (
+            <li>
+              <a href={s.path} class="ben glass">
+                <span class="ben__n" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
+                <h3>{s.label}</h3>
+                <p>{s.blurb}</p>
+                <p class="ben__go">Zobacz więcej →</p>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <TeamStrip doctors={doctorEntries} figures={figures} />
+
+  <CtaSection />
+</BaseLayout>

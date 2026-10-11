@@ -1,0 +1,38 @@
+---
+import { Image } from 'astro:assets';
+import { clinic } from '../../lib/clinic';
+import { displayName, type TeamEntry } from '../../lib/content';
+
+interface Props {
+  doctor: TeamEntry;
+}
+
+const { doctor } = Astro.props;
+const { photo, roles, email, schedule } = doctor.data;
+---
+
+<aside aria-label={`Lekarz prowadzący: ${displayName(doctor)}`} class="doc-card glass glass--strong reveal">
+  <span class="doc-card__ring" aria-hidden="true"></span>
+  {
+    photo && (
+      <Image
+        src={photo}
+        alt={displayName(doctor)}
+        width={184}
+        height={184}
+        widths={[92, 184]}
+        sizes="92px"
+        class="doc-card__photo"
+      />
+    )
+  }
+  <div class="doc-card__body">
+    <p class="doc-card__name">{displayName(doctor)}</p>
+    {roles.length > 0 && <p class="doc-card__roles">{roles[0]}</p>}
+    <p class="doc-card__links">
+      <a href={clinic.phone.href}>{clinic.phone.display}</a>
+      {email && <a href={`mailto:${email}`}>{email}</a>}
+    </p>
+    {schedule && <p class="doc-card__sched">{schedule}</p>}
+  </div>
+</aside>

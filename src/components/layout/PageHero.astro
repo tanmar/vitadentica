@@ -1,0 +1,41 @@
+---
+import GlassTooth from '../ui/GlassTooth.astro';
+import Art from '../ui/Art.astro';
+import type { IllustrationId } from '../../assets/illustrations';
+
+interface Props {
+  title: string;
+  kicker?: string;
+  lead?: string;
+  /** Ilustracja w prawej kolumnie; bez niej nagłówek ma ozdobny ząb (np. strona 404). */
+  art?: IllustrationId;
+}
+
+const { title, kicker, lead, art } = Astro.props;
+---
+
+<section class:list={['hero hero--page on-night', art && 'hero--art']}>
+  {
+    !art && (
+      <div class="hero__mark" aria-hidden="true">
+        <GlassTooth idPrefix="pg" />
+      </div>
+    )
+  }
+  <div class="wrap" style="position: relative; z-index: 1;">
+    <div class:list={['hero__pg', art && 'hero__pg--art']}>
+      <div class="hero__c">
+        {kicker && <p class="kicker">{kicker}</p>}
+        <h1>{title}</h1>
+        {lead && <p class="hero__lead" style="margin-top: 18px; margin-bottom: 0;">{lead}</p>}
+      </div>
+      {
+        art && (
+          <div class="hero__art hero__media">
+            <Art id={art} sizes="(max-width: 760px) 280px, 360px" eager />
+          </div>
+        )
+      }
+    </div>
+  </div>
+</section>

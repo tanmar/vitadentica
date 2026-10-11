@@ -1,0 +1,75 @@
+---
+import { Image } from 'astro:assets';
+import { displayName, type TeamEntry } from '../../lib/content';
+
+interface Figure {
+  readonly value: string | number;
+  readonly label: string;
+  /** Licznik animowany przy wejściu w widok (wartość końcowa jest w HTML, więc bez JS też widać). */
+  readonly count?: boolean;
+}
+
+interface Props {
+  doctors: readonly TeamEntry[];
+  figures: readonly Figure[];
+}
+
+const FACE_WIDTH = 160;
+const FACE_HEIGHT = 200;
+
+const { doctors, figures } = Astro.props;
+---
+
+<section class="team-strip on-night" aria-labelledby="team-heading">
+  <div class="wrap">
+    <div class="team-strip__panel glass-smoke reveal">
+      <div class="team-strip__head">
+        <div>
+          <p class="kicker">Zespół</p>
+          <h2 id="team-heading">Poznaj nasz zespół</h2>
+          <p class="team-strip__lead">Lekarze chirurgii, implantologii, ortodoncji, endodoncji i protetyki.</p>
+        </div>
+        <a href="/nasz-zespol" class="btn btn--ghost">Zobacz zespół</a>
+      </div>
+
+      <ul class="team-strip__faces stg" aria-label="Lekarze">
+        {
+          doctors.map((doctor) => (
+            <li>
+              <a href={`/nasz-zespol#team-${doctor.id}`} class="face">
+                <span class="face__ph">
+                  {doctor.data.photo && (
+                    <Image
+                      src={doctor.data.photo}
+                      alt=""
+                      width={FACE_WIDTH}
+                      height={FACE_HEIGHT}
+                      densities={[1, 2]}
+                      loading="lazy"
+                    />
+                  )}
+                </span>
+                <span class="face__name">{displayName(doctor)}</span>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+
+      <ul class="team-strip__nums stg" aria-label="Gabinet w liczbach">
+        {
+          figures.map((figure) => (
+            <li class="tn">
+              {figure.count ? (
+                <span class="tn__n" data-count={figure.value} data-suf="">{figure.value}</span>
+              ) : (
+                <span class="tn__n">{figure.value}</span>
+              )}
+              <span class="tn__l">{figure.label}</span>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </div>
+</section>

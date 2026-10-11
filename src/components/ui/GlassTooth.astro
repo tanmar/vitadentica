@@ -1,0 +1,66 @@
+---
+/**
+ * Ząb ze szkła jako SVG: soczewka (te same plamy koloru co za zębem, powiększone i rozmyte),
+ * połysk, wewnętrzne światło krawędzi i jasny rim. Czysta ozdoba, więc `aria-hidden`.
+ */
+interface Props {
+  /** Prefiks identyfikatorów w SVG; musi być unikalny na stronie. */
+  idPrefix: string;
+  class?: string;
+}
+
+const { idPrefix, class: className } = Astro.props;
+const id = (name: string) => `${idPrefix}-${name}`;
+
+// Trzonowiec: dwa guzki korony, zwężenie w korzenie i szczelina między nimi.
+const TOOTH =
+  'M200 78C232 52 286 40 322 66C358 92 358 150 346 190C334 232 322 262 318 308C314 356 308 404 280 414' +
+  'C252 424 238 384 230 340C224 306 214 282 200 282C186 282 176 306 170 340C162 384 148 424 120 414' +
+  'C92 404 86 356 82 308C78 262 66 232 54 190C42 150 42 92 78 66C114 40 168 52 200 78Z';
+---
+
+<svg class={className} viewBox="0 0 400 440" aria-hidden="true" focusable="false">
+  <defs>
+    <path id={id('shape')} d={TOOTH}></path>
+    <clipPath id={id('clip')}><use href={`#${id('shape')}`}></use></clipPath>
+    <linearGradient id={id('body')} x1="70" y1="50" x2="330" y2="410" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#fff" stop-opacity="0.62"></stop>
+      <stop offset="0.42" stop-color="#fff" stop-opacity="0.16"></stop>
+      <stop offset="1" stop-color="#bfeaff" stop-opacity="0.3"></stop>
+    </linearGradient>
+    <linearGradient id={id('rim')} x1="60" y1="40" x2="340" y2="420" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#fff" stop-opacity="1"></stop>
+      <stop offset="0.38" stop-color="#fff" stop-opacity="0.22"></stop>
+      <stop offset="0.72" stop-color="#fff" stop-opacity="0.1"></stop>
+      <stop offset="1" stop-color="#fff" stop-opacity="0.78"></stop>
+    </linearGradient>
+    <radialGradient id={id('glint')} cx="118" cy="104" r="64" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#fff" stop-opacity="0.95"></stop>
+      <stop offset="1" stop-color="#fff" stop-opacity="0"></stop>
+    </radialGradient>
+    <filter id={id('soft')} x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="16"></feGaussianBlur>
+    </filter>
+    <filter id={id('inner')} x="-10%" y="-10%" width="120%" height="120%">
+      <feGaussianBlur stdDeviation="5"></feGaussianBlur>
+    </filter>
+  </defs>
+
+  <g clip-path={`url(#${id('clip')})`}>
+    <g filter={`url(#${id('soft')})`}>
+      <circle cx="312" cy="120" r="118" fill="#37c3f0" opacity="0.85"></circle>
+      <circle cx="96" cy="350" r="150" fill="#e0183f" opacity="0.85"></circle>
+      <circle cx="210" cy="230" r="70" fill="#fff" opacity="0.35"></circle>
+    </g>
+    <use href={`#${id('shape')}`} fill={`url(#${id('body')})`}></use>
+    <use
+      href={`#${id('shape')}`}
+      fill="none"
+      stroke="#fff"
+      stroke-opacity="0.55"
+      stroke-width="16"
+      filter={`url(#${id('inner')})`}></use>
+    <ellipse cx="118" cy="104" rx="64" ry="30" transform="rotate(-24 118 104)" fill={`url(#${id('glint')})`}></ellipse>
+  </g>
+  <use href={`#${id('shape')}`} fill="none" stroke={`url(#${id('rim')})`} stroke-width="2.5"></use>
+</svg>

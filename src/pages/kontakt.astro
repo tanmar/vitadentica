@@ -1,0 +1,85 @@
+---
+import { render } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/layout/PageHero.astro';
+import RouteMap from '../components/contact/RouteMap.astro';
+import { clinic, formatHours } from '../lib/clinic';
+import { faqFromFrontmatter } from '../lib/faq';
+import { buildBreadcrumbs, buildClinicGraph } from '../lib/jsonld';
+import { getDoctorsForJsonLd, getRequiredPage, getTeam } from '../lib/content';
+
+const page = await getRequiredPage('kontakt');
+const { Content, remarkPluginFrontmatter } = await render(page);
+
+const doctors = await getDoctorsForJsonLd(await getTeam());
+const hours = formatHours(clinic.hours);
+const heading = page.data.h1 ?? page.data.title;
+const faq = faqFromFrontmatter(remarkPluginFrontmatter);
+---
+
+<BaseLayout
+  title={page.data.title}
+  description={page.data.description}
+  path="/kontakt"
+  faq={faq}
+  kind="ContactPage"
+  jsonLd={[
+    ...buildClinicGraph(clinic, doctors),
+    buildBreadcrumbs(clinic, [
+      { name: clinic.name, path: '/' },
+      { name: heading, path: '/kontakt' },
+    ]),
+  ]}
+>
+  <PageHero title={heading} kicker="Umów wizytę" lead={page.data.description} art="kontakt" />
+
+  <section class="section">
+    <div class="wrap contact-g">
+      <div class="contact-cta reveal">
+        <p class="kicker" style="color: rgb(255 255 255 / 0.8);">Zadzwoń do nas i umów wizytę</p>
+        <p class="contact-cta__ph"><a href={clinic.phone.href}>{clinic.phone.display}</a></p>
+        <p style="margin-top: 22px;">
+          <a href={`mailto:${clinic.email}`}>{clinic.email}</a>
+        </p>
+      </div>
+
+      <div>
+        <section class="contact-box" aria-labelledby="address-heading">
+          <h2 id="address-heading">Nasz adres</h2>
+          <address style="font-style: normal;">
+            <p style="font-weight: 700; color: var(--color-ink);">{clinic.legalName}</p>
+            <p>{clinic.address.street}</p>
+            <p>{clinic.address.postalCode} {clinic.address.city}</p>
+          </address>
+          <p style="margin-top: 12px;">
+            <a class="hover-line" style="color: var(--color-brand-ink); font-weight: 700;" href={clinic.mapsUrl} rel="noopener">
+              Zobacz na mapie Google
+            </a>
+          </p>
+          <p style="margin-top: 8px;">
+            <a class="hover-line" style="color: var(--color-brand-ink); font-weight: 700;" href="#dojazd">
+              Mapa dojazdu i przystanki
+            </a>
+          </p>
+        </section>
+
+        <section class="contact-box" aria-labelledby="hours-heading">
+          <h2 id="hours-heading">Godziny otwarcia</h2>
+          <ul>
+            {hours.map((line) => <li>{line}</li>)}
+          </ul>
+        </section>
+      </div>
+    </div>
+  </section>
+
+  <RouteMap />
+
+  <section class="section section--off" style="padding: 56px 0;">
+    <div class="wrap">
+      <div class="prose-vd">
+        <Content />
+      </div>
+    </div>
+  </section>
+</BaseLayout>

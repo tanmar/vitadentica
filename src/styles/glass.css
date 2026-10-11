@@ -1,0 +1,167 @@
+/*
+ * Liquid Glass: materiał i kompozycje (hero, panel zespołu). Tokeny: tokens.css (--glass-*, --aurora-*).
+ * Szkło potrzebuje trzech rzeczy naraz: czego załamywać (plamy aurory pod spodem), krawędzi
+ * (rozjaśniony brzeg i cienki rim) oraz głębi (cień). Bez któregoś z nich to tylko półprzezroczysty prostokąt.
+ * Kontrast tekstu na szkle pilnuje tests/glass.test.ts; zmieniając tokeny, uruchom testy.
+ */
+
+/* ── Materiał ── */
+.glass,
+.glass-smoke {
+  position: relative;
+  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
+  backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
+}
+
+/* Matowe: karty i panele na jasnej (lub ciemnej) stronie. */
+.glass {
+  background: linear-gradient(135deg, var(--glass-sheen) 0%, transparent 42%), var(--glass-fill);
+  border: 1px solid var(--glass-border);
+  box-shadow:
+    inset 0 1px 0 var(--glass-edge),
+    0 0 0 1px var(--glass-rim),
+    var(--glass-shadow);
+}
+.glass--strong {
+  background: linear-gradient(135deg, var(--glass-sheen) 0%, transparent 42%), var(--glass-fill-strong);
+}
+
+/* Dymione: elementy na ciemnym tle (hero, panel zespołu, CTA, pasek mobilny). Tekst zawsze biały. */
+.glass-smoke {
+  color: #fff;
+  background: linear-gradient(135deg, var(--glass-smoke-sheen) 0%, transparent 50%), var(--glass-smoke);
+  border: 1px solid var(--glass-smoke-edge);
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 0.38),
+    0 20px 48px rgb(0 0 0 / 0.35);
+}
+
+/* ── Hero: kompozycja ze szkła (HeroVisual.astro) ── */
+.hv {
+  position: relative;
+  width: 100%;
+  max-width: 460px;
+  margin-inline: auto;
+  aspect-ratio: 1280 / 1341; /* proporcje ilustracji (illustrations/home.webp), bez skoku układu */
+}
+/* Ilustracja w ramie ze szkła: krawędź i cień jak w innych powierzchniach, poświata w kolorach marki. */
+.hv__art,
+.hero__art {
+  overflow: hidden;
+  border: 1px solid var(--glass-smoke-edge);
+  background: var(--color-night-3);
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 0.3),
+    0 28px 64px rgb(0 0 0 / 0.42),
+    0 0 90px rgb(232 24 72 / 0.14);
+}
+.hv__art { position: absolute; inset: 0; border-radius: 32px; }
+.hv__art img,
+.hero__art img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.hv__chip {
+  position: absolute;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 20px 10px 10px;
+  border-radius: 999px;
+  text-decoration: none;
+  transition: transform 0.35s var(--ease-out), background-color 0.3s;
+}
+a.hv__chip:hover,
+a.hv__chip:focus-visible { transform: translateY(-3px); }
+.hv__chip--team { left: 14px; bottom: 14px; }
+.hv__chip--years { right: 14px; top: 14px; flex-direction: column; align-items: flex-start; gap: 2px; padding: 14px 20px; border-radius: 22px; }
+.hv__chip strong { display: block; font-size: 1.05rem; line-height: 1.15; font-weight: 700; }
+.hv__chip small { display: block; font-size: 0.8rem; line-height: 1.3; color: rgb(255 255 255 / 0.82); }
+.hv__chip--years strong { font-family: var(--font-display); font-size: 1.9rem; line-height: 1; }
+.hv__faces { display: flex; }
+.hv__face {
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center 15%;
+  border: 2px solid rgb(255 255 255 / 0.9);
+  margin-left: -12px;
+  background: var(--color-night-3);
+}
+.hv__face:first-child { margin-left: 0; }
+
+/* Nagłówek podstrony z ilustracją: tekst po lewej, obraz w ramie po prawej (PageHero.astro). */
+.hero--art .hero__c { padding-right: 0; }
+.hero__pg--art {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) min(360px, 34%);
+  gap: clamp(28px, 5vw, 64px);
+  align-items: center;
+}
+.hero__art { aspect-ratio: 1952 / 2176; border-radius: 28px; }
+
+/* Ozdoba nagłówka bez ilustracji (404): ząb przycięty przez prawą krawędź (PageHero.astro). */
+.hero--page { --mark-w: min(240px, 22vw); }
+/* Tekst nagłówka kończy się przed zębem niezależnie od długości h1 (biały tekst na białym refleksie był nieczytelny). */
+.hero--page .hero__c { padding-right: calc(var(--mark-w) + 24px); }
+.hero__mark {
+  position: absolute;
+  z-index: 0;
+  right: max(-20px, 2vw);
+  /* środek obszaru pod pływającym nagłówkiem, nie całego hero (górę zasłania nagłówek) */
+  top: calc(var(--hdr-h) + (100% - var(--hdr-h)) / 2);
+  width: var(--mark-w);
+  translate: 0 -50%;
+  pointer-events: none;
+}
+.hero__mark svg { display: block; width: 100%; height: auto; filter: drop-shadow(0 24px 30px rgb(0 0 0 / 0.4)); }
+
+/* ── Panel zespołu na stronie głównej (TeamStrip.astro) ── */
+.team-strip {
+  position: relative;
+  overflow: hidden;
+  padding: var(--spacing-section) 0;
+  background:
+    radial-gradient(48% 70% at 8% 0%, rgb(192 0 42 / 0.5), transparent 66%),
+    radial-gradient(44% 64% at 96% 100%, rgb(0 154 206 / 0.4), transparent 66%),
+    var(--color-night);
+}
+.team-strip__panel { border-radius: 28px; padding: clamp(22px, 4vw, 48px); }
+.team-strip__head { display: flex; align-items: flex-end; justify-content: space-between; gap: 20px 28px; flex-wrap: wrap; margin-bottom: 32px; }
+.team-strip__head h2 { color: #fff; }
+.team-strip__lead { color: rgb(255 255 255 / 0.8); margin-top: 8px; max-width: 52ch; }
+.team-strip__faces { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 16px 14px; }
+.face { display: block; color: #fff; text-decoration: none; }
+.face__ph {
+  display: block;
+  aspect-ratio: 4 / 5;
+  border-radius: 18px;
+  overflow: hidden;
+  background: var(--color-night-3);
+  border: 1px solid var(--glass-smoke-edge);
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.35);
+}
+.face__ph img { width: 100%; height: 100%; object-fit: cover; object-position: center 18%; transition: transform 0.6s var(--ease-out); }
+.face:hover .face__ph img,
+.face:focus-visible .face__ph img { transform: scale(1.06); }
+.face__name { display: block; margin-top: 10px; font-size: 0.84rem; line-height: 1.35; color: rgb(255 255 255 / 0.88); }
+.team-strip__nums {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+  margin-top: 32px;
+  padding-top: 28px;
+  border-top: 1px solid rgb(255 255 255 / 0.16);
+}
+.tn { text-align: center; }
+.tn__n { display: block; font-family: var(--font-display); font-size: clamp(1.8rem, 3vw, 2.6rem); font-weight: 700; color: #fff; line-height: 1; }
+.tn__l { display: block; margin-top: 8px; font-size: 0.86rem; line-height: 1.35; color: rgb(255 255 255 / 0.8); }
+
+@media (max-width: 1040px) {
+  .hero--page { --mark-w: min(200px, 26vw); }
+  .hero__mark { right: -24px; }
+}
+@media (max-width: 760px) {
+  .hero__mark { display: none; }
+  .hero--page .hero__c { padding-right: 0; }
+  .hero__pg--art { grid-template-columns: 1fr; }
+  .hero__art { width: min(100%, 280px); margin: 8px auto 0; }
+}

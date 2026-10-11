@@ -1,0 +1,55 @@
+---
+import { render, getEntry } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/layout/PageHero.astro';
+import CtaSection from '../components/layout/CtaSection.astro';
+import DoctorCard from '../components/team/DoctorCard.astro';
+import { clinic } from '../lib/clinic';
+import { buildBreadcrumbs } from '../lib/jsonld';
+import { getGenericPages, pathFor } from '../lib/content';
+import { faqFromFrontmatter } from '../lib/faq';
+import { specialties } from '../data/specialties';
+import { illustrationFor } from '../assets/illustrations';
+
+export async function getStaticPaths() {
+  const pages = await getGenericPages();
+  return pages.map((page) => ({ params: { slug: page.id }, props: { page } }));
+}
+
+const { page } = Astro.props;
+const { Content, remarkPluginFrontmatter } = await render(page);
+const doctor = page.data.doctor ? await getEntry(page.data.doctor) : undefined;
+const path = pathFor(page);
+const heading = page.data.h1 ?? page.data.title;
+const specialty = specialties.find((s) => s.id === page.data.specialty);
+// Strony zabiegowe (z `specialty`) to treści medyczne; pytania z ich sekcji FAQ trafiają też do JSON-LD.
+const kind = page.data.specialty ? 'MedicalWebPage' : 'WebPage';
+const faq = faqFromFrontmatter(remarkPluginFrontmatter);
+---
+
+<BaseLayout
+  title={page.data.title}
+  description={page.data.description}
+  path={path}
+  kind={kind}
+  faq={faq}
+  jsonLd={[
+    buildBreadcrumbs(clinic, [
+      { name: clinic.name, path: '/' },
+      { name: heading, path },
+    ]),
+  ]}
+>
+  <PageHero title={heading} kicker={specialty?.label ?? clinic.name} lead={page.data.description} art={illustrationFor(page.id)} />
+
+  <section class="section">
+    <div class="wrap">
+      {doctor && <DoctorCard doctor={doctor} />}
+      <div class="prose-vd" class:list={[doctor && 'mt-12']}>
+        <Content />
+      </div>
+    </div>
+  </section>
+
+  <CtaSection />
+</BaseLayout>
