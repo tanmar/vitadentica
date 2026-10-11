@@ -44,6 +44,25 @@ export function createGtmLoader(win: GtagWindow, doc: Document, gtmId: string): 
   };
 }
 
+/**
+ * Tag Google (gtag.js, np. `GT-…` ze wtyczki Site Kit) dla GA4: osobno od GTM, bo kontener GTM zawiera tylko
+ * wygaszone tagi Universal Analytics. Idempotentny, jak `createGtmLoader`; zgody (Consent Mode) są już ustawione.
+ */
+export function createGoogleTagLoader(win: GtagWindow, doc: Document, tagId: string): () => void {
+  let loaded = false;
+  return () => {
+    if (loaded) return;
+    loaded = true;
+    const gtag = ensureGtag(win);
+    gtag('js', new Date());
+    gtag('config', tagId);
+    const script = doc.createElement('script');
+    script.async = true;
+    script.src = `https://www.googletagmanager.com/gtag/js?id=${encodeURIComponent(tagId)}`;
+    doc.head.appendChild(script);
+  };
+}
+
 /** Wywołuje `callback` raz: po pierwszej interakcji albo po `fallbackMs` (co nastąpi pierwsze). */
 export function runOnFirstInteraction(
   win: Window,

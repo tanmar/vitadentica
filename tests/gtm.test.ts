@@ -1,5 +1,10 @@
 import { afterEach, beforeEach, describe, expect, test, vi } from 'vitest';
-import { createGtmLoader, runOnFirstInteraction, shouldLoadGtm } from '../src/scripts/gtm';
+import {
+  createGoogleTagLoader,
+  createGtmLoader,
+  runOnFirstInteraction,
+  shouldLoadGtm,
+} from '../src/scripts/gtm';
 
 type Listener = () => void;
 
@@ -58,6 +63,32 @@ describe('createGtmLoader', () => {
     win.dataLayer = [{ event: 'click_tel' }];
     createGtmLoader(win as never, fakeDocument() as never, 'GTM-TEST')();
     expect((win.dataLayer![0] as { event: string }).event).toBe('click_tel');
+  });
+});
+
+describe('createGoogleTagLoader', () => {
+  const commands = (win: { dataLayer?: unknown[] }) =>
+    (win.dataLayer ?? []).map((entry) => Array.from(entry as ArrayLike<unknown>));
+
+  test('injects gtag.js for the tag exactly once and configures it', () => {
+    const win = fakeWindow();
+    const doc = fakeDocument();
+    const load = createGoogleTagLoader(win as never, doc as never, 'GT-TEST');
+
+    load();
+    load();
+
+    expect(doc.appended).toHaveLength(1);
+    expect(doc.appended[0].src).toBe('https://www.googletagmanager.com/gtag/js?id=GT-TEST');
+    const sent = commands(win);
+    expect(sent.filter((c) => c[0] === 'config')).toEqual([['config', 'GT-TEST']]);
+    expect(sent.filter((c) => c[0] === 'js')).toHaveLength(1);
+  });
+
+  test('encodes the tag id in the URL', () => {
+    const doc = fakeDocument();
+    createGoogleTagLoader(fakeWindow() as never, doc as never, 'GT-A&B')();
+    expect(doc.appended[0].src).toBe('https://www.googletagmanager.com/gtag/js?id=GT-A%26B');
   });
 });
 

@@ -33,6 +33,8 @@ const { title, description, path, jsonLd = [], kind, faq, errorPage = false } = 
 const canonical = new URL(path, Astro.site).toString();
 const markdownHref = `${path === '/' ? '/index' : path}.md`;
 const isIndexable = !isStaging && !errorPage;
+// Staging i podglądy nie wysyłają danych do produkcyjnej analityki (bez identyfikatorów skrypty nic nie ładują).
+const trackingEnabled = !isStaging;
 
 // Karta Open Graph jest wspólna dla wszystkich stron (1200×630, public/og-image.jpg).
 const IMAGE_WIDTH = 1200;
@@ -44,7 +46,12 @@ const graph = errorPage ? [] : buildPageGraph(clinic, { title, description, path
 ---
 
 <!doctype html>
-<html lang="pl" data-gtm-id={clinic.gtmId} data-gtm-mode={clinic.gtmLoadMode}>
+<html
+  lang="pl"
+  data-gtm-id={trackingEnabled ? clinic.gtmId : undefined}
+  data-google-tag-id={trackingEnabled ? clinic.googleTagId : undefined}
+  data-gtm-mode={clinic.gtmLoadMode}
+>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />

@@ -58,6 +58,8 @@ export interface ClinicInfo {
   /** Pin gabinetu (ten sam punkt co w `mapsUrl`); środek mapy dojazdu i `geo` w JSON-LD. */
   readonly geo: GeoPoint;
   readonly gtmId: string;
+  /** Tag Google (GA4) ładowany bezpośrednio, spoza GTM. */
+  readonly googleTagId: string;
   readonly gtmLoadMode: GtmLoadMode;
 }
 
@@ -99,6 +101,9 @@ export const clinic: ClinicInfo = {
   sameAs: [MAPS_URL],
   geo: { lat: 52.2295672, lon: 21.0790837 },
   gtmId: 'GTM-P7RZV8S',
+  // Tag Google ze wtyczki Site Kit na starej stronie, wysyła do właściwości GA4 G-N7440YS2RZ. Kontener GTM ma
+  // tylko wygaszone tagi Universal Analytics (UA-106862785-1), więc to jest jedyny działający pomiar.
+  googleTagId: 'GT-TQRV5VC',
   // `consent`: GTM tylko po zgodzie (domyślnie, najbezpieczniej). `deferred`: zawsze, z opóźnieniem
   // (tryb Advanced: Google dostaje pingi bez cookies, lepsze modelowanie konwersji). Do decyzji właściciela.
   gtmLoadMode: 'consent',

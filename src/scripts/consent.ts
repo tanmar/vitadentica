@@ -3,6 +3,7 @@ import * as CookieConsent from 'vanilla-cookieconsent';
 import { CONSENT_DENIED, consentFromCategories } from './consent-mode';
 import { trackContactClicks } from './contact-events';
 import {
+  createGoogleTagLoader,
   createGtmLoader,
   ensureGtag,
   runOnFirstInteraction,
@@ -16,7 +17,14 @@ const win = window as GtagWindow;
 const gtmId = document.documentElement.dataset.gtmId;
 const gtmMode: GtmLoadMode =
   document.documentElement.dataset.gtmMode === 'deferred' ? 'deferred' : 'consent';
-const loadGtm = gtmId ? createGtmLoader(win, document, gtmId) : () => {};
+const googleTagId = document.documentElement.dataset.googleTagId;
+const loadGtmContainer = gtmId ? createGtmLoader(win, document, gtmId) : () => {};
+const loadGoogleTag = googleTagId ? createGoogleTagLoader(win, document, googleTagId) : () => {};
+/** Wszystkie tagi mierzące ruch ładują się razem i za tą samą bramką zgód. */
+const loadGtm = () => {
+  loadGtmContainer();
+  loadGoogleTag();
+};
 
 // 1. Domyślnie wszystko `denied`: zanim cokolwiek (w tym GTM) się załaduje.
 const gtag = ensureGtag(win);
@@ -85,6 +93,6 @@ CookieConsent.run({
   },
 });
 
-// 3. Zdarzenia konwersji; w trybie `deferred` GTM ładuje się po interakcji lub po 4 s.
-trackContactClicks(document, win);
+// 3. Zdarzenia konwersji; w trybie `deferred` tagi ładują się po interakcji lub po 4 s.
+trackContactClicks(document, gtag);
 if (gtmMode === 'deferred') runOnFirstInteraction(win, loadGtm);
