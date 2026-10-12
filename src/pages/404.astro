@@ -9,7 +9,7 @@ import { clinic } from '../lib/clinic';
   <section class="section">
     <div class="wrap">
       <p class="lead" style="margin: 0 0 28px;">
-        Wróć na stronę główną albo zadzwoń do gabinetu: {clinic.phone.display}.
+        Wróć na stronę główną albo zadzwoń do gabinetu: <a href={clinic.phone.href}>{clinic.phone.display}</a>.
       </p>
       <div class="hero__btns" style="margin: 0;">
         <a href="/" class="btn btn--red">Strona główna</a>

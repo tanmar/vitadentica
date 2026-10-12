@@ -1,6 +1,7 @@
 ---
 import { clinic, formatAddress, formatHours } from '../../lib/clinic';
 import { mainNav } from '../../data/specialties';
+import MapsLink from '../ui/MapsLink.astro';
 
 const hours = formatHours(clinic.hours);
 const year = new Date().getFullYear();
@@ -17,8 +18,9 @@ const year = new Date().getFullYear();
       <div>
         <h2>Kontakt</h2>
         <address>
-          <p>{clinic.address.street}</p>
-          <p>{clinic.address.postalCode} {clinic.address.city}</p>
+          <p>
+            <MapsLink>{clinic.address.street}<br />{clinic.address.postalCode} {clinic.address.city}</MapsLink>
+          </p>
           <p class="mt-2"><a href={clinic.phone.href}>{clinic.phone.display}</a></p>
           <p><a href={`mailto:${clinic.email}`}>{clinic.email}</a></p>
           {hours.map((h) => <p class="mt-2">{h}</p>)}

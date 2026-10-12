@@ -108,3 +108,10 @@
   .hero__badge { letter-spacing: 0.05em; padding: 7px 14px; }
   .contact-cta { padding: 24px 20px; }
 }
+
+/* Adres w stopce, na kontakcie i w sekcji CTA: cel dotyku ≥ 44 px (kliknięcie otwiera nawigację) */
+@media (max-width: 640px) {
+  .footer address .maps-link, .cta__meta .maps-link, .contact-box .maps-link:not(.btn), #dojazd .maps-link {
+    display: inline-block; padding: 12px 0;
+  }
+}

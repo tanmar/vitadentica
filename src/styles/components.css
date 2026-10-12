@@ -639,3 +639,9 @@
 .cmp__now { color: var(--color-brand-ink); }
 .price-section + .price-section { margin-top: 56px; }
 .price-section h2 .promo { margin-left: 12px; font-family: var(--font-sans); font-size: 0.8rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #fff; background: var(--color-brand); border-radius: 100px; padding: 4px 12px; vertical-align: middle; }
+
+/* ── Linki nawigacji do gabinetu (adres klikalny: otwiera aplikację map) ── */
+.maps-link { color: inherit; text-decoration: underline; text-decoration-color: currentColor; text-underline-offset: 3px; text-decoration-thickness: 1px; }
+.maps-link:hover { text-decoration-thickness: 2px; }
+.maps-link.btn { text-decoration: none; color: #fff; }
+.cta__meta .maps-link { color: inherit; }

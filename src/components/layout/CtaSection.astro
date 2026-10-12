@@ -1,5 +1,6 @@
 ---
 import { clinic, formatHours } from '../../lib/clinic';
+import MapsLink from '../ui/MapsLink.astro';
 
 interface Props {
   title?: string;
@@ -23,7 +24,7 @@ const hours = formatHours(clinic.hours);
         <a href={`mailto:${clinic.email}`} class="btn btn--ghost">Napisz e-mail</a>
       </div>
       <div class="cta__meta">
-        <span>{clinic.address.street}, {clinic.address.postalCode} {clinic.address.city}</span>
+        <MapsLink>{clinic.address.street}, {clinic.address.postalCode} {clinic.address.city}</MapsLink>
         {hours.map((h) => <span>{h}</span>)}
       </div>
     </div>

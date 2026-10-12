@@ -6,6 +6,7 @@
  */
 import '../../styles/routemap.css'; // tylko strona kontaktu: nie obciąża CSS pozostałych podstron
 import { clinic, directionsUrls } from '../../lib/clinic';
+import MapsLink from '../ui/MapsLink.astro';
 import { formatApproxDistance } from '../../lib/route-map';
 import { routeMap } from '../../data/route-map';
 
@@ -28,7 +29,7 @@ const scaleY = viewBox.y + viewBox.height - 30;
       <h2 id="route-heading">Jak do nas trafić</h2>
       <span class="rule"></span>
       <p class="lead" style="margin: 0;">
-        {clinic.address.street}, {clinic.address.postalCode} {clinic.address.city}
+        <MapsLink>{clinic.address.street}, {clinic.address.postalCode} {clinic.address.city}</MapsLink>
       </p>
     </div>
 

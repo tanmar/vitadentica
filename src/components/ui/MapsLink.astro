@@ -1,0 +1,24 @@
+---
+/**
+ * Link nawigacji do gabinetu. Działa bez JS (Mapy Google, https); na iOS `maps-links.ts` podmienia go na Mapy Apple.
+ * Zawartość (slot) to etykieta: adres albo „Nawiguj".
+ */
+import { clinic, directionsUrls } from '../../lib/clinic';
+
+interface Props {
+  class?: string;
+}
+
+const { class: className } = Astro.props;
+const { google, apple } = directionsUrls(clinic.geo);
+---
+
+<a
+  href={google}
+  data-maps-apple={apple}
+  class:list={['maps-link', className]}
+  rel="noopener"
+  aria-label={`Nawiguj do gabinetu: ${clinic.address.street}, ${clinic.address.city}`}
+>
+  <slot />
+</a>

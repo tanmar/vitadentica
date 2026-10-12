@@ -3,6 +3,7 @@ import { render } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PageHero from '../components/layout/PageHero.astro';
 import RouteMap from '../components/contact/RouteMap.astro';
+import MapsLink from '../components/ui/MapsLink.astro';
 import { clinic, formatHours } from '../lib/clinic';
 import { faqFromFrontmatter } from '../lib/faq';
 import { buildBreadcrumbs, buildClinicGraph } from '../lib/jsonld';
@@ -48,9 +49,13 @@ const faq = faqFromFrontmatter(remarkPluginFrontmatter);
           <h2 id="address-heading">Nasz adres</h2>
           <address style="font-style: normal;">
             <p style="font-weight: 700; color: var(--color-ink);">{clinic.legalName}</p>
-            <p>{clinic.address.street}</p>
-            <p>{clinic.address.postalCode} {clinic.address.city}</p>
+            <p>
+              <MapsLink>{clinic.address.street}<br />{clinic.address.postalCode} {clinic.address.city}</MapsLink>
+            </p>
           </address>
+          <p style="margin-top: 14px;">
+            <MapsLink class="btn btn--red">Nawiguj do gabinetu</MapsLink>
+          </p>
           <p style="margin-top: 12px;">
             <a class="hover-line" style="color: var(--color-brand-ink); font-weight: 700;" href={clinic.mapsUrl} rel="noopener">
               Zobacz na mapie Google
