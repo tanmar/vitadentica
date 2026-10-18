@@ -60,12 +60,13 @@ export async function getDoctorsForJsonLd(team: readonly TeamEntry[]): Promise<D
   const doctors = team.filter((member) => member.data.kind === 'doctor');
   return Promise.all(
     doctors.map(async (member) => {
-      const { photo, roles } = member.data;
+      const { photo, roles, focus } = member.data;
       const image = photo ? await getImage({ src: photo, width: 600 }) : undefined;
+      const description = [roles.join(', '), focus].filter(Boolean).join('; ');
       return {
         id: member.id,
         name: displayName(member),
-        description: roles.length > 0 ? roles.join(', ') : undefined,
+        description: description || undefined,
         image: image?.src,
       };
     }),

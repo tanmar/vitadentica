@@ -22,9 +22,17 @@ describe('metadane strony głównej', () => {
     expect(description).toContain('Skalskiego');
   });
 
-  test('nagłówek H1 nazywa usługę i miejsce, a nie jest samym hasłem', () => {
+  test('nagłówek H1 nazywa dwie główne usługi i miejsce, a nie jest samym hasłem', () => {
     const h1 = `${homeMeta.heading.lead} ${homeMeta.heading.accent}`;
-    expect(h1).toMatch(/stomatolog/i);
+    expect(h1).toMatch(/implant/i);
+    expect(h1).toMatch(/ortodonc/i);
     expect(h1).toMatch(/Gocław/i);
+  });
+
+  test('tytuł i opis mówią o implantach i ortodoncji', () => {
+    for (const text of [homeMeta.title, homeMeta.description]) {
+      expect(text).toMatch(/implant/i);
+      expect(text).toMatch(/ortodonc/i);
+    }
   });
 });

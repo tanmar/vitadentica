@@ -1,7 +1,7 @@
 ---
-title: "Implanty Warszawa – leczenie implantologiczne | Vitadentica"
-description: "Implanty zębowe na Gocławiu w Warszawie: konsultacja, wszczepienie i korona. Zabieg wykonuje specjalista chirurgii stomatologicznej. Umów wizytę."
-h1: "Implanty Warszawa"
+title: "Implanty zębowe Warszawa Gocław – ceny i etapy | Vitadentica"
+description: "Implanty zębowe w Warszawie na Gocławiu. Poznaj lekarza, etapy leczenia i ceny odbudowy na implantach. Umów konsultację w Vitadentica."
+h1: "Implanty zębowe w Warszawie na Gocławiu"
 oldUrl:
   - "/implanty-warszawa/"
   - "/implanty/"
@@ -9,96 +9,131 @@ specialty: "implanty"
 doctor: "radoslaw-zaniewicz"
 ---
 
-## Promocja
+Implanty mogą służyć do odbudowy pojedynczego zęba, kilku braków lub podparcia protezy. W Vitadentica zabiegi implantacji wykonuje lek. dent. Radosław Zaniewicz, specjalista chirurgii stomatologicznej. Podczas konsultacji ocenia możliwość leczenia i wskazuje potrzebne badania. Plan odbudowy oraz jej koszt zależą od warunków w jamie ustnej i wybranego rozwiązania.
 
-![Promocja na implanty: implant 2600 zł (zamiast 3000 zł), korona 1800 zł](../../assets/pages/implanty/promocja-implant-korona.png)
+[Umów konsultację implantologiczną](/kontakt)
 
-## Implanty Warszawa i okolice
+## Kiedy można rozważyć implanty?
 
-Zapewniamy kompleksowe leczenie implantologiczne.
+Implant to sztuczny korzeń zęba wszczepiany w kość. Można na nim oprzeć koronę w miejscu pojedynczego zęba, most przy kilku sąsiadujących brakach albo protezę, gdy brakuje wszystkich zębów w łuku. Czy implant jest dla Ciebie odpowiednim rozwiązaniem, ocenia lekarz po badaniu. Podczas konsultacji można też porozmawiać o innych sposobach uzupełnienia braków, takich jak most na zębach własnych lub proteza.
 
-Implant jest sztucznym korzeniem zęba wszczepianym w miejsce pojedynczego braku, mnogich braków, a nawet służy do całkowitej rekonstrukcji bezzębnych szczęk. Implantację w naszym gabinecie wykonuje specjalista chirurgii stomatologicznej z wieloletnim doświadczeniem. Po umieszczeniu implantu w kości wyrostka zębodołowego możliwe jest wykonanie uzupełnienia protetycznego, które doskonale zastępuje naturalne zęby pacjenta.
+## Kto wykonuje zabiegi?
 
-Posiadamy duże doświadczenie, dzięki któremu gwarantujemy leczenie implantologiczne na najwyższym poziomie. Przy niedoborach kości wiemy jakie zabiegi rekonstrukcyjne są konieczne, żeby zapewnić jak najlepszy rezultat. Wszystkie procedury dobieramy indywidualnie do pacjenta oraz oczekiwanego efektu. W zależności od wskazań wykonujemy uzupełnienia w postaci koron, mostów lub pełnej odbudowy zgryzu na implantach.
+Zabiegi implantologiczne wykonuje lek. dent. Radosław Zaniewicz. Jest specjalistą chirurgii stomatologicznej: Państwowy Egzamin Specjalizacyjny z tej dziedziny zdał w 2014 r. Pierwszy implant wszczepił w 2009 r. Więcej o jego kwalifikacjach i doświadczeniu znajdziesz w [biogramie lekarza](/nasz-zespol#team-radoslaw-zaniewicz).
 
-**Nie czekaj już dłużej.** Implant odtwarza funkcję zęba i przywraca prawdziwy uśmiech.
+## Konsultacja implantologiczna
 
-### Odbudowa zgryzu
+Pierwszym krokiem jest konsultacja. Lekarz zapoznaje się ze stanem uzębienia i Twoimi oczekiwaniami, wyjaśnia, na czym polega leczenie implantologiczne, i ustala harmonogram leczenia. W zależności od planowanych zabiegów dobiera niezbędne badania. Po kwalifikacji przedstawia plan leczenia oraz koszty poszczególnych etapów. Cena konsultacji: {{cena: implanty-konsultacja}}.
 
-Implanty zapewniają przywrócenie pacjentowi komfortu, pozwalają na stałe i trwałe uzupełnienie braków zębowych. Odbudowa nawet pojedynczego ubytku zębowego umożliwia prawidłową funkcję żucia oraz równowagę układu stomatognatycznego. Leczenie implantologiczne zapewnia wygodę i estetyczny wygląd.
+## Etapy leczenia
 
-### Implanty tytanowe
+1. **Konsultacja i diagnostyka.** Lekarz ocenia możliwość leczenia i wskazuje potrzebne badania.
+2. **Wszczepienie implantu.** Zabieg wykonuje się w znieczuleniu miejscowym. Wszczepienie pojedynczego implantu trwa zwykle około 15–20 minut, przy większej liczbie implantów dłużej.
+3. **Gojenie.** Implant wrasta w kość (osteointegracja). Zwykle trwa to około 3 miesięcy w żuchwie i około 5 miesięcy w szczęce.
+4. **Odsłonięcie implantu.** Po wygojeniu zakłada się śrubę gojącą, która kształtuje dziąsło, na około 2 tygodnie.
+5. **Odbudowa protetyczna.** Pobiera się wyciski, a po około 2 tygodniach można założyć koronę.
+6. **Opieka po leczeniu.** Lekarz omawia zasady higieny i ustala terminy kontroli.
 
-Implanty wybierane w naszym gabinecie produkowane są z wysokiej jakości tytanu. Materiał ten zapewnia wyjątkową trwałość, a co najważniejsze organizm doskonale go toleruje.
+Podane czasy są orientacyjne i zależą od przypadku. Łącznie od wszczepienia implantu do założenia korony mija zwykle około 4 miesięcy w żuchwie i około 6 miesięcy w szczęce.
 
-### Zabieg implantologiczny
+## Ile kosztuje leczenie implantem?
 
-Zabieg wszczepienia implantu odbywa się w znieczuleniu miejscowym, zapewniającym bezbolesność, a pacjent następnego dnia może normalnie funkcjonować.
+Wszczepienie implantu (etap chirurgiczny) i korona (odbudowa zęba) to osobne pozycje cennika. Porównując ceny, sprawdź, czy dotyczą samego implantu, czy całej odbudowy zęba. Cena zależy też od systemu implantologicznego i rodzaju korony.
 
-## Konsultacje przed zabiegiem implantologicznym
+### Etap chirurgiczny: wszczepienie i odsłonięcie implantu
 
-Pierwszym krokiem przed leczeniem implantologicznym jest konsultacja z doświadczonym lekarzem – specjalistą chirurgii stomatologicznej. Podczas konsultacji lekarz zapozna się z Państwa stanem uzębienia oraz oczekiwaniami. Pan doktor szczegółowo wyjaśni na czym polega leczenie implantologiczne oraz ustali harmonogram leczenia. W zależności od zaplanowanych zabiegów stomatologicznych dobierze wszystkie niezbędne badania.
+{{cennik: implanty-wszczepienie-implantu-bego, implanty-odsloniecie-implantu-sruba-gojaca-bego, implanty-wszczepienie-implantu-straumann, implanty-odsloniecie-implantu-sruba-gojaca-straumann}}
 
-## Wszczepienie implantu
+### Korona na implancie: odbudowa zęba
 
-Zabieg wszczepienia implantu wykonywany jest w bezpiecznym znieczuleniu miejscowym. Wprowadzony implant goi się przez okres od 3 do 6 miesięcy. W następnym etapie odsłaniamy gojący się implant i przystępujemy do wykonania końcowej odbudowy protetycznej.
+{{cennik: implanty-korona-porcelanowa-na-podbudowie-metalowej-na-implancie-bego, implanty-korona-pelnoceramiczna-na-implancie-bego, implanty-korona-porcelanowa-na-podbudowie-metalowej-straumann}}
 
-## Oferta
+### Łączny koszt odbudowy jednego zęba
 
-Obecnie leczenie implantologiczne jest dostępne dla szerszej grupy pacjentów. W naszym gabinecie lekarze tak dostosują terminy kolejnych etapów leczenia, żeby nie obciążać Państwa budżetu. Gdy wezmą Państwo pod uwagę to, że z czasem protezy mogą wyrządzić szkodę sąsiadującym zębom okazuje się, że wszczepienie implantu jest ekonomiczną metodą leczenia, która na lata zapewnia dobry wygląd i komfort użytkowania.
+{{cennik: implanty-koszt-calkowity-bego, implanty-koszt-calkowity-straumann}}
 
-## Implanty - pytania i odpowiedzi
+Kwoty mogą uwzględniać promocje; cena regularna, jeśli jest inna, widoczna jest w tabelach. Zakres łącznego kosztu, na przykład badania, odbudowę tymczasową, kontrole czy zabiegi dodatkowe, takie jak odbudowa kości, potwierdzamy podczas konsultacji. Lekarz przedstawia pełne koszty po kwalifikacji, przed rozpoczęciem leczenia. Ceny mają charakter informacyjny; pozostałe pozycje znajdziesz w [cenniku](/cennik#implanty).
 
-### Czy wszczepienie implantu jest bolesne?
+## Znieczulenie, dolegliwości i powrót do codziennych zajęć
 
-Z całą mocą należy podkreślić że wszczepienie implantu nie jest bolesnym zabiegiem. Prosta ekstrakcja zęba z punktu widzenia dolegliwości śródzabiegowych jak i pozabiegowych jest większym i bardziej inwazyjnym zabiegiem niż implantacja.
+Zabieg wszczepienia implantu wykonuje się w znieczuleniu miejscowym. Po zabiegu mogą wystąpić ból, obrzęk lub tkliwość. Lekarz omawia zalecenia po zabiegu i przewidywany czas powrotu do codziennych zajęć, zależnie od zakresu leczenia.
+
+## Brak kości, większe braki i bezzębie
+
+### Niedobór kości
+
+Gdy kości jest za mało, lekarz może zaproponować jej odbudowę, z użyciem kości własnej lub jej substytutów, albo inne rozwiązanie. Przy znacznych zanikach kości i dużym ryzyku niepowodzenia odbudowy można rozważyć protezę typu overdenture, czyli protezę całkowitą mocowaną na implantach. Zabiegi dodatkowe, takie jak podniesienie dna zatoki szczękowej, mają osobne ceny:
+
+{{cennik: implanty-podniesienie-dna-zatoki-szczekowej-metoda-zamknieta, implanty-podniesienie-dna-zatoki-szczekowej-metoda-otwarta}}
+
+### Kilka brakujących zębów
+
+Przy kilku sąsiadujących brakach nie zawsze trzeba wszczepiać tyle implantów, ile zębów brakuje. Odbudowę można oprzeć na mniejszej liczbie implantów, na przykład w formie mostu. Liczba i rozmieszczenie implantów wynikają z planu leczenia ustalonego przez lekarza.
+
+### Brak wszystkich zębów
+
+W bezzębnej szczęce lub żuchwie możliwa jest proteza całkowita mocowana na implantach albo stała odbudowa na mostach. W szczęce proteza na implantach może mieć mniejszy zasięg niż zwykła proteza akrylowa i mniej zakrywać podniebienie. Liczba potrzebnych implantów zależy od planu leczenia; cennik podaje ją przy każdej pozycji:
+
+{{cennik: implanty-proteza-calkowita-na-implantach, implanty-calkowita-odbudowa-luku-zebowego-przy-pomocy-mostow}}
+
+## Implanty – pytania i odpowiedzi
+
+### Ile kosztuje odbudowa jednego zęba na implancie i co obejmuje cena?
+
+W cenniku łączny koszt odbudowy pojedynczego braku zębowego na implancie wynosi {{cena: implanty-koszt-calkowity-bego}} w systemie Bego i {{cena: implanty-koszt-calkowity-straumann}} w systemie Straumann. Wszczepienie implantu i korona są też wycenione osobno. Kwoty mogą uwzględniać promocje, a cenę regularną podają tabele powyżej. Zakres tych kwot, na przykład badania, odbudowę tymczasową, kontrole i zabiegi dodatkowe, potwierdzamy podczas konsultacji, a pełne koszty lekarz przedstawia po kwalifikacji, przed rozpoczęciem leczenia.
+
+### Czy w mojej sytuacji można zastosować implant?
+
+To zależy od stanu uzębienia, ilości kości i ogólnego stanu zdrowia, a ocenia to lekarz podczas konsultacji. Jeśli kości jest za mało, można rozważyć jej odbudowę albo inne rozwiązanie, na przykład protezę mocowaną na implantach.
+
+### Jakie badania będą potrzebne?
+
+Zakres badań lekarz dobiera na konsultacji, w zależności od planowanych zabiegów.
+
+### Czy wszczepienie implantu boli?
+
+Zabieg wykonuje się w znieczuleniu miejscowym, którego celem jest uniknięcie bólu podczas zabiegu. Po ustaniu znieczulenia mogą pojawić się ból, obrzęk lub tkliwość. Ich nasilenie jest indywidualne i zwykle zmniejsza się w ciągu kilku dni. Lekarz omawia zalecenia po zabiegu oraz leki łagodzące dolegliwości. O uczuleniach na leki poinformuj lekarza przed zabiegiem.
 
 ### Jak długo trwa zabieg implantacji?
 
-Implantacja jest niejednokrotnie zabiegiem wymagającym więcej poświęconego czasu na samo przygotowanie zabiegu (sterylne warunki), niż trwa sam zabieg. Wszczepienie pojedynczego implantu trwa około 15-20 minut. Czas wszczepienia dwóch sąsiadujących ze sobą implantów jest niewiele dłuższy. Przy większej ilości wszczepów, co oczywiste, czas trwania zabiegu odpowiednio się wydłuża.
+Samo wszczepienie pojedynczego implantu trwa zwykle około 15–20 minut, ale cała wizyta jest dłuższa, bo zabieg wymaga przygotowania w sterylnych warunkach. Wszczepienie dwóch sąsiednich implantów trwa niewiele dłużej. Przy większej liczbie implantów czas zabiegu odpowiednio się wydłuża.
 
-### Zgłosiłabym się na zabieg wszczepienia implantu, ale jest to za droga metoda leczenia dla mnie.
+### Jak długo trwa leczenie od wszczepienia implantu do założenia korony?
 
-Leczenie implantologiczne jest relatywnie o wiele tańsze niż jeszcze np. 10 lat temu. Obecnie implantologia jest metodą leczenia, na którą coraz więcej pacjentów może sobie pozwolić.
+Po wszczepieniu implantu zwykle odczekuje się około 3 miesięcy w żuchwie i około 5 miesięcy w szczęce, aż implant zrośnie się z kością (osteointegracja). Następnie zakłada się śrubę gojącą na około 2 tygodnie, pobiera wyciski, a po około 2 tygodniach można założyć koronę. Łącznie daje to około 4 miesięcy w żuchwie i około 6 miesięcy w szczęce. Dokładny harmonogram zależy od przypadku.
 
-### Skąd wynika tak niska cena w Państwa gabinecie? Czy to jest jakiś gorszy system implantologiczny?
+### Złamany ząb jest do usunięcia. Czy przez okres gojenia będę bez zęba?
 
-W Vitadentice wszczepiamy implanty renomowanych producentów Alpha-bio, Bego. Niska cena wynika z dużej ilości wykonywanych przez nas zabiegów. Przy dużej liczbie zamawianych implantów, mamy indywidualne kontrakty z firmami implantologicznymi, co później pozwala na obniżenie cen czy organizowania promocji dla Was Drodzy Pacjenci.
+To zależy od miejsca braku i planu leczenia. Na czas gojenia implantu lekarz może zaproponować uzupełnienie tymczasowe, na przykład koronę tymczasową. Czy i jakie rozwiązanie jest możliwe w Twoim przypadku, omówisz na konsultacji.
 
-### Jak długo trwa procedura od wszczepienia implantu do założenia korony?
+### Czy do odbudowy trzech sąsiadujących zębów potrzebne są trzy implanty?
 
-Po wszczepieniu implantu w żuchwie należy odczekać 3, a w szczęce 5 miesięcy. Jest to czas w którym dochodzi do osteointegracji implantu z kością. Po tym czasie jest zakładana śruba gojąca dziąsło na okres ok. 2 tygodni. Następnie wykonuje się wyciski, a po ok. 2 tygodniach można już cieszyć się nowym zębem. Po zsumowaniu daje nam to ok. 4 miesięcy w żuchwie i 6 miesięcy w szczęce.
+Nie zawsze. W zależności od warunków w jamie ustnej odbudowę kilku sąsiadujących zębów można czasem oprzeć na mniejszej liczbie implantów, na przykład w formie mostu. Liczbę i rozmieszczenie implantów ustala lekarz w planie leczenia.
 
-### Złamana jedynka, ząb do usunięcia. Co dalej? Czy przez okres gojenia implantu będę bez zęba?
+### Inny lekarz powiedział, że mam za mało kości na implant. Czy jest na to jakaś rada?
 
-Oczywiście, że nie. Na czas gojenia implantu, można zastosować koronę tymczasową, tak żeby okres leczenia był jak najbardziej komfortowy dla Państwa.
+Przy niedoborze kości można rozważyć jej odbudowę z użyciem kości własnej lub jej substytutów. Gdy zaniki są znaczne, a ryzyko niepowodzenia odbudowy kości duże, lekarz może zaproponować protezę typu overdenture, czyli protezę całkowitą mocowaną na implantach. Wybór rozwiązania zależy od badania.
 
-### Mieszkam za granicą, ale z uwagi na proponowane przez Państwa ceny, jestem zainteresowany leczeniem w Państwa gabinecie stomatologicznym. Czy jest to problem?
+### Czy po zabiegu mogę wrócić do pracy?
 
-Nie zauważyłem znaczącego problemu w tej kwestii. Po zabiegu wszczepienia implantu, można zastosować szwy resorbowalne, tak żeby Państwo nie musieli ich zdejmować w innych, obcych placówkach. Kolejną wizytę umawiamy po 3 lub 5 miesiącach, odpowiednio dla implantu wszczepionego w żuchwę lub szczękę. Następnie potrzebne są 2 tygodnie na dokończenie leczenia lub rozłożenie końcowego etapu leczenia na 2-3 jednodniowe wizyty.
+Zależy to od rodzaju pracy i zakresu zabiegu; lekarz ustala to indywidualnie. Przy pracy fizycznej lub wymagającej bezpośredniego kontaktu z ludźmi warto zaplanować kilka dni przerwy.
 
-### Czy do odbudowy większej ilości zębów, na przykład 3 sąsiadujących ze sobą braków potrzebne jest wszczepienie 3 implantów?
+### Jakich implantów używa gabinet?
 
-Jeśli występują mnogie ubytki uzębienia, powinno się zastosować mosty na implantach. W przypadku brakujących 3 zębów, które sąsiadują ze sobą, wszczepiam 2 implanty, w miejsce skrajnych ubytków, na których zamocowane są 3 korony. Np. Jeśli brakuje zęba nr 5, nr 6 i nr 7, to wszczepiam implanty w pozycji zęba nr 5 i nr 7, a następnie końcową odbudową protetyczną będzie most 3 punktowy z koronami na implantach zębów 5 i 7, które są połączone koroną protetyczną odbudowującą brakujący ząb w pozycji nr 6. Czasami jest możliwość odbudowy 4 zębów na 2 implantach. Niekiedy, przy brakujących dwóch sąsiadujących ze sobą zębach lepiej jest wesprzeć dwie korony zębowe na jednym implancie, niz dwóch niezależnych implantach. Do odbudowy połowy jednego z łuków zębowych, na ogół wystarczają 3 implanty, co pociąga za sobą, że odbudowa całkowita jednego łuku zębowego może być wsparta na 6 implantach.
+W cenniku znajdują się implanty systemów Bego i Straumann. Wybór systemu lekarz omawia podczas konsultacji, a ceny odbudowy w poszczególnych systemach podaje cennik.
 
-### Nie mam zębów, inny lekarz powiedział mi ze nie kwalifikuję się do zabiegu implantacji z uwagi na niewystarczającą ilość kości. Czy jest na to jakaś rada?
+### Czy leczenie implantologiczne można rozłożyć w czasie?
 
-W przypadku deficytu kości, można zastosować jej odbudowę, za pomocą kości własnej, czy też jej substytutów. W przypadku znacznych zaników i dużego ryzyka niepowodzenia zabiegu odbudowy kości można pomyśleć o innym rozwiązaniu: proteza overdenture na implantach.
+Leczenie przebiega w etapach rozłożonych na kilka miesięcy. Terminy kolejnych etapów lekarz ustala wspólnie z pacjentem, także z uwzględnieniem jego możliwości finansowych.
 
-I tak w przypadku bezzębnej szczęki należy wszczepić 4 implanty, przy bezzębnej żuchwie wystarczają 2 implanty. Następnie implanty służą jako zaczepy do mocowania przyszłej protezy. W szczęce oprócz silnego zamocowania protezy do elementów retencyjnych zyskujemy zmniejszoną powierzchnię przylegania do podniebienia. Wielu pacjentom przeszkadza zasłonięte podniebienie płytą zwykłej, akrylowej protezy. Pacjenci ci skarżą się na odruch wymiotny, gorszą możliwość odczuwania smaku czy temperatury spożywanych pokarmów. Przy protezie wspartej na implantach można ograniczyć zasięg protezy, co likwiduje powyższe problemy.
+### Mieszkam za granicą. Czy mogę leczyć się w Vitadentica?
 
-### Czy po zabiegu występują duże dolegliwości bólowe?
+Leczenie można zaplanować tak, aby ograniczyć liczbę wizyt. Po zabiegu można zastosować szwy resorbowalne, których nie trzeba zdejmować w innej placówce. Kolejną wizytę planuje się zwykle po około 3 miesiącach (implant w żuchwie) lub 5 miesiącach (implant w szczęce). Dokończenie leczenia zajmuje około 2 tygodni albo można rozłożyć je na 2–3 jednodniowe wizyty. Szczegóły zależą od przypadku.
 
-Na ogół dolegliwości nie są duże. Mogą występować w dniu zabiegu, po zakończeniu działania środka znieczulającego i stopniowo tracą swoją intensywność w ciągu 3-5 dni. Po zabiegu wypisuję receptę na antybiotyk i lek przeciwbólowy, które pomagają łagodzić dolegliwości pozabiegowe.
+### Mam alergię. Czy mogę mieć implant?
 
-### Czy po zabiegu będę mógł/mogła pójść do pracy?
-
-Jeżeli nie jest to praca fizyczna lub praca wymagająca bezpośredniego kontaktu z klientem, nie widzę przeciwwskazań. W przypadku prac fizycznych, warto się powstrzymać od nich przez kilka dni.
-
-### Chętnie bym wszczepił/a implant, ale jestem uczuleniowcem/alergikiem.
-
-Implant jest wykonany z tytanu, który jest jednym z najrzadziej uczulających metali. Jeśli chodzi o leki, na które możecie być Państwo uczuleni, a które lekarz wypisuje po zabiegu, należy poinformować o tym fakcie lekarza, to wtedy zapisze antybiotyk/lek przeciwbólowy z innej, bezpiecznej dla Państwa grupy leków.
+Implanty wykonuje się zwykle z tytanu lub jego stopów, a uczulenia na te materiały zdarzają się rzadko. O wszystkich alergiach, także na leki, poinformuj lekarza przed zabiegiem. Jeśli masz uczulenie na leki zalecane po zabiegu, lekarz dobierze inne, bezpieczne dla Ciebie.
 
 ---
 
-[UMÓW WIZYTĘ U NASZEGO IMPLANTOLOGA JUŻ DZIŚ](/kontakt)
+[Umów konsultację implantologiczną](/kontakt)

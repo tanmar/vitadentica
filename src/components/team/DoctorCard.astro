@@ -8,7 +8,7 @@ interface Props {
 }
 
 const { doctor } = Astro.props;
-const { photo, roles, email, schedule } = doctor.data;
+const { photo, roles, focus, email, schedule } = doctor.data;
 ---
 
 <aside aria-label={`Lekarz prowadzący: ${displayName(doctor)}`} class="doc-card glass glass--strong reveal">
@@ -29,6 +29,7 @@ const { photo, roles, email, schedule } = doctor.data;
   <div class="doc-card__body">
     <p class="doc-card__name">{displayName(doctor)}</p>
     {roles.length > 0 && <p class="doc-card__roles">{roles[0]}</p>}
+    {focus && <p class="doc-card__focus">{focus}</p>}
     <p class="doc-card__links">
       <a href={clinic.phone.href}>{clinic.phone.display}</a>
       {email && <a href={`mailto:${email}`}>{email}</a>}

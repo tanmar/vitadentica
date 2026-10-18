@@ -8,8 +8,8 @@
   },
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build",
-    "build:staging": "SITE_ENV=staging astro build",
+    "build": "astro build --force",
+    "build:staging": "SITE_ENV=staging astro build --force",
     "preview": "astro preview",
     "check": "astro check",
     "test": "vitest run",

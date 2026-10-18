@@ -3,6 +3,7 @@ import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
 import tailwindcss from '@tailwindcss/vite';
 import rehypeContent from './src/plugins/rehype-content.mjs';
+import rehypePrices from './src/plugins/rehype-prices.mjs';
 
 const isStaging = process.env.SITE_ENV === 'staging';
 
@@ -18,6 +19,7 @@ export default defineConfig({
   trailingSlash: 'never',
   build: { format: 'file', inlineStylesheets: 'always' },
   integrations: [sitemap()],
-  markdown: { rehypePlugins: [rehypeContent] },
+  // Kolejność ma znaczenie: ceny najpierw, bo FAQ do JSON-LD powstaje z drzewa po zamianie znaczników.
+  markdown: { rehypePlugins: [rehypePrices, rehypeContent] },
   vite: { plugins: [tailwindcss()] },
 });

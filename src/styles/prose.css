@@ -12,6 +12,11 @@
 .prose-vd ul li { padding: 9px 0 9px 24px; position: relative; border-bottom: 1px solid var(--color-line); }
 .prose-vd ul li:first-child { border-top: 1px solid var(--color-line); }
 .prose-vd ul li::before { content: ''; position: absolute; left: 4px; top: 1.15em; width: 7px; height: 7px; border-radius: 50%; background: var(--color-brand); }
+/* Lista numerowana (etapy leczenia): ten sam układ co lista punktowana, z numerem w kółku. */
+.prose-vd ol { list-style: none; padding: 0; counter-reset: step; }
+.prose-vd ol li { counter-increment: step; padding: 11px 0 11px 44px; position: relative; border-bottom: 1px solid var(--color-line); }
+.prose-vd ol li:first-child { border-top: 1px solid var(--color-line); }
+.prose-vd ol li::before { content: counter(step); position: absolute; left: 0; top: 0.8em; width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; border-radius: 50%; background: var(--color-brand-tint); color: var(--color-brand-ink); font-size: 0.85rem; font-weight: 700; line-height: 1; }
 .prose-vd img { max-width: 100%; height: auto; border-radius: 20px; box-shadow: 0 0 0 1px var(--glass-rim), var(--glass-shadow); }
 /* Rząd samych obrazów w jednym akapicie (np. logotypy szkoleń) → małe, w jednej linii */
 .prose-vd p:has(> img + img) { display: flex; flex-wrap: wrap; align-items: center; gap: 1.25rem; }
@@ -24,6 +29,9 @@
 .prose-vd td { padding: 13px 22px; border-bottom: 1px solid var(--color-line); vertical-align: top; }
 .prose-vd tbody tr:last-child td { border-bottom: none; }
 .prose-vd tbody tr:hover td { background: var(--color-off); }
+
+/* Tabela cen z cennika ({{cennik: …}}, rehype-prices): układ jak na /cennik, bez podwójnej ramki i cienia tabeli z treści. */
+.prose-vd .cmp { display: table; overflow: visible; border-radius: 0; box-shadow: none; font-size: 0.95rem; }
 
 /* FAQ (details.fq) generowane z sekcji „pytania i odpowiedzi" przez rehype-faq */
 .prose-vd details.fq { background: linear-gradient(135deg, var(--glass-sheen) 0%, transparent 42%), var(--glass-fill); border: 1px solid var(--glass-border); border-left: 4px solid var(--color-brand); border-radius: 18px; overflow: hidden; box-shadow: inset 0 1px 0 var(--glass-edge), 0 0 0 1px var(--glass-rim); transition: box-shadow 0.35s, border-left-color 0.35s, transform 0.35s var(--ease-out); }

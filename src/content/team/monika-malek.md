@@ -6,6 +6,7 @@ roles:
   - "Lekarz stomatolog"
   - "Współwłaściciel gabinetu stomatologicznego Vitadentica"
 email: "m.malek@vitadentica.pl"
+focus: "leczenie ortodontyczne dzieci i dorosłych"
 schedule: "Pacjentów przyjmuję w środy i czwartki"
 photo: "../../assets/team/monika-malek.jpeg"
 order: 1

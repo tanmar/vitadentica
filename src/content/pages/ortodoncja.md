@@ -1,124 +1,171 @@
 ---
-title: "Ortodonta Gocław, ortodonta dziecięcy, aparaty | Vitadentica"
-description: "Ortodoncja dzieci i dorosłych na Gocławiu: aparaty stałe, ruchome i Invisalign. Leczenie prowadzi lek. dent. Monika Małek. Umów wizytę."
-h1: "Ortodoncja"
+title: "Ortodoncja Warszawa Gocław – dzieci i dorośli | Vitadentica"
+description: "Ortodoncja dzieci i dorosłych na Gocławiu w Warszawie. Aparaty stałe, ruchome i Invisalign. Poznaj przebieg konsultacji i cennik Vitadentica."
+h1: "Ortodoncja dzieci i dorosłych – Warszawa Gocław"
 oldUrl:
   - "/ortodoncja/"
 specialty: "ortodoncja"
 doctor: "monika-malek"
 ---
 
-Uczestniczka szkoleń:
+W gabinecie Vitadentica leczenie ortodontyczne prowadzi lek. dent. Monika Małek. Przyjmujemy dzieci, młodzież i dorosłych. Stosujemy aparaty stałe, ruchome oraz nakładki Invisalign®. Konsultacja służy ocenie zgryzu i ustaleniu dalszej diagnostyki, zanim zapadnie decyzja o wyborze aparatu.
 
-![Orto Trading](../../assets/pages/ortodoncja/szkolenie-orto-trading.png) ![Ortho Organizers](../../assets/pages/ortodoncja/szkolenie-ortho-organizers.png) ![American Orthodontics (certyfikat)](../../assets/pages/ortodoncja/szkolenie-american-orthodontics.png) ![Orthomax](../../assets/pages/ortodoncja/szkolenie-orthomax.png) ![Orto Classic](../../assets/pages/ortodoncja/szkolenie-orto-classic.png)
+[Umów konsultację ortodontyczną](/kontakt)
 
-## Zapewniamy kompleksowe leczenie ortodontyczne
+## Z czym zgłosić się na konsultację?
 
-Ocena człowieka przez otoczenie na podstawie wyglądu, zwłaszcza twarzy, przebiega błyskawicznie. Wystarczy 1/10 sekundy, byśmy do nowo poznanej osoby poczuli sympatię lub niechęć. Natomiast ogólne pierwsze wrażenie robimy w ciągu niespełna jedenastu sekund. Za 83% tego wrażenia odpowiada sympatycznie uśmiechnięta twarz. Zdaniem ekspertów z dziedziny psychologii istnieje zjawisko zwane efektem aureoli. Polega ono na przypisywaniu cech osobowości na podstawie miłej aparycji. Pierwsze wrażenie determinuje całą przyszłą relację.
+Na konsultację ortodontyczną można zgłosić się między innymi z:
 
-Prawidłowe ustawienie zębów jest jednak nie tylko kluczem do osiągnięcia atrakcyjnego wyglądu, ale przede wszystkim czynnikiem istotnie wpływającym na skuteczniejszą higienę, zmniejszenie ryzyka występowania próchnicy oraz paradontozy, a także przyczynia się do zniwelowania istniejących wad wymowy.
+- zębami stłoczonymi, ustawionymi nierówno lub z przerwami między zębami,
+- zębem, który nie wyrósł i może tkwić w kości,
+- brakami zębowymi, jeśli przed odbudową protetyczną lub implantami warto ustawić zęby własne,
+- nawykami u dziecka, takimi jak ssanie smoczka lub palca, albo nieprawidłowym oddychaniem,
+- potrzebą oceny zgryzu dziecka.
 
-### Ortodoncja dorosłych
+## Kto prowadzi leczenie?
 
-Prawidłowe dobranie aparatu ortodontycznego jest procesem złożonym. Gwarantujemy profesjonalną i precyzyjną analizę Twojego przypadku. Efektem będzie piękny i zdrowy uśmiech.
+Leczenie ortodontyczne prowadzi lek. dent. Monika Małek, absolwentka Warszawskiego Uniwersytetu Medycznego (2001 r.). Zajmuje się leczeniem ortodontycznym, regularnie uczestniczy w szkoleniach i konferencjach w Polsce i za granicą. Z pacjentami porozumiewa się po polsku, angielsku i rosyjsku. Więcej znajdziesz w [biogramie lekarza](/nasz-zespol#team-monika-malek).
 
-### Ortodoncja dzieci
+## Ortodoncja dzieci
 
-W naszym gabinecie stomatologicznym leczymy wady zgryzu u dzieci. Diagnostyka i planowanie leczenia ortodontycznego u dziecka jest szczególnie istotne, bo pozwoli mu uniknąć problemów w dorosłym życiu. [Zobacz ruchome aparaty ortodontyczne](#ruchome-aparaty-ortodontyczne).
+Leczymy wady zgryzu u dzieci. Wczesna diagnostyka pozwala zaplanować leczenie we właściwym momencie rozwoju. Pierwsze badanie ortodontyczne dziecka zaleca się zwykle około 3. roku życia, o czym piszemy niżej w pytaniach i odpowiedziach. Najczęściej stosowane u dzieci aparaty ruchome opisujemy w sekcji [ruchome aparaty ortodontyczne](#ruchome-aparaty-ortodontyczne).
 
-### Doświadczenie
+## Ortodoncja dorosłych
 
-Wszystkie zabiegi wykonują lekarze z ogromnym doświadczeniem, które pozwala osiągnąć najlepsze rezultaty, w komfortowych warunkach i dobrej atmosferze.
+Leczenie ortodontyczne prowadzimy także u dorosłych. Plan leczenia ustalamy po badaniu i analizie potrzebnej dokumentacji. W zależności od sytuacji możliwe są aparaty stałe lub nakładki Invisalign®.
 
 ![Uśmiechnięta kobieta z aparatem ortodontycznym](../../assets/pages/ortodoncja/ortodoncja-aparat-dorosli.jpg)
 
-## Ortopedia szczękowa
+## Aparat stały, ruchomy czy nakładki?
 
-Ortopedia szczękowa to dziedzina stomatologii zajmująca się badaniem narządu żucia, badaniem wpływu działania czynników korzystnych i niekorzystnych na narząd żucia i na powstawanie określonych wad zgryzu. Ta gałąź stomatologii trudni się również wczesnym leczeniem powstałych wad zgryzu aparatami ruchomymi (wyjmowanymi) oraz terapią aparatami stałymi (aparatami klejonymi na zębach).
+Wybór metody zależy od rodzaju wady zgryzu, wieku, oczekiwań i możliwości współpracy pacjenta. Żadna z metod nie jest najlepsza dla wszystkich. Decyzję poprzedza badanie.
 
-## Ruchome aparaty ortodontyczne
+### Stałe aparaty ortodontyczne
 
-Wczesne leczenie zgryzu jest niezwykle ważne dla zdrowia i pięknego uśmiechu dziecka. Ruchome aparaty ortodontyczne to najczęściej akrylowe płytki wykonywane w laboratorium ortodontycznym. Leczenie takimi aparatami przyniesie najlepsze rezultaty, kiedy ich stosowanie rozpoczniemy w wieku 6-8 lat. Moi mali pacjenci użytkują tego rodzaju aparaty w ciągu nocy oraz dodatkowo przez ok. 2-3 godziny w ciągu dnia. Aby dzieci były zmotywowane i chętne do leczenia, wykonujemy je we wszystkich kolorach tęczy i z ozdobami, jakie tylko wyśnią się maluchom.
-
-## Aparat Invisalign
-
-Jeśli marzysz o zdrowym, pięknym uśmiechu, ale z jakichś względów nie chcesz lub nie możesz mieć zamków na zębach, rozwiązaniem doskonałym jest precyzyjny nakładkowy system Invisalign, w którym leczenie przeprowadzane jest indywidualnymi, dokładnie zaprojektowanymi szynami nazębnymi. Jest to procedura idealna dla osób, które oczekują najlepszych rezultatów przy jednocześnie minimalnie zauważalnym aparacie. [Więcej o systemie Invisalign®](/invisalign).
-
-## Stałe aparaty ortodontyczne
-
-Główny podział stałych aparatów ortodontycznych możemy tutaj, dla uproszczenia, sprowadzić do podziału na aparaty metalowe oraz estetyczne aparaty kryształowe.
-Stałe aparaty na zęby stosuję najczęściej u pacjentów w wieku powyżej 12 lat. Istnieją jednak niekiedy wskazania, abym leczenie takim aparatem rozpoczęła wcześniej. Równolegle tego typu terapię prowadzę również z powodzeniem w przypadku nieprawidłowości ortodontycznych u osób nawet znacznie zaawansowanych wiekiem. Nowoczesna ortodoncja do minimum obniża prawdopodobieństwo konieczności usuwania zębów, a także przedstawia rozwiązania dla naprawdę trudnych wad. W dużej mierze pomaga w tym zastosowanie mikroimplantów ortodontycznych, które również są przeze mnie wykorzystywane.
+Aparat stały jest przyklejony do zębów. Dostępne są aparaty metalowe, metalowe samoligaturujące oraz estetyczne aparaty kryształowe. Stosuje się je najczęściej u pacjentów po 12. roku życia, choć niekiedy są wskazania do wcześniejszego rozpoczęcia leczenia. Leczymy nimi także dorosłych, również w starszym wieku. W niektórych przypadkach stosuje się mikroimplanty ortodontyczne, które mogą pomóc uniknąć usuwania zębów. Aparat stały wymaga starannej higieny wokół zamków i łuków.
 
 ![Uśmiechnięta dziewczynka ze stałym aparatem na zębach](../../assets/pages/ortodoncja/ortodoncja-aparat-dzieci.jpg)
 
 ![Uśmiechnięta kobieta z estetycznym aparatem kryształowym](../../assets/pages/ortodoncja/ortodoncja-aparat-krysztalowy.jpg)
 
-## Ortodoncja - pytania i odpowiedzi
+### Ruchome aparaty ortodontyczne
 
-### Kiedy powinno się zgłosić z dzieckiem po raz pierwszy na badanie ortodontyczne?
+Aparaty ruchome (wyjmowane) stosuje się we wczesnym leczeniu wad zgryzu, to znaczy w ortopedii szczękowej: dziedzinie stomatologii, która zajmuje się wpływem różnych czynników na narząd żucia i powstawanie wad zgryzu. To najczęściej akrylowe płytki wykonywane w laboratorium ortodontycznym. Leczenie zaleca się zwykle rozpoczynać w wieku około 6–8 lat. Dzieci noszą takie aparaty zwykle w nocy oraz przez około 2–3 godziny w ciągu dnia. Aparaty można wykonać w wybranych kolorach i z ozdobami, co pomaga zmotywować dziecko do regularnego noszenia.
 
-W wieku ok. 3 lat. Rodzic nie zawsze zauważy, że coś w jamie ustnej dziecka nie jest normą. Trzyletni maluszek jest na tyle rozwinięty, że możemy zwykle, jeśli istnieje taka konieczność, przeprowadzać z nim proste ćwiczenia lub używać przyjaznych nieskomplikowanych aparatów ruchomych. Kiedy natomiast mamy do czynienia z normą zgryzową, to następne wizyty u ortodonty powinny się odbyć w wieku ok. 5-6 lat, a potem 11-12 lat.
+### Nakładki Invisalign®
 
-### Czy ssanie smoczka, palca przez moje dziecko powinno zostać wyeliminowane?
+Invisalign® to leczenie przezroczystymi, zdejmowanymi nakładkami wykonanymi indywidualnie na podstawie cyfrowego planu leczenia. Nakładki są mniej widoczne niż aparat stały, ale ich skuteczność zależy od systematycznego noszenia, zwykle przez 20–22 godziny na dobę. Nie każdy przypadek nadaje się do leczenia nakładkami; decyduje o tym lekarz po badaniu. [Więcej o leczeniu nakładkami Invisalign®](/invisalign).
 
-Tak, bo takie czynności (parafunkcje), podobnie zresztą jak nieprawidłowy tor oddychania, czy niewłaściwy sposób połykania śliny, układania języka (dysfunkcje) zaowocują, niestety, w przyszłości wadą zgryzu. Na szczęście mamy metody na skuteczną eliminację tych działań z pomocą pięknych wyjmowanych aparatów.
+## Pierwsza wizyta i diagnostyka
 
-### Czy noszenie aparatu wyjmowanego boli?
+Podczas konsultacji lekarz ocenia zgryz i ustala, jaka dokumentacja diagnostyczna jest potrzebna. Wybór aparatu oraz ewentualną konieczność usuwania zębów omawia po analizie zdjęcia cefalometrycznego i diagnostycznych modeli gipsowych. W zależności od sytuacji mogą być potrzebne także zdjęcia rentgenowskie, a niekiedy tomografia komputerowa, na przykład przy zębie zatrzymanym w kości.
 
-Nie. Stosowane siły są niewielkie. Jednak motywowanie dziecka jest bardzo ważne, bo mała pociecha nie do końca widzi albo niekoniecznie rozumie, dlaczego w ogóle powinna używać aparatu. Dobrze, że ja świetnie dogaduję się z dziećmi i mogę liczyć na dobrą z Nimi współpracę.
+## Jak powstaje plan leczenia i od czego zależy jego czas?
 
-### Czy zakładanie stałego aparatu ortodontycznego boli?
+Plan leczenia ustalamy po badaniu i analizie potrzebnej dokumentacji. Czas leczenia zależy między innymi od rodzaju wady zgryzu, wybranej metody, wieku pacjenta oraz regularności wizyt i współpracy podczas leczenia. Częstotliwość kontroli ustala lekarz. Zbyt rzadkie wizyty mogą wydłużać leczenie.
 
-Nie. Założenie aparatu na zęby jest natomiast czynnością pracochłonną, wymaga dużego skupienia i winno być wykonane z wysoką precyzją, a także należytą dokładnością, co powoduje, iż zabieg nie przebiega szybko, trwa około godziny.
+## Ile kosztuje leczenie ortodontyczne?
 
-### Czy noszenie stałego aparatu ortodontycznego boli?
+Cennik podaje osobno ceny konsultacji i aparatów. Ceny aparatów stałych dotyczą jednego łuku zębowego, górnego albo dolnego.
 
-Nie. Na początku trzeba się do niego przyzwyczaić, bo zajmuje on po prostu pewne miejsce w jamie ustnej, ale ten proces trwa zwykle, według moich pacjentów, około 2-3 dni. Potem wargi i policzki adaptują się do nowych warunków.
+### Konsultacje
 
-### Czy będę musiał szczególnie dbać o higienę podczas leczenia aparatem stałym?
+{{cennik: ortodoncja-aparaty-stale-konsultacja-ortodontyczna-z-modelami, ortodoncja-dziecieca-konsultacja-ortodontyczna}}
 
-Zachowanie prawidłowej higieny jamy ustnej jest konieczne, gdyż stan zapalny dziąseł powstaje już w ciągu 2 dni niewłaściwej pielęgnacji, a przedłużająca się zła higiena może również źle wpłynąć na szkliwo zębów. Wskazane zatem jest okresowe profesjonalne czyszczenie zębów, piaskowanie, czasem skaling, czyli ultradźwiękowe zdjęcie kamienia.
+Konsultacje różnią się zakresem i ceną: „konsultacja ortodontyczna z modelami” figuruje w cenniku w kategorii aparatów stałych, a „konsultacja ortodontyczna” w kategorii ortodoncji dziecięcej (aparaty ruchome). W razie wątpliwości, która konsultacja dotyczy Twojej sytuacji, zapytaj przy umawianiu wizyty.
 
-### Jestem alergikiem. Czy stały aparat jest dla mnie bezpieczny?
+### Aparaty stałe (cena za jeden łuk)
 
-Tak. Stosuję wyłącznie zamki bezniklowe (kryształowe i metalowe Ni-free), a to nikiel jest najczęściej czynnikiem alergizującym. Zdarzają się też pacjenci, którzy są uczuleni na nikiel zawarty w standardowych łukach Ni-Ti, ale w obecnych czasach, przy wysoko zaawansowanej technologii ortodontycznej, to również nie jest źródłem problemu, bo powszechne łuki niklowo - tytanowe zastępuję wówczas łukami beta - tytanowymi.
+{{cennik: ortodoncja-aparaty-stale-aparat-staly-metalowy-1-luk, ortodoncja-aparaty-stale-aparat-staly-metalowy-samoligaturujacy-1-luk, ortodoncja-aparaty-stale-aparat-staly-krysztalowy-1-luk}}
 
-### Czy da się ustawić ładnie mój ząb, który do tej pory się nie wyrżnął i tkwi w kości?
+### Aparat ruchomy (dzieci)
 
-W znakomitej większości przypadków taki ząb przesuniemy jak po sznureczku w jego właściwe położenie. Duże znaczenie ma, naturalnie, jego usytuowanie, które ocenię dokładnie analizując odpowiednie zdjęcia rentgenowskie, a niekiedy stosowne obrazy tomografii komputerowej.
+{{cennik: ortodoncja-dziecieca-aparat-ruchomy}}
 
-### Moje górne dwójki nie wyrosły. Nie podobają mi się szpary w miejscach, gdzie powinny być te zęby. Co można zrobić?
+Cennik nie podaje osobnych cen wizyt kontrolnych, zakończenia leczenia (zdjęcia aparatu) ani retencji. Czy są wliczone w cenę aparatu i jakie mogą być koszty dodatkowe, lekarz wyjaśnia w planie leczenia, przed jego rozpoczęciem. Ceny mają charakter informacyjny; pełny wykaz znajdziesz w [cenniku](/cennik#ortodoncja-aparaty-stale).
 
-Zdarza się czasem, że określone zęby zatrzymują się w kości i z jakiegoś powodu nie wyrzynają się. To jednak częściej dotyczy trójek, czy ósemek. W przypadku górnych dwójek, czy dolnych piątek jest to raczej związane z brakiem zawiązków tych zębów. Następstwem tego są późniejsze braki. Zawiązki zębów mlecznych zaczynają się tworzyć ok. 50-go dnia życia zarodkowego, a pierwsze zawiązki zębów stałych powstają w 4-ym miesiącu życia płodowego. Jeśli tremy (wspomniane szpary) są wąskie, można dokonać korekty wyglądu trójek i ustawić je w miejscu brakujących dwójek. W podobny sposób można zabudować miejsce brakujących dolnych piątek, usuniętych zębów dodatkowych, usuniętych zębów zniszczonych. Jeśli natomiast tremy są szersze, można te miejsca pozostawić lub nawet powiększyć, a w przyszłości, na ostatnich etapach leczenia ortodontycznego, odbudować brakujące zęby implantami lub po zakończeniu leczenia aparatem odtworzyć zęby protetycznie z użyciem mostów.
+## Retencja po zakończeniu leczenia
 
-### Mam złamaną jedynkę, która została odbudowana wypełnieniem. Czy można w tej sytuacji założyć aparat na zęby?
+Po zakończeniu leczenia ortodontycznego stosuje się retencję, czyli aparaty (retainery) utrzymujące uzyskane ustawienie zębów. Bez niej zęby mogą wracać do poprzedniej pozycji. Rodzaj retencji i czas jej noszenia lekarz ustala indywidualnie.
 
-Tak. Wymieniona sytuacja nie jest przeciwwskazaniem do leczenia stałym aparatem ortodontycznym. Jeśli natomiast odbudowa nie jest wystarczająco estetyczna, to po ukończeniu terapii, należy rozważyć wykonanie nowej.
+## Ortodoncja – pytania i odpowiedzi
 
-### Mam koronę na dwójce. Czy jest to przeciwwskazanie do noszenia stałego aparatu?
+### Kiedy zgłosić się z dzieckiem na pierwsze badanie ortodontyczne?
 
-Nie. Możemy śmiało planować leczenie. W obecnej dobie zaawansowania technologicznego systemy wiążące są wysoko specjalizowane. Dobierając odpowiedni zestaw produktów, korona protetyczna okazuje się zwykle dobrym elementem do utrzymania zamka ortodontycznego.
+Zalecamy pierwsze badanie około 3. roku życia. Rodzic nie zawsze zauważy, że w jamie ustnej dziecka coś odbiega od normy. Trzylatek jest zwykle na tyle rozwinięty, że w razie potrzeby można wprowadzić z nim proste ćwiczenia lub łatwe w użyciu aparaty ruchome. Jeśli zgryz jest prawidłowy, kolejne wizyty zaleca się zwykle około 5–6. i 11–12. roku życia. Termin kolejnych badań ustala lekarz po ocenie zgryzu.
 
-### Czy będzie istniała u mnie konieczność usuwania zębów?
+### Czy leczenie ortodontyczne można rozpocząć w dorosłym wieku?
 
-Jest to, oczywiście, kwestią indywidualną, ale ogólnie mamy obecnie do dyspozycji metody, aparaty, elementy dodatkowe, w tym rewelacyjne miniimplanty ortodontyczne, które omówię, z Państwem, drodzy pacjenci, po przeanalizowaniu zdjęcia cefalometryczego i diagnostycznych modeli gipsowych, indywidualnie, a które bardzo często eliminują konieczność ekstrakcji zębów w celu przeprowadzenia leczenia ortodontycznego.
+Tak. Prowadzimy leczenie ortodontyczne także u dorosłych, również w starszym wieku. Możliwości zależą od stanu zębów i tkanek wokół nich, co lekarz ocenia podczas konsultacji.
 
-### Straciłem już wiele zębów, a te, które zostały, są krzywe. Czy można coś z nimi zrobić przed leczeniem protetycznym?
+### Aparat stały czy nakładki?
 
-Naturalnie. Jest możliwe, abyśmy najpierw ustawili prawidłowo zęby własne, a potem dopiero odbudowali braki zębowe. Taki tryb pozwoli nam wykonać ładne odbudowy protetyczne. W sytuacji, kiedy od dawna nie mamy uzupełnionych brakujących zębów, te, które zostały, mogły ulec przemieszczeniu lub patologicznemu starciu na skutek ich nadmiernego zużycia oraz przeciążenia. Przeprowadzenie od razu leczenia protetycznego może wiązać się z trudnością dopasowania zębów protetycznych do krzywych zębów własnych. Dobrym planem leczenia będzie tu więc strategia obejmująca w pierwszym etapie leczenia ładne ustawienie zębów obecnych w jamie ustnej, a dopiero w kolejnym etapie wykonanie dopasowanej do prostych zębów odbudowy protetycznej.
+Wybór zależy od rodzaju wady zgryzu, wieku, oczekiwań i współpracy pacjenta. Nakładki Invisalign® są zdejmowane i mniej widoczne, ale wymagają noszenia przez większą część doby, zwykle 20–22 godziny, a bez systematyczności leczenie się wydłuża lub nie przynosi oczekiwanego efektu. Aparat stały jest przyklejony do zębów, więc jego noszenie nie zależy od codziennej decyzji pacjenta, ale wymaga starannej higieny wokół zamków i łuków. Nie każdą wadę da się leczyć każdą metodą, dlatego wybór poprzedza badanie.
 
-### Mieszkam na stałe za granicą. Nie będę mógł przyjeżdżać na częste wizyty. Czy możliwe jest, abym leczył się w Państwa gabinecie?
+### Co obejmuje koszt leczenia ortodontycznego?
 
-Tak. W tej sytuacji założymy aparat samoligaturujący. Wizyty kontrolne będą mogły odbywać się wówczas co ok. 8 tygodni. Znaczne wydłużanie interwałów czasowych pomiędzy wizytami skutkuje brakiem właściwej kontroli i przedłużaniem się leczenia.
+Cennik podaje ceny konsultacji: ortodontycznej z modelami {{cena: ortodoncja-aparaty-stale-konsultacja-ortodontyczna-z-modelami}} oraz „konsultacji ortodontycznej” w ortodoncji dziecięcej {{cena: ortodoncja-dziecieca-konsultacja-ortodontyczna}}. Aparaty stałe wycenione są za jeden łuk: metalowy {{cena: ortodoncja-aparaty-stale-aparat-staly-metalowy-1-luk}}, metalowy samoligaturujący {{cena: ortodoncja-aparaty-stale-aparat-staly-metalowy-samoligaturujacy-1-luk}}, kryształowy {{cena: ortodoncja-aparaty-stale-aparat-staly-krysztalowy-1-luk}}. Aparat ruchomy dla dzieci kosztuje {{cena: ortodoncja-dziecieca-aparat-ruchomy}}. Czy kontrole, zakończenie leczenia i retencja są wliczone w cenę aparatu, lekarz wyjaśnia w planie leczenia.
+
+### Jak często odbywają się kontrole?
+
+Częstotliwość kontroli zależy od rodzaju aparatu i etapu leczenia i ustala ją lekarz. Przy aparatach stałych wizyty odbywają się zwykle co kilka tygodni. Zbyt rzadkie kontrole mogą wydłużać leczenie.
+
+### Czy aparat ortodontyczny może powodować dyskomfort lub ból?
+
+Tak, może. Na początku leczenia oraz po regulacji aparatu stałego może pojawić się tkliwość zębów i dyskomfort. Ich nasilenie jest indywidualne i zwykle mija po kilku dniach. Aparat zajmuje też miejsce w jamie ustnej, więc na początku trzeba się do niego przyzwyczaić, a wargi i policzki stopniowo adaptują się do nowych warunków. Aparaty ruchome działają niewielkimi siłami, ale również wymagają przyzwyczajenia, a dziecko potrzebuje motywacji do regularnego noszenia. Podczas wizyty omówimy, czego można się spodziewać i kiedy skontaktować się z gabinetem.
+
+### Ile trwa założenie aparatu stałego?
+
+Założenie aparatu stałego wymaga skupienia i precyzji, dlatego trwa zwykle około godziny.
+
+### Co dzieje się po zakończeniu leczenia?
+
+Po zakończeniu leczenia stosuje się retencję. Jej rodzaj i czas noszenia lekarz ustala indywidualnie; opisujemy ją w sekcji o retencji powyżej.
+
+### Czy ssanie smoczka lub palca przez dziecko powinno zostać wyeliminowane?
+
+Tak. Takie czynności (parafunkcje), podobnie jak nieprawidłowy tor oddychania, niewłaściwy sposób połykania śliny czy układania języka (dysfunkcje), mogą w przyszłości prowadzić do wady zgryzu. Do ich eliminowania można stosować wyjmowane aparaty ruchome.
+
+### Czy podczas leczenia aparatem stałym trzeba szczególnie dbać o higienę?
+
+Tak. Prawidłowa higiena jamy ustnej jest konieczna, bo stan zapalny dziąseł może pojawić się już w ciągu 2 dni niewłaściwej pielęgnacji, a długotrwała zła higiena może szkodzić szkliwu. Wskazane jest okresowe profesjonalne czyszczenie zębów, piaskowanie, a czasem skaling, czyli ultradźwiękowe usunięcie kamienia.
+
+### Mam alergię. Czy aparat stały jest dla mnie bezpieczny?
+
+Stosujemy wyłącznie zamki bezniklowe (kryształowe i metalowe Ni-free), bo to nikiel najczęściej uczula. Niektórzy pacjenci są uczuleni także na nikiel zawarty w standardowych łukach niklowo-tytanowych. W takiej sytuacji lekarz może zastosować łuki beta-tytanowe. O alergiach poinformuj lekarza podczas konsultacji.
+
+### Czy można ustawić ząb, który się nie wyrżnął i tkwi w kości?
+
+W wielu przypadkach tak, ale decyduje o tym położenie zęba. Lekarz ocenia je na zdjęciach rentgenowskich, a niekiedy na obrazach tomografii komputerowej.
+
+### Brakuje mi górnych dwójek i nie podobają mi się szpary w tych miejscach. Co można zrobić?
+
+Zęby mogą nie wyrosnąć, bo zatrzymały się w kości, ale w przypadku górnych dwójek lub dolnych piątek częściej wynika to z braku zawiązków. Jeśli przerwy są wąskie, można ustawić sąsiednie zęby (na przykład trójki) w miejscu brakujących dwójek i skorygować ich kształt. Przy szerszych przerwach można je pozostawić lub powiększyć, a brakujące zęby odbudować po zakończeniu leczenia ortodontycznego, na przykład implantami lub mostem. Wybór rozwiązania zależy od badania.
+
+### Czy mogę założyć aparat, jeśli mam odbudowany ząb lub koronę?
+
+Zwykle tak. Ząb odbudowany wypełnieniem albo korona na zębie nie są z reguły przeciwwskazaniem do leczenia aparatem stałym. Dobiera się odpowiednie systemy mocujące, a korona może posłużyć do utrzymania zamka. Jeśli odbudowa nie jest wystarczająco estetyczna, po zakończeniu leczenia można rozważyć wykonanie nowej.
+
+### Czy trzeba będzie usuwać zęby?
+
+To kwestia indywidualna. Lekarz omawia ją po analizie zdjęcia cefalometrycznego i diagnostycznych modeli gipsowych. Współczesne metody i dodatkowe elementy, takie jak mikroimplanty ortodontyczne, w wielu przypadkach pozwalają uniknąć usuwania zębów.
+
+### Mam krzywe zęby i brakuje mi wielu zębów. Czy leczenie ortodontyczne może poprzedzić protetykę?
+
+Tak, bywa to dobry plan. Najpierw ustawia się zęby własne, a dopiero potem odbudowuje braki, co ułatwia dopasowanie uzupełnień do prostych zębów. Gdy braki trwają od dawna, pozostałe zęby mogły się przemieścić albo ulec starciu i przeciążeniu. Kolejność leczenia ustala lekarz indywidualnie.
+
+### Mieszkam za granicą, więc częste przyjazdy są trudne. Czy mogę leczyć się w Vitadentica?
+
+Tak. W takiej sytuacji można zastosować aparat samoligaturujący, przy którym wizyty kontrolne mogą odbywać się co około 8 tygodni. Zbyt duże odstępy między wizytami osłabiają kontrolę nad leczeniem i mogą je wydłużać, dlatego harmonogram uzgadnia się z lekarzem.
 
 ### Czy mogę mieć na górze aparat estetyczny, a na dole metalowy?
 
-Tak. Możliwa jest też konfiguracja, gdzie zarówno na górze, jak i na dole założymy zamki kryształowe na zęby przednie, a na zęby boczne górne oraz dolne - zamki metalowe.
+Tak. Możliwa jest też konfiguracja z zamkami kryształowymi na zębach przednich, górnych i dolnych, oraz metalowymi na zębach bocznych.
 
-### Estetyczny aparat mojego znajomego uległ przebarwieniu. Czy to się często zdarza?
+### Czy estetyczny aparat może się przebarwić?
 
-Nie w mojej praktyce, gdyż jedyne aparaty estetyczne, które stosuję to wysokogatunkowe aparaty kryształowe. Ewentualne przebarwienia aparatów estetycznych mogą się zdarzyć przy zamkach kompozytowych, czy porcelanowych, lecz ja takowych nie używam.
+Przebarwienia mogą dotyczyć zamków kompozytowych lub porcelanowych. W gabinecie stosujemy estetyczne aparaty kryształowe.
 
 ---
 
-[UMÓW WIZYTĘ U NAS JUŻ DZIŚ](/kontakt)
+[Umów konsultację ortodontyczną](/kontakt)

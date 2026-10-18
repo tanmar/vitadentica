@@ -462,6 +462,7 @@
 .doc-card__body { position: relative; }
 .doc-card__name { font-family: var(--font-display); font-size: 1.4rem; font-weight: 700; color: var(--color-ink); line-height: 1.2; }
 .doc-card__roles { margin-top: 4px; font-size: 0.8rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-brand-ink); }
+.doc-card__focus { margin-top: 6px; font-size: 0.95rem; color: var(--color-body); }
 .doc-card__links { margin-top: 12px; display: flex; gap: 6px 22px; flex-wrap: wrap; font-size: 0.95rem; }
 .doc-card__links a { color: var(--color-brand-ink); text-decoration: underline; text-underline-offset: 3px; }
 .doc-card__links a:hover { color: var(--color-brand-ink-hover); }

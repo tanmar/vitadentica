@@ -1,13 +1,28 @@
 ---
+import { Image } from 'astro:assets';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import CtaSection from '../components/layout/CtaSection.astro';
 import HeroVisual from '../components/home/HeroVisual.astro';
 import TeamStrip from '../components/home/TeamStrip.astro';
 import { clinic, formatHours } from '../lib/clinic';
 import { buildClinicGraph } from '../lib/jsonld';
-import { getDoctorsForJsonLd, getTeam } from '../lib/content';
-import { homeMeta } from '../data/home';
-import { specialties } from '../data/specialties';
+import { displayName, getDoctorsForJsonLd, getPriceItems, getTeam } from '../lib/content';
+import { findPriceItem } from '../lib/price-tokens.mjs';
+import { formatPrice } from '../lib/price';
+import { priceCategories } from '../data/price-categories';
+import {
+  homeAreas,
+  homeConsultationNote,
+  homeConsultationPriceIds,
+  homeCtaLabel,
+  homeEyebrow,
+  homeLead,
+  homeMeta,
+  homeOtherCare,
+  homeSteps,
+} from '../data/home';
+
+const DOCTOR_PHOTO_SIZE = 56;
 
 const team = await getTeam();
 const doctors = await getDoctorsForJsonLd(team);
@@ -22,9 +37,18 @@ const openDays = firstHours?.days.length ?? 0;
 const figures = [
   { value: yearsOfPractice, label: 'lat działalności', count: true },
   { value: doctorCount, label: 'lekarzy w zespole', count: true },
-  { value: specialties.length, label: 'działy oferty', count: true },
   { value: `${openDays} dni`, label: `w tygodniu, ${openingRange}` },
 ];
+
+const areas = homeAreas.map((area) => {
+  const doctor = team.find((member) => member.id === area.doctorId);
+  if (!doctor) throw new Error(`Strona główna: brak lekarza "${area.doctorId}" w kolekcji team`);
+  return { ...area, doctor };
+});
+
+const priceItems = await getPriceItems();
+const categoryTitle = new Map(priceCategories.map((category) => [category.id, category.title]));
+const consultations = homeConsultationPriceIds.map((id) => findPriceItem(priceItems, id));
 ---
 
 <BaseLayout
@@ -38,19 +62,19 @@ const figures = [
       <div class="hero__c">
         <p class="hero__badge">
           <span class="hero__badge-dot" aria-hidden="true"></span>
-          {clinic.address.districts.join(' · ')}
+          {homeEyebrow}
         </p>
         <h1 id="hero-heading">{homeMeta.heading.lead} <em>{homeMeta.heading.accent}</em></h1>
-        <p class="hero__lead">
-          Implantologia, ortodoncja, Invisalign® i&nbsp;stomatologia ogólna. Przyjmujemy dorosłych
-          i&nbsp;dzieci przy ul.&nbsp;Skalskiego&nbsp;3 w&nbsp;Warszawie.
-        </p>
-        <div class="hero__btns">
-          <a href={clinic.phone.href} class="btn btn--red btn--glow">Zadzwoń: {clinic.phone.display}</a>
-          <a href={`mailto:${clinic.email}`} class="btn btn--ghost">Napisz e-mail</a>
+        <p class="hero__lead">{homeLead}</p>
+        <div class="hero__cta">
+          <div class="hero__btns">
+            <a href={clinic.phone.href} class="btn btn--red btn--glow">{homeCtaLabel}</a>
+            <a href={`mailto:${clinic.email}`} class="btn btn--ghost">Napisz e-mail</a>
+          </div>
+          <p class="hero__tel">Rejestracja telefoniczna: <a href={clinic.phone.href}>{clinic.phone.display}</a></p>
         </div>
-        <ul class="hero__pills">
-          {specialties.map((s) => <li><a class="pill" href={s.path}>{s.label}</a></li>)}
+        <ul class="hero__pills" aria-label="Główne obszary leczenia">
+          {homeAreas.map((area) => <li><a class="pill" href={area.path}>{area.pillLabel}</a></li>)}
         </ul>
       </div>
 
@@ -65,33 +89,48 @@ const figures = [
       <div class="ribbon__i glass glass--strong">
         <span class="ribbon__item">Od {clinic.foundingYear} roku</span>
         {hours[0] && <span class="ribbon__item">{hours[0]}</span>}
-        <span class="ribbon__item">Rejestracja telefoniczna</span>
+        <span class="ribbon__item">Rejestracja: telefon lub e-mail</span>
       </div>
     </div>
   </div>
 
-  <section aria-labelledby="offer-heading" class="section section--aurora">
+  <section aria-labelledby="areas-heading" class="section section--aurora">
     <div class="wrap">
       <div class="reveal">
-        <p class="kicker">Oferta</p>
-        <h2 id="offer-heading">Usługi stomatologiczne</h2>
+        <p class="kicker">Główne obszary leczenia</p>
+        <h2 id="areas-heading">Implanty i ortodoncja w&nbsp;Vitadentica</h2>
         <span class="rule"></span>
-        <p class="lead" style="margin: 0;">
-          Przyjmujemy dorosłych i&nbsp;dzieci. Oferta obejmuje implantologię, ortodoncję, leczenie nakładkami
-          Invisalign® oraz stomatologię ogólną: leczenie zachowawcze, endodoncję pod mikroskopem, chirurgię
-          i&nbsp;protetykę.
-        </p>
       </div>
-      <ul class="ben-grid stg">
+      <ul class="areas stg" role="list">
         {
-          specialties.map((s, i) => (
+          areas.map((area) => (
             <li>
-              <a href={s.path} class="ben glass">
-                <span class="ben__n" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
-                <h3>{s.label}</h3>
-                <p>{s.blurb}</p>
-                <p class="ben__go">Zobacz więcej →</p>
-              </a>
+              <article class="area glass" aria-labelledby={`area-${area.id}-heading`}>
+                <h3 id={`area-${area.id}-heading`}>{area.title}</h3>
+                <p class="area__text">{area.text}</p>
+                <div class="area__doc">
+                  {area.doctor.data.photo && (
+                    <Image
+                      src={area.doctor.data.photo}
+                      alt=""
+                      width={DOCTOR_PHOTO_SIZE}
+                      height={DOCTOR_PHOTO_SIZE}
+                      densities={[1, 2]}
+                      loading="lazy"
+                      class="area__photo"
+                    />
+                  )}
+                  <p>
+                    <span class="area__doc-label">Leczenie prowadzi</span>
+                    <a href={`/nasz-zespol#team-${area.doctor.id}`}>{displayName(area.doctor)}</a>
+                    {area.doctor.data.focus && <span class="area__doc-focus">{area.doctor.data.focus}</span>}
+                  </p>
+                </div>
+                <p class="area__links">
+                  <a href={area.path} class="btn btn--red">{area.linkLabel}</a>
+                  {area.extra && <a href={area.extra.path} class="area__extra">{area.extra.label}</a>}
+                </p>
+              </article>
             </li>
           ))
         }
@@ -100,6 +139,75 @@ const figures = [
   </section>
 
   <TeamStrip doctors={doctorEntries} figures={figures} />
+
+  <section aria-labelledby="steps-heading" class="section">
+    <div class="wrap">
+      <div class="reveal">
+        <p class="kicker">Pierwszy krok</p>
+        <h2 id="steps-heading">Jak zacząć leczenie?</h2>
+        <span class="rule"></span>
+      </div>
+      <ol class="steps stg" role="list">
+        {
+          homeSteps.map((step) => (
+            <li class="step glass">
+              <h3>{step.title}</h3>
+              <p>{step.text}</p>
+            </li>
+          ))
+        }
+      </ol>
+    </div>
+  </section>
+
+  <section aria-labelledby="consult-heading" class="section section--off">
+    <div class="wrap">
+      <div class="reveal">
+        <p class="kicker">Cennik</p>
+        <h2 id="consult-heading">Ceny konsultacji</h2>
+        <span class="rule"></span>
+      </div>
+      <div class="cmp-w consult">
+        <table class="cmp">
+          <thead>
+            <tr>
+              <th scope="col">Konsultacja</th>
+              <th scope="col">Cena</th>
+            </tr>
+          </thead>
+          <tbody>
+            {
+              consultations.map((item) => (
+                <tr>
+                  <th scope="row">
+                    {item.name}{' '}
+                    <span class="cmp__note">{categoryTitle.get(item.category)}</span>
+                  </th>
+                  <td>{formatPrice(item)}</td>
+                </tr>
+              ))
+            }
+          </tbody>
+        </table>
+      </div>
+      <p class="consult__note">
+        {homeConsultationNote} <a href="/cennik">Zobacz pełny cennik</a>.
+      </p>
+    </div>
+  </section>
+
+  <section aria-labelledby="other-heading" class="section">
+    <div class="wrap">
+      <div class="other-care reveal">
+        <div>
+          <h2 id="other-heading">{homeOtherCare.title}</h2>
+          <span class="rule"></span>
+          <p>{homeOtherCare.text}</p>
+        </div>
+        <a href={homeOtherCare.path} class="btn btn--ghost-red">{homeOtherCare.linkLabel}</a>
+      </div>
+    </div>
+  </section>
 
   <CtaSection />
 </BaseLayout>

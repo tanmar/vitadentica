@@ -38,11 +38,12 @@ for (const file of pageFiles) {
   if (!description) warn(page, 'brak meta description');
   if (description.length > 170) warn(page, `description ma ${description.length} znaków (>170)`);
 
-  // Strona główna: H1 mówi, czym jest strona i gdzie (nie samo hasło). Decyzja nr 23 w docs/DECISIONS.md.
+  // Strona główna: H1 mówi, czym jest strona i gdzie (nie samo hasło): dwie główne usługi + miejsce.
+  // Decyzje nr 23 i 25 w docs/DECISIONS.md.
   if (file === '/index.html') {
     const h1Text = (/<h1[^>]*>([\s\S]*?)<\/h1>/.exec(html)?.[1] ?? '').replace(/<[^>]+>/g, '').replace(/&nbsp;/g, ' ');
-    if (!/stomatolog/i.test(h1Text) || !/Gocław/i.test(h1Text)) {
-      warn(page, `h1 strony głównej powinien nazywać usługę i miejsce (stomatolog… + Gocław), jest: "${h1Text}"`);
+    if (!/implant/i.test(h1Text) || !/ortodonc/i.test(h1Text) || !/Gocław/i.test(h1Text)) {
+      warn(page, `h1 strony głównej powinien nazywać usługi i miejsce (implant… + ortodonc… + Gocław), jest: "${h1Text}"`);
     }
   }
 
@@ -235,6 +236,23 @@ for (const file of pageFiles) {
   const htmlH1 = decodeText(/<h1[^>]*>([\s\S]*?)<\/h1>/.exec(readFileSync(join(DIST, file), 'utf8'))?.[1] ?? '');
   const mdH1 = /^# (.+)$/m.exec(readFileSync(join(DIST, md), 'utf8'))?.[1].trim() ?? '';
   if (htmlH1 !== mdH1) warn(file, `H1 w ${md} ("${mdH1}") różni się od H1 w HTML ("${htmlH1}")`);
+}
+
+// Znaczniki cen z treści ({{cennik: …}}, {{cena: …}}) są zamienione we wszystkich formatach, a każda kwota z wersji .md
+// jest też w HTML. Treść stron jest cache'owana w warstwie treści (klucz: plik strony, nie cennik), więc nieaktualny
+// cache objawiłby się właśnie rozjazdem kwot między .md (świeże) a HTML (stare). `npm run build` używa --force.
+for (const file of files.filter((f) => /\.(html|md|txt)$/.test(f))) {
+  if (/\{\{\s*(cennik|cena)/i.test(readFileSync(join(DIST, file), 'utf8'))) warn(file, 'niezamieniony znacznik cen {{…}}');
+}
+for (const file of pageFiles) {
+  const md = file.replace(/\.html$/, '.md');
+  if (file === '/404.html' || !existsSync(join(DIST, md))) continue;
+  const htmlText = decodeText(readFileSync(join(DIST, file), 'utf8').replace(/<(script|style)[\s\S]*?<\/\1>/g, ''));
+  const mdText = readFileSync(join(DIST, md), 'utf8');
+  const amounts = new Set([...mdText.matchAll(/\d{1,3}(?: \d{3})*(?:,\d+)? zł/g)].map((m) => m[0]));
+  for (const amount of amounts) {
+    if (!htmlText.includes(amount)) warn(file, `kwota „${amount}” z ${md} nie występuje w HTML (nieaktualny cache treści? uruchom build z --force)`);
+  }
 }
 
 if (problems.length > 0) {

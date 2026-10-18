@@ -7,7 +7,7 @@ export const getStaticPaths = (async () => {
   return pages.map((page) => ({ params: { slug: page.id }, props: { page } }));
 }) satisfies GetStaticPaths;
 
-export const GET: APIRoute = ({ props }) => {
+export const GET: APIRoute = async ({ props }) => {
   const { page } = props as Awaited<ReturnType<typeof getStaticPaths>>[number]['props'];
-  return markdownResponse(entryMarkdown(page));
+  return markdownResponse(await entryMarkdown(page));
 };

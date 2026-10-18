@@ -6,6 +6,7 @@ roles:
   - "Specjalista chirurg stomatolog"
   - "Współwłaściciel gabinetu stomatologicznego Vitadentica"
 email: "r.zaniewicz@vitadentica.pl"
+focus: "zabiegi implantologiczne"
 schedule: "Pacjentów przyjmuję w piątki"
 photo: "../../assets/team/radoslaw-zaniewicz.jpg"
 order: 2

@@ -40,7 +40,7 @@
     "note": "Ceny koron zawierają koszt łącznika protetycznego"
   },
   {
-    "id": "implanty-koszt-calkowity-odbudowy-pojedynczego-braku-zebowego-na-impl",
+    "id": "implanty-koszt-calkowity-bego",
     "order": 6,
     "category": "implanty",
     "name": "Koszt całkowity odbudowy pojedynczego braku zębowego na implancie Bego",
@@ -65,7 +65,7 @@
     "regularPrice": 300
   },
   {
-    "id": "implanty-korona-porcelanowa-na-podbudowie-metalowej-na-implancie-stra",
+    "id": "implanty-korona-porcelanowa-na-podbudowie-metalowej-straumann",
     "order": 9,
     "category": "implanty",
     "name": "Korona porcelanowa na podbudowie metalowej na implancie Straumann",
@@ -73,7 +73,7 @@
     "regularPrice": 2500
   },
   {
-    "id": "implanty-koszt-calkowity-odbudowy-pojedynczego-braku-zebowego-na-impl-2",
+    "id": "implanty-koszt-calkowity-straumann",
     "order": 10,
     "category": "implanty",
     "name": "Koszt całkowity odbudowy pojedynczego braku zębowego na implancie Straumann",

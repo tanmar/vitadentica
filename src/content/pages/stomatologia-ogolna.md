@@ -21,14 +21,14 @@ Dział stomatologii obejmujący profilaktykę chorób zębów oraz leczenie już
 - Odżywki "płynne szkliwo"
 - Znoszenie nadwrażliwości zębów
 - Profesjonalne porady z zakresu higieny jamy ustnej
-- Wypełnienia ubytków zębów w bezbolesnym, niezawodnym znieczuleniu
+- Wypełnienia ubytków zębów w znieczuleniu miejscowym
 - Wypełnienia kolorowe ubytków zębów mlecznych wykonywane z zastosowaniem żelu znieczulającego i połączone z wręczaniem nagród za odwagę
 - Odbudowy zębów na włóknie szklanym
 - Wypełnienia ubytków zębów metodami protetycznymi
 - Kosmetyczna stomatologia zachowawcza
 - Wybielanie zębów
 - Zabezpieczanie ubytków zębów mlecznych preparatami podnoszącymi twardość tkanek zębów
-- Nowoczesne leczenie kanałowe zębów przy użyciu najwyższej jakości mikroskopu
+- Leczenie kanałowe zębów przy użyciu mikroskopu
 
 ## Ortodoncja
 
@@ -39,7 +39,7 @@ Dziedzina stomatologii zajmująca się profilaktyką i leczeniem wad zgryzu oraz
 
 ## Chirurgia stomatologiczna z implantologią
 
-Dziedzina stomatologii obejmująca nie tylko usuwanie zębów, ale także inne zabiegi w obszarze jamy ustnej, takie jak: resekcja wierzchołka korzenia, hemisekcja z usunięciem jednego z korzeni zęba, wszczepianie implantów, odbudowa uzębienia na implantach pozwalająca na osiągnięcie trwałego efektu estetycznego oraz na poprawę zaburzonej, poprzez utratę zębów, mechaniki narządu żucia. Leczenie chirurgiczne wykonywane jest w skutecznym i bezpiecznym znieczuleniu miejscowym.
+Dziedzina stomatologii obejmująca nie tylko usuwanie zębów, ale także inne zabiegi w obszarze jamy ustnej, takie jak: resekcja wierzchołka korzenia, hemisekcja z usunięciem jednego z korzeni zęba, wszczepianie implantów, odbudowa uzębienia na implantach pozwalająca na osiągnięcie trwałego efektu estetycznego oraz na poprawę zaburzonej, poprzez utratę zębów, mechaniki narządu żucia. Leczenie chirurgiczne wykonuje się w znieczuleniu miejscowym.
 
 - [Implanty](/implanty)
 - Usuwanie zębów
@@ -87,7 +87,7 @@ Obejmuje wszystkie działy stomatologii i zajmuje się poprawą wyglądu zębów
 
 Dział medycyny pozwalający udoskonalić leczenie poprzez kontrolę stanu przy użyciu promieniowania X.
 
-- Wykonywanie wewnątrzustnych zdjęć rentgenowskich techniką cyfrową zapewniającą maksymalne bezpieczeństwo
+- Wykonywanie wewnątrzustnych zdjęć rentgenowskich techniką cyfrową
 
 ## Kamera wewnątrzustna
 

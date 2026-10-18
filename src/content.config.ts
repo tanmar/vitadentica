@@ -32,6 +32,8 @@ const team = defineCollection({
       honorific: z.string().optional(),
       /** Linie pod nazwiskiem, np. „Lekarz stomatolog". */
       roles: z.array(z.string()).default([]),
+      /** Zakres pracy pokazywany na stronach zabiegowych i w JSON-LD, np. „leczenie ortodontyczne dzieci i dorosłych". Tylko potwierdzone fakty, bez tytułów specjalisty, których lekarz nie ma. */
+      focus: z.string().optional(),
       /** Np. „Pacjentów przyjmuję w środy i czwartki". */
       schedule: z.string().optional(),
       /** Adres imienny używany na stronach zabiegowych (np. r.zaniewicz@vitadentica.pl). */
