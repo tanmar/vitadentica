@@ -225,6 +225,9 @@
 .theme-toggle[data-mode='system'] .theme-toggle__i--system,
 .theme-toggle[data-mode='light'] .theme-toggle__i--light,
 .theme-toggle[data-mode='dark'] .theme-toggle__i--dark { display: block; }
+/* Wiersz w menu i ikona słuchawki przy numerze pokazuje dopiero układ na telefonie (mobile.css). */
+.theme-toggle--row { display: none; }
+.hdr__ph-i { display: none; }
 
 /*
  * ── Hero ──

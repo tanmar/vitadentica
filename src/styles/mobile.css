@@ -10,10 +10,39 @@
   /* ── Nagłówek i nawigacja ── */
   .hdr { padding: 8px 10px 0; }
   .hdr__i { padding: 0 12px 0 16px; gap: 10px; min-height: 64px; border-radius: 20px; }
-  /* Numer jest w przyklejonym pasku „Umów wizytę" i w menu, więc w nagłówku robimy miejsce na ikony */
-  .hdr__ph--m { display: none; }
-  .hdr__i > :nth-last-child(2) { margin-left: auto; }
-  .theme-toggle { width: 44px; height: 44px; }
+  /* W nagłówku: logo, klikalny numer i ikona menu. Przełącznik motywu jest w menu (wiersz .theme-toggle--row). */
+  .hdr__ph--m {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    min-height: 44px;
+    margin-left: auto;
+    padding: 0 4px;
+    color: var(--color-brand-ink);
+  }
+  .hdr__ph-i { display: block; flex-shrink: 0; }
+  .theme-toggle--header { display: none; }
+  .theme-toggle--row {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 12px;
+    width: 100%;
+    height: auto;
+    min-height: 52px;
+    padding: 0 4px;
+    border: 0;
+    border-bottom: 1px solid var(--color-line);
+    border-radius: 0;
+    font: inherit;
+    font-size: 0.9rem;
+    font-weight: 700;
+    letter-spacing: 0.07em;
+    text-align: left;
+    text-transform: uppercase;
+  }
+  .theme-toggle--row:hover { background: transparent; border-color: var(--color-line); color: var(--color-brand-ink); }
+  .theme-toggle__hint { margin-left: auto; font-size: 0.78rem; color: var(--color-muted); }
 
   /* ── Hero ── */
   .hero__lead { font-size: 1rem; line-height: 1.7; margin-bottom: 24px; }
@@ -103,10 +132,25 @@
   .wrap { padding: 0 16px; }
   .hdr__i { padding: 0 12px; gap: 8px; }
   .hdr__logo img { height: 34px; }
+  .hdr__ph--m { gap: 5px; font-size: 0.88rem; }
   .btn { padding: 14px 18px; font-size: 0.8rem; letter-spacing: 0.04em; }
   .hero { padding: calc(32px + var(--hdr-h)) 0 88px; }
   .hero__badge { letter-spacing: 0.05em; padding: 7px 14px; }
   .contact-cta { padding: 24px 20px; }
+}
+
+/* Najwęższe ekrany (320 px): numer w nagłówku zwija się do okrągłej ikony; cyfry zostają dla czytników ekranu. */
+@media (max-width: 340px) {
+  .hdr__ph--m { justify-content: center; width: 44px; padding: 0; border: 1px solid var(--color-line); border-radius: 50%; }
+  .hdr__ph-n {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+  }
 }
 
 /* Adres w stopce, na kontakcie i w sekcji CTA: cel dotyku ≥ 44 px (kliknięcie otwiera nawigację) */

@@ -46,21 +46,27 @@ function render(button: HTMLButtonElement, mode: Mode): void {
   button.dataset.mode = mode;
   button.setAttribute('aria-label', `${LABEL[mode]}. Zmień motyw`);
   button.title = LABEL[mode];
+  const label = button.querySelector('[data-theme-label]');
+  if (label) label.textContent = LABEL[mode];
 }
 
+/** Przełączników jest kilka (ikona w nagłówku, wiersz w menu mobilnym); wszystkie pokazują ten sam wybór. */
 function init(): void {
-  const button = document.querySelector<HTMLButtonElement>('[data-theme-toggle]');
-  if (!button) return;
+  const buttons = [...document.querySelectorAll<HTMLButtonElement>('[data-theme-toggle]')];
+  if (buttons.length === 0) return;
   let mode = readMode();
   applyMode(mode);
-  render(button, mode);
-  button.hidden = false;
-  button.addEventListener('click', () => {
-    mode = NEXT[mode];
-    writeMode(mode);
-    applyMode(mode);
-    render(button, mode);
-  });
+  const renderAll = () => buttons.forEach((button) => render(button, mode));
+  renderAll();
+  for (const button of buttons) {
+    button.hidden = false;
+    button.addEventListener('click', () => {
+      mode = NEXT[mode];
+      writeMode(mode);
+      applyMode(mode);
+      renderAll();
+    });
+  }
 }
 
 init();

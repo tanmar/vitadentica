@@ -46,7 +46,7 @@ for (const scheme of SCHEMES) {
         test(`${path}: cele dotyku ≥ ${MIN_TOUCH_PX}px`, async ({ page }) => {
           await page.goto(path);
           const tooSmall = await page.evaluate((min) => {
-            const selector = '.hdr__burger, .hdr__panel a, .theme-toggle, .btn, .pill, .chip, .face, a.hv__chip, .footer ul a, .footer__bot button, .mobbar a, details.fq > summary';
+            const selector = '.hdr__burger, .hdr__ph--m, .hdr__panel a, .theme-toggle, .btn, .pill, .chip, .face, a.hv__chip, .footer ul a, .footer__bot button, .mobbar a, details.fq > summary';
             return [...document.querySelectorAll<HTMLElement>(selector)]
               .filter((el) => el.offsetParent !== null || getComputedStyle(el).position === 'fixed')
               .map((el) => ({ el, rect: el.getBoundingClientRect() }))
@@ -109,8 +109,12 @@ test.describe('przełącznik motywu', () => {
 
   test('przechodzi system → jasny → ciemny → system i zapamiętuje wybór', async ({ page }) => {
     await page.goto('/');
-    const toggle = page.locator('[data-theme-toggle]');
+    // Na telefonie przełącznik jest w menu pod ikoną, nie w nagłówku.
+    const toggle = page.locator('.theme-toggle--row');
+    await expect(page.locator('.theme-toggle--header')).toBeHidden();
+    await page.locator('.hdr__burger').click();
     await expect(toggle).toBeVisible();
+    expect((await toggle.boundingBox())?.height).toBeGreaterThanOrEqual(MIN_TOUCH_PX);
     const root = page.locator('html');
     const bg = () => page.evaluate(() => getComputedStyle(document.body).backgroundColor);
 
@@ -126,6 +130,8 @@ test.describe('przełącznik motywu', () => {
     await page.reload(); // wybór przeżywa przeładowanie, bez mignięcia (atrybut jest przed renderem)
     await expect(root).toHaveAttribute('data-theme', 'dark');
 
+    await page.locator('.hdr__burger').click();
+    await expect(toggle.locator('[data-theme-label]')).toHaveText('Motyw ciemny');
     await toggle.click(); // z powrotem: system
     await expect(root).not.toHaveAttribute('data-theme', /.+/);
     expect(await bg()).toBe(lightBg);
@@ -172,6 +178,42 @@ test.describe('menu mobilne', () => {
     const panel = await page.locator('.hdr__panel').boundingBox();
     await page.mouse.click(4, Math.round((panel?.y ?? 0) + (panel?.height ?? 0) + 40)); // pusty obszar pod panelem
     await expect(page.locator('.hdr__panel')).toBeHidden();
+  });
+});
+
+test.describe('nagłówek na telefonie: klikalny numer zamiast przełącznika motywu', () => {
+  test.use({ isMobile: true, hasTouch: true });
+
+  for (const width of [320, 360, 375, 390, 430]) {
+    test(`${width}px: numer w nagłówku mieści się obok logo i ikony menu`, async ({ page }) => {
+      await page.setViewportSize({ width, height: 800 });
+      await page.goto('/');
+      const phone = page.locator('.hdr__ph--m');
+      await expect(phone).toBeVisible();
+      await expect(phone).toHaveAttribute('href', /^tel:\+?\d+/);
+      await expect(phone).toHaveAccessibleName(/\(\+48\) 22 370 25 10/); // także gdy cyfry są ukryte (320 px: sama ikona)
+      await expect(page.locator('.theme-toggle--header')).toBeHidden();
+
+      const [logo, phoneBox, burger] = await Promise.all(
+        ['.hdr__logo', '.hdr__ph--m', '.hdr__burger'].map((selector) => page.locator(selector).boundingBox()),
+      );
+      expect(logo && phoneBox && burger).toBeTruthy();
+      expect(logo!.x + logo!.width, 'numer nie nachodzi na logo').toBeLessThanOrEqual(phoneBox!.x);
+      expect(phoneBox!.x + phoneBox!.width, 'numer nie nachodzi na ikonę menu').toBeLessThanOrEqual(burger!.x);
+      expect(burger!.x + burger!.width).toBeLessThanOrEqual(width);
+    });
+  }
+});
+
+test.describe('nagłówek na tablecie: przełącznik motywu zostaje w nagłówku', () => {
+  test.use({ viewport: { width: 768, height: 900 } });
+
+  test('ikona motywu w nagłówku, wiersza w menu nie ma', async ({ page }) => {
+    await page.goto('/');
+    await expect(page.locator('.theme-toggle--header')).toBeVisible();
+    await page.locator('.hdr__burger').click();
+    await expect(page.locator('.hdr__panel')).toBeVisible();
+    await expect(page.locator('.theme-toggle--row')).toBeHidden();
   });
 });
 
