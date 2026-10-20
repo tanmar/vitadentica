@@ -4,6 +4,9 @@
  * Zapisany wybór ustawia data-theme na <html>; przed pierwszym renderem robi to
  * src/scripts/theme-init.js (inline w <head>, żeby nie było mignięcia złego motywu).
  */
+// Bez tego pliku TypeScript traktuje go jako skrypt globalny i `init` koliduje z `init` z menu.ts.
+export {};
+
 const STORAGE_KEY = 'vd-theme';
 
 type Mode = 'system' | 'light' | 'dark';
