@@ -3,7 +3,7 @@ name: "Tomasz Mazur"
 kind: doctor
 honorific: "lek. dent."
 schedule: "Pacjentów przyjmuję w poniedziałki"
-photo: "../../assets/team/tomasz-mazur.png"
+photo: "../../assets/team/tomasz-mazur.jpg"
 order: 4
 ---
 

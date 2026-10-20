@@ -8,7 +8,7 @@ roles:
 email: "m.malek@vitadentica.pl"
 focus: "leczenie ortodontyczne dzieci i dorosłych"
 schedule: "Pacjentów przyjmuję w środy i czwartki"
-photo: "../../assets/team/monika-malek.jpeg"
+photo: "../../assets/team/monika-malek.jpg"
 order: 1
 ---
 
