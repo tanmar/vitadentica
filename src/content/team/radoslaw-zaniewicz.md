@@ -12,12 +12,10 @@ photo: "../../assets/team/radoslaw-zaniewicz.jpg"
 order: 2
 ---
 
-Warszawski Uniwersytet Medyczny ukończyłem w 2007 r. Już od początku studiów swoje zainteresowanie i przyszłą karierę zawodową wiązałem z chirurgią stomatologiczną, w której to dziedzinie zakochałem się od pierwszego wejrzenia.
+Chirurgią stomatologiczną zainteresowałem się już na studiach na Warszawskim Uniwersytecie Medycznym, które ukończyłem w 2007 r. Z czasem stała się ona moją największą pasją. W 2008 r. rozpocząłem studia specjalizacyjne, a w 2014 r. zdałem Państwowy Egzamin Specjalizacyjny w dziedzinie chirurgii stomatologicznej.
 
-W 2008 r. rozpocząłem Studia Specjalizacyjne. Najważniejsze uprawnienie w Polsce do wykonywania zabiegów implantologicznych, Państwowy Egzamin Specjalizacyjny w dziedzinie Chirurgia Stomatologiczna, zdałem w 2014 r.
+Od 2009 r., kiedy wszczepiłem swój pierwszy implant, zajmuję się implantologią. Do dziś wszczepiłem ich ponad 8000, a każdy przypadek był dla mnie inną historią i innym wyzwaniem. Należę do Polskiego Towarzystwa Stomatologicznego oraz Ogólnopolskiego Stowarzyszenia Implantologii Stomatologicznej. Wciąż się uczę, biorąc udział w warsztatach i sympozjach w Polsce i za granicą.
 
-Posiadam ogromne doświadczenie w implantologii stomatologicznej - ponad 3000 wszczepionych implantów. Pierwszy implant wszczepiłem w 2009 r., kiedy implantologia stomatologiczna nie była jeszcze tak powszechną metodą leczenia jak obecnie.
-Od wielu lat jestem członkiem Polskiego Towarzystwa Stomatologicznego i Ogólnopolskiego Stowarzyszenia Implantologii Stomatologicznej.
-Swoje umiejętności stale doskonalę uczestnicząc w ogólnopolskich i międzynarodowych warsztatach i sympozjach. Pacjenci cenią mnie przede wszystkim za indywidualne i komunikatywne podejście do każdego z nich.
+Najbardziej zależy mi na tym, by pacjent czuł się u mnie bezpiecznie. Dlatego zawsze znajduję czas na rozmowę, spokojnie wyjaśniam przebieg leczenia i dopasowuję je do indywidualnych potrzeb.
 
-Prywatnie jestem kochającym mężem Agnieszki i szczęśliwym ojcem Agatki i Ani. Interesuję się geografią i historią.
+Prywatnie jestem mężem Agnieszki i dumnym ojcem Agatki i Ani. W wolnych chwilach lubię sięgać po książki o historii i odkrywać ciekawe zakątki świata.
