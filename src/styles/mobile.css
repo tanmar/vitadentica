@@ -98,7 +98,7 @@
   /* ── Zespół ── */
   .person { padding: 18px; gap: 18px; margin-bottom: 20px; }
   .person__photo { aspect-ratio: 1 / 1; max-width: none; }
-  .person__photo img { object-position: center 15%; }
+  .person__photo img { object-position: center top; }
   .person__sched { margin-top: 16px; }
 
   /* ── Cennik ── */

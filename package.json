@@ -17,6 +17,7 @@
     "map:generate": "node scripts/generate-route-map.ts",
     "img:optimize": "node scripts/optimize-illustrations.mjs",
     "brand:generate": "node scripts/generate-brand-images.mjs",
+    "team:headroom": "node scripts/team-headroom.mjs",
     "test:e2e": "playwright test"
   },
   "dependencies": {
