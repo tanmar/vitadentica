@@ -45,7 +45,7 @@ export function createGtmLoader(win: GtagWindow, doc: Document, gtmId: string): 
 }
 
 /**
- * Tag Google (gtag.js, np. `GT-…` ze wtyczki Site Kit) dla GA4: osobno od GTM, bo kontener GTM zawiera tylko
+ * Tag Google (gtag.js, identyfikator strumienia GA4 `G-…`): osobno od GTM, bo kontener GTM zawiera tylko
  * wygaszone tagi Universal Analytics. Idempotentny, jak `createGtmLoader`; zgody (Consent Mode) są już ustawione.
  */
 export function createGoogleTagLoader(win: GtagWindow, doc: Document, tagId: string): () => void {

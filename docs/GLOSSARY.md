@@ -85,4 +85,4 @@ w tym samym znaczeniu. Kolumna „Kod" to **propozycja** identyfikatorów (po an
 | **GTM** | Google Tag Manager, kontener `GTM-P7RZV8S` (obecny); ładowany z opóźnieniem |
 | **Consent Mode v2** | Mechanizm Google: tagi dostosowują działanie do zgód użytkownika |
 | **CMP** | Consent Management Platform: baner zgód. Wybrany: CookieConsent (orestbida) |
-| **Zdarzenie konwersji** | `click_tel` / `click_mail`, wysyłane do GTM po kliknięciu linku kontaktowego |
+| **Zdarzenie konwersji** | `phone_click` / `email_click` / `booking_click`, wysyłane przez `gtag` (GA4 i GTM) po kliknięciu linku kontaktowego; `booking_click` to link do `/kontakt` z tekstem „umów…”. Brak `form_submit`: strona nie ma formularza |

@@ -101,9 +101,10 @@ export const clinic: ClinicInfo = {
   sameAs: [MAPS_URL],
   geo: { lat: 52.2295672, lon: 21.0790837 },
   gtmId: 'GTM-P7RZV8S',
-  // Tag Google ze wtyczki Site Kit na starej stronie, wysyła do właściwości GA4 G-N7440YS2RZ. Kontener GTM ma
-  // tylko wygaszone tagi Universal Analytics (UA-106862785-1), więc to jest jedyny działający pomiar.
-  googleTagId: 'GT-TQRV5VC',
+  // Nowy strumień danych GA4 (G-1NKMBBQSRJ), ładowany bezpośrednio za bramką zgód. Zastępuje tag Google
+  // GT-TQRV5VC ze wtyczki Site Kit (stara właściwość G-N7440YS2RZ). Kontener GTM ma tylko wygaszone tagi
+  // Universal Analytics (UA-106862785-1), więc to jest jedyny działający pomiar.
+  googleTagId: 'G-1NKMBBQSRJ',
   // `consent`: GTM tylko po zgodzie (domyślnie, najbezpieczniej). `deferred`: zawsze, z opóźnieniem
   // (tryb Advanced: Google dostaje pingi bez cookies, lepsze modelowanie konwersji). Do decyzji właściciela.
   gtmLoadMode: 'consent',

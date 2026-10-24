@@ -60,9 +60,9 @@ describe('createGtmLoader', () => {
 
   test('keeps events already queued in dataLayer ahead of gtm.start', () => {
     const win = fakeWindow();
-    win.dataLayer = [{ event: 'click_tel' }];
+    win.dataLayer = [{ event: 'phone_click' }];
     createGtmLoader(win as never, fakeDocument() as never, 'GTM-TEST')();
-    expect((win.dataLayer![0] as { event: string }).event).toBe('click_tel');
+    expect((win.dataLayer![0] as { event: string }).event).toBe('phone_click');
   });
 });
 

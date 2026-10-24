@@ -344,7 +344,7 @@ Google zaleca dla swoich funkcji AI te same podstawy SEO: dostępność dla robo
 
 - Przed wdrożeniem zapisać poziom wyświetleń, kliknięć i zapytań osobno dla implantów, ortodoncji i Invisalign.
 - Rozdzielać ruch markowy od zapytań o usługi.
-- Wykorzystać istniejące `click_tel` i `click_mail` (`src/scripts/contact-events.ts`) do analizy zainteresowania kontaktem na stronach usług. W razie potrzeby dodać kontekst usługi i miejsca CTA, bez danych medycznych użytkownika.
+- Wykorzystać istniejące `phone_click`, `email_click` i `booking_click` (`src/scripts/contact-events.ts`) do analizy zainteresowania kontaktem na stronach usług. W razie potrzeby dodać kontekst usługi i miejsca CTA, bez danych medycznych użytkownika.
 - Kliknięcie telefonu nie oznacza umówionej wizyty. Skuteczność biznesową sprawdzać również na podstawie zagregowanych danych rejestracji: liczby konsultacji implantologicznych i ortodontycznych.
 - Porównywać okresy o podobnej długości, uwzględniając zmiany kampanii, sezonowość oraz dostępność terminów. Wzrost po publikacji nie jest sam w sobie dowodem, że wywołał go konkretny tekst.
 - Obecność w odpowiedziach AI monitorować pomocniczo, zapisując pytanie, produkt i datę. Pojedynczej odpowiedzi modelu nie traktować jako stabilnej pozycji.
