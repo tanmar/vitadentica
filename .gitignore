@@ -27,3 +27,8 @@ pnpm-debug.log*
 test-results/
 playwright-report/
 *.log
+
+# lokalne kopie zapasowe i dane dostępowe do deployu
+backutp/
+.env.*
+!.env.example
