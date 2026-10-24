@@ -39,10 +39,15 @@ AddDefaultCharset UTF-8
   RewriteRule (^|/)\. - [F,L]
 
   # Stare adresy WordPressa → nowe ścieżki (301). Źródło: public/_redirects. Wersje z ukośnikiem i bez.
+  # Reguły *.html mają warunek THE_REQUEST: bez niego wewnętrzne przepisanie /foo → foo.html (na końcu) wywołałoby je
+  # ponownie i dało pętlę przekierowań /foo → /foo.
   RewriteRule ^implanty-warszawa/?$ https://vitadentica.pl/implanty [R=301,L]
   RewriteRule ^zakres-zabiegow-stomatologicznych/?$ https://vitadentica.pl/stomatologia-ogolna [R=301,L]
+  RewriteCond %{THE_REQUEST} ^[A-Z]+\s/[^?\s]*\.html[?\s]
   RewriteRule ^invisalign\.html$ https://vitadentica.pl/invisalign [R=301,L]
+  RewriteCond %{THE_REQUEST} ^[A-Z]+\s/[^?\s]*\.html[?\s]
   RewriteRule ^cennik\.html$ https://vitadentica.pl/cennik [R=301,L]
+  RewriteCond %{THE_REQUEST} ^[A-Z]+\s/[^?\s]*\.html[?\s]
   RewriteRule ^kontakt\.html$ https://vitadentica.pl/kontakt [R=301,L]
   RewriteRule ^index\.php$ https://vitadentica.pl/ [R=301,L]
   RewriteRule ^feed/?$ https://vitadentica.pl/ [R=301,L]

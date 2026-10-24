@@ -57,6 +57,16 @@ describe('public/.htaccess', () => {
     expect(missing).toEqual([]);
   });
 
+  test('every redirect rule matching a *.html source is guarded by a THE_REQUEST condition (no /foo → /foo loop)', () => {
+    // Wewnętrzne przepisanie /foo → foo.html uruchamia reguły ponownie; bez warunku na oryginalne żądanie
+    // przekierowanie z foo.html na /foo zapętliłoby się (tak wyglądał błąd na /invisalign, /cennik, /kontakt).
+    const unguarded = rules
+      .filter((r) => /\bR=301\b/.test(r.flags) && /\\\.html\$$/.test(r.pattern))
+      .filter((r) => !htaccessLines[r.index - 1]?.startsWith('RewriteCond %{THE_REQUEST}'))
+      .map((r) => r.pattern);
+    expect(unguarded).toEqual([]);
+  });
+
   test('legacy redirects are evaluated before the generic clean-URL and canonical-host rules', () => {
     const legacyIndexes = readRedirects().flatMap(([from, to]) => {
       const path = from.replace(/^\//, '');
