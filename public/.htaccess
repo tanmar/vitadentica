@@ -1,0 +1,92 @@
+# Odpowiednik public/_headers i public/_redirects dla Apache/LiteSpeed (LH.pl). Cloudflare Pages czyta tamte pliki,
+# a ten jest ignorowany; zmieniając jedno, zmieniaj drugie (pilnuje tego tests/htaccess.test.ts).
+# Każdy blok zależny od modułu jest w <IfModule>, żeby brak modułu nie kończył się błędem 500.
+
+# Brak listingu katalogów; strona główna to index.html.
+Options -Indexes
+DirectoryIndex index.html
+
+# Strona błędu 404 (plik 404.html z builda).
+ErrorDocument 404 /404.html
+
+# --- Typy plików i kodowanie ---
+AddDefaultCharset UTF-8
+
+<IfModule mod_mime.c>
+  AddType text/plain .txt
+  AddType application/xml .xml
+  AddCharset UTF-8 .xml
+  # Wersje Markdown dla agentów AI (odpowiednik /*.md z _headers).
+  AddType "text/markdown; charset=utf-8" .md
+  <FilesMatch "\.md$">
+    ForceType "text/markdown; charset=utf-8"
+  </FilesMatch>
+</IfModule>
+
+# --- Przekierowania i czyste adresy URL ---
+# Kolejność ma znaczenie: każde przekierowanie prowadzi od razu na adres docelowy (jeden skok, bez łańcuchów),
+# dlatego wszystkie mają bezwzględny cel https://vitadentica.pl i stoją przed regułą HTTPS/www i przed wewnętrznym
+# przepisaniem /foo → foo.html. Uwaga: reguły przekierowują na domenę produkcyjną także przy wejściu
+# przez tymczasowy adres hostingu (podgląd przed zmianą DNS tego nie pokaże).
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+
+  # Weryfikacja domeny (Let's Encrypt, HTTP-01): /.well-known/ przechodzi bez żadnych przekierowań.
+  RewriteRule ^\.well-known/ - [L]
+
+  # Pliki i katalogi ukryte (.git, .env, .htpasswd …): 403.
+  RewriteRule (^|/)\. - [F,L]
+
+  # Stare adresy WordPressa → nowe ścieżki (301). Źródło: public/_redirects. Wersje z ukośnikiem i bez.
+  RewriteRule ^implanty-warszawa/?$ https://vitadentica.pl/implanty [R=301,L]
+  RewriteRule ^zakres-zabiegow-stomatologicznych/?$ https://vitadentica.pl/stomatologia-ogolna [R=301,L]
+  RewriteRule ^invisalign\.html$ https://vitadentica.pl/invisalign [R=301,L]
+  RewriteRule ^cennik\.html$ https://vitadentica.pl/cennik [R=301,L]
+  RewriteRule ^kontakt\.html$ https://vitadentica.pl/kontakt [R=301,L]
+  RewriteRule ^index\.php$ https://vitadentica.pl/ [R=301,L]
+  RewriteRule ^feed/?$ https://vitadentica.pl/ [R=301,L]
+
+  # /foo/ → /foo (nie dla prawdziwych katalogów, np. /_astro/).
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule ^(.+)/$ https://vitadentica.pl/$1 [R=301,L]
+
+  # /index.html → /, /foo.html → /foo (poza /404.html). THE_REQUEST to oryginalne żądanie klienta,
+  # więc wewnętrzne przepisanie /foo → foo.html nie wpada w pętlę.
+  RewriteCond %{THE_REQUEST} ^[A-Z]+\s/[^?\s]*\.html[?\s]
+  RewriteRule ^index\.html$ https://vitadentica.pl/ [R=301,L]
+  RewriteCond %{THE_REQUEST} ^[A-Z]+\s/[^?\s]*\.html[?\s]
+  RewriteRule ^(?!404\.html$)(.+)\.html$ https://vitadentica.pl/$1 [R=301,L]
+
+  # HTTPS (301). X-Forwarded-Proto na wypadek TLS kończonego przed serwerem (inaczej pętla przekierowań).
+  RewriteCond %{HTTPS} !=on
+  RewriteCond %{HTTP:X-Forwarded-Proto} !^https$ [NC]
+  RewriteRule ^ https://vitadentica.pl%{REQUEST_URI} [R=301,L]
+
+  # www → domena bez www (301).
+  RewriteCond %{HTTP_HOST} ^www\.vitadentica\.pl$ [NC]
+  RewriteRule ^ https://vitadentica.pl%{REQUEST_URI} [R=301,L]
+
+  # Czyste adresy: /implanty serwuje implanty.html (wewnętrznie, bez przekierowania),
+  # o ile nie ma takiego pliku ani katalogu, a plik .html istnieje.
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteCond %{REQUEST_FILENAME}.html -f
+  RewriteRule ^(.+)$ $1.html [L]
+</IfModule>
+
+# --- Nagłówki bezpieczeństwa (te same wartości co blok /* w public/_headers) ---
+<IfModule mod_headers.c>
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set X-Frame-Options "DENY"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  Header always set Permissions-Policy "camera=(), microphone=(), geolocation=()"
+  Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains"
+  Header always set Content-Security-Policy "default-src 'self'; script-src 'self' 'sha256-zTqZXGzkCLBnEPBbYPZhdr04s1zSUrnyAUlIVOCm3T0=' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://www.googletagmanager.com https://*.google-analytics.com; font-src 'self'; connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com https://stats.g.doubleclick.net https://www.google.com; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'"
+
+  # Pliki z hashem w nazwie (/_astro/*) są niezmienne.
+  <IfModule mod_setenvif.c>
+    SetEnvIf Request_URI "^/_astro/" ASTRO_ASSET=1
+    Header always set Cache-Control "public, max-age=31536000, immutable" env=ASTRO_ASSET
+  </IfModule>
+</IfModule>
