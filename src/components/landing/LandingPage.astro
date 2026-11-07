@@ -1,0 +1,52 @@
+---
+/**
+ * Wspólny szablon stron lądowania pod Google Ads. Kolejność sekcji jest stała, żeby wyniki obu stron dało się
+ * porównywać (te same `data-section` i `data-cta`): pierwszy ekran → jakość → lekarz → [odbiorcy] → karty → etapy →
+ * ceny → FAQ → kontakt. Doświadczenie i jakość stoją przed ceną (decyzja 28 w docs/DECISIONS.md).
+ * Treść: src/data/landing.ts. Ceny: znaczniki `{{cena: id}}` zamieniane tu na kwoty z cennika.
+ */
+import LandingLayout from '../../layouts/LandingLayout.astro';
+import { getPriceItems } from '../../lib/content';
+import { expandPrices } from '../../lib/landing';
+import type { LandingContent } from '../../data/landing';
+import LpAudience from './LpAudience.astro';
+import LpCards from './LpCards.astro';
+import LpContact from './LpContact.astro';
+import LpDoctor from './LpDoctor.astro';
+import LpFaq from './LpFaq.astro';
+import LpHero from './LpHero.astro';
+import LpPrices from './LpPrices.astro';
+import LpQuality from './LpQuality.astro';
+import LpSteps from './LpSteps.astro';
+
+interface Props {
+  content: LandingContent;
+}
+
+const items = await getPriceItems();
+const content = expandPrices(Astro.props.content, items);
+
+// Tła naprzemiennie (jasne z poświatą / szare) w kolejności sekcji, niezależnie od tego, czy są odbiorcy.
+const order = [
+  'quality',
+  'doctor',
+  ...(content.audiences ? ['audiences'] : []),
+  ...content.cardSections.map((_, index) => `cards-${index}`),
+  'steps',
+  'prices',
+  'faq',
+];
+const tone = (key: string): 'plain' | 'off' => (order.indexOf(key) % 2 === 0 ? 'plain' : 'off');
+---
+
+<LandingLayout title={content.meta.title} description={content.meta.description} path={content.meta.path} lp={content.lp}>
+  <LpHero hero={content.hero} />
+  <LpQuality quality={content.quality} tone={tone('quality')} />
+  <LpDoctor doctor={content.doctor} ctaLabel={content.hero.ctaLabel} tone={tone('doctor')} />
+  {content.audiences && <LpAudience audiences={content.audiences} tone={tone('audiences')} />}
+  {content.cardSections.map((section, index) => <LpCards section={section} tone={tone(`cards-${index}`)} />)}
+  <LpSteps steps={content.steps} tone={tone('steps')} />
+  <LpPrices prices={content.prices} tone={tone('prices')} />
+  <LpFaq faq={content.faq} tone={tone('faq')} />
+  <LpContact contact={content.contact} lp={content.lp} withAudience={Boolean(content.audiences)} />
+</LandingLayout>

@@ -1,0 +1,35 @@
+---
+/** Stopka strony lądowania: dane gabinetu i ustawienia cookies. Bez menu serwisu. */
+import { clinic, formatAddress, formatHours } from '../../lib/clinic';
+import MapsLink from '../ui/MapsLink.astro';
+
+const hours = formatHours(clinic.hours);
+const year = new Date().getFullYear();
+// Astro usuwa spację między dwoma wyrażeniami `{a} {b}`, więc kod i miasto składamy w jeden ciąg.
+const postalCity = `${clinic.address.postalCode}\u00a0${clinic.address.city}`;
+---
+
+<footer class="footer lp-footer">
+  <div class="wrap">
+    <div class="lp-footer__g">
+      <div>
+        <p class="footer__logo">Vita<em>Dentica</em></p>
+        <p>{clinic.legalName}. Implantologia, ortodoncja, Invisalign® i stomatologia ogólna na Gocławiu w Warszawie.</p>
+      </div>
+      <address data-cta="footer">
+        <p><MapsLink>{clinic.address.street}<br /><span class="whitespace-nowrap">{postalCity}</span></MapsLink></p>
+        <p class="mt-2"><a href={clinic.phone.href}>{clinic.phone.display}</a></p>
+        <p><a href={`mailto:${clinic.email}`}>{clinic.email}</a></p>
+        {hours.map((h) => <p class="mt-2">{h}</p>)}
+      </address>
+    </div>
+    <hr class="footer__hr" />
+    <div class="footer__bot">
+      <p>© {year} {clinic.legalName}. {formatAddress(clinic.address)}</p>
+      <span class="lp-footer__links">
+        <a href="/">Strona gabinetu</a>
+        <button type="button" data-cc="show-preferencesModal">Ustawienia plików cookie</button>
+      </span>
+    </div>
+  </div>
+</footer>

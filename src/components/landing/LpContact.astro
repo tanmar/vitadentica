@@ -1,0 +1,37 @@
+---
+/** Zamknięcie strony: telefon, e-mail, formularz oddzwonienia (#oddzwonimy), adres i godziny (kotwica #kontakt). */
+import { clinic, formatHours } from '../../lib/clinic';
+import MapsLink from '../ui/MapsLink.astro';
+import LpCallback from './LpCallback.astro';
+import LpStatus from './LpStatus.astro';
+import type { LandingContent } from '../../data/landing';
+
+interface Props {
+  contact: LandingContent['contact'];
+  lp: LandingContent['lp'];
+  withAudience: boolean;
+}
+
+const { contact, lp, withAudience } = Astro.props;
+const hours = formatHours(clinic.hours);
+const postalCity = `${clinic.address.postalCode}\u00a0${clinic.address.city}`;
+---
+
+<section class="cta lp-contact" id="kontakt" aria-labelledby="lp-contact-h" data-section="kontakt" data-cta="contact">
+  <div class="wrap">
+    <div class="cta__i glass-smoke">
+      <h2 id="lp-contact-h" class="reveal">{contact.title}</h2>
+      <p class="reveal">{contact.text}</p>
+      <div class="cta__btns reveal">
+        <a href={clinic.phone.href} class="btn btn--white">Zadzwoń: {clinic.phone.display}</a>
+        <a href={`mailto:${clinic.email}`} class="btn btn--ghost">Napisz e-mail</a>
+      </div>
+      <LpStatus />
+      <LpCallback lp={lp} withAudience={withAudience} />
+      <div class="cta__meta">
+        <MapsLink>{clinic.address.street}, <span class="whitespace-nowrap">{postalCity}</span></MapsLink>
+        {hours.map((h) => <span>{h}</span>)}
+      </div>
+    </div>
+  </div>
+</section>

@@ -15,7 +15,7 @@ w tym samym znaczeniu. Kolumna „Kod" to **propozycja** identyfikatorów (po an
 | **Cennik** | Zestaw pozycji z cenami. Jedno źródło danych dla strony cennika i dla JSON-LD | `priceList` |
 | **Pozycja cennika** | Jeden zabieg z ceną lub widełkami cen | `priceItem` |
 | **Promocja** | Wyróżniona oferta (obecnie: „Implanty – Promocja!", implant z koroną). Na starcie przenoszona 1:1 jako zwykła treść | `promo` |
-| **Konwersja** | Kontakt pacjenta z gabinetem: telefon lub e-mail. Formularza nie ma | `conversion` |
+| **Konwersja** | Kontakt pacjenta z gabinetem: telefon, e-mail albo (tylko na stronach lądowania) formularz oddzwonienia | `conversion` |
 | **Dane gabinetu** | Nazwa, adres, telefon, e-mail, godziny otwarcia. Jedno źródło dla stopki, kontaktu i JSON-LD | `clinicInfo` |
 
 ### Terminy kliniczne używane w ofercie
@@ -85,4 +85,11 @@ w tym samym znaczeniu. Kolumna „Kod" to **propozycja** identyfikatorów (po an
 | **GTM** | Google Tag Manager, kontener `GTM-P7RZV8S` (obecny); ładowany z opóźnieniem |
 | **Consent Mode v2** | Mechanizm Google: tagi dostosowują działanie do zgód użytkownika |
 | **CMP** | Consent Management Platform: baner zgód. Wybrany: CookieConsent (orestbida) |
-| **Zdarzenie konwersji** | `phone_click` / `email_click` / `booking_click`, wysyłane przez `gtag` (GA4 i GTM) po kliknięciu linku kontaktowego; `booking_click` to link do `/kontakt` z tekstem „umów…”. Brak `form_submit`: strona nie ma formularza |
+| **Zdarzenie konwersji** | `phone_click` / `email_click` / `booking_click`, wysyłane przez `gtag` (GA4 i GTM) po kliknięciu linku kontaktowego; `booking_click` to link do `/kontakt` z tekstem „umów…”. Na stronach lądowania także `generate_lead` (przyjęty formularz oddzwonienia, decyzja 29); `form_submit` nie istnieje |
+| **Strona lądowania (LP)** | Strona reklamowa pod Google Ads (`/lp/implanty`, `/lp/ortodoncja`): jedna usługa, jedno działanie, bez menu, `noindex`. Treść: `src/data/landing.ts`, szablon: `LandingPage.astro` |
+| **`lp_name`** | Parametr zdarzeń GA4: która strona lądowania (`implanty` / `ortodoncja`) |
+| **`cta_location`** | Parametr zdarzeń: skąd kliknięto (`header`, `hero`, `sticky`, `audience`, `prices`, `doctor`, `faq`, `contact`, `footer`); wartość z `data-cta` najbliższego przodka |
+| **`audience`** | Parametr zdarzeń na stronie ortodoncji: `dorosli` / `dzieci` (kliknięcia w kartach odbiorców) |
+| **`reg_open`** | Parametr zdarzeń: `yes` / `no`, czy rejestracja telefoniczna była czynna w chwili zdarzenia (godziny z `clinic.hours`, strefa Europe/Warsaw) |
+| **Status rejestracji** | Zdanie na stronie lądowania („Rejestracja czynna dziś do 20:00” lub kiedy gabinet znów odbiera telefon); liczy je `src/scripts/open-status.ts` w przeglądarce |
+| **Formularz oddzwonienia** | „Zostaw kontakt, oddzwonimy” na stronach lądowania (kotwica `#oddzwonimy`): imię, telefon lub e-mail, zgoda; zgłoszenie idzie e-mailem do gabinetu przez `public/api/callback.php` |

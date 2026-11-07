@@ -1,0 +1,50 @@
+---
+/**
+ * „Stawiamy na jakość”: liczby i fakty o doświadczeniu (z biogramu lekarza) oraz karty z tym, co jakość znaczy
+ * w praktyce. Bez superlatywów: przekonują konkrety (decyzje 25 i 28 w docs/DECISIONS.md).
+ */
+import type { LandingContent } from '../../data/landing';
+
+interface Props {
+  quality: LandingContent['quality'];
+  tone?: 'plain' | 'off';
+}
+
+const { quality, tone = 'plain' } = Astro.props;
+---
+
+<section
+  aria-labelledby="lp-quality-h"
+  class:list={['section', tone === 'off' ? 'section--off' : 'section--aurora']}
+  id="jakosc"
+  data-section="jakosc"
+>
+  <div class="wrap">
+    <div class="reveal">
+      <p class="kicker">{quality.kicker}</p>
+      <h2 id="lp-quality-h">{quality.title}</h2>
+      <span class="rule"></span>
+      <p class="lp-intro">{quality.intro}</p>
+    </div>
+    <ul class="lp-proof stg" role="list">
+      {
+        quality.stats.map((stat) => (
+          <li class="lp-proof__item glass">
+            <strong class="lp-proof__v">{stat.value}</strong>
+            <span class="lp-proof__l">{stat.label}</span>
+          </li>
+        ))
+      }
+    </ul>
+    <ul class="lp-cards stg" role="list">
+      {
+        quality.cards.map((card) => (
+          <li class="lp-card glass">
+            <h3>{card.title}</h3>
+            <p>{card.text}</p>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>

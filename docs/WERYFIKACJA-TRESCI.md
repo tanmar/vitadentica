@@ -9,7 +9,7 @@ Stan: teksty stron implantów, ortodoncji, Invisalign®, zespołu i strony głó
 - [ ] Obietnica „Ustalimy termin konsultacji” (strona główna) i „Zapytaj o termin konsultacji” (stopka kontaktowa): gabinet rzeczywiście odpowiada na telefon i e-mail.
 - [ ] Zdanie „Konsultacja nie zobowiązuje do rozpoczęcia leczenia” (Invisalign®): zgodne z regulaminem gabinetu.
 - [ ] Uczelnie lekarzy: zdanie o absolwentach WUM usunięto ze strony zespołu, bo biogramy podają różne uczelnie (m.in. Lublin, Śląski UM). Jeśli ma wrócić, wpisać prawdziwe dane.
-- [ ] Liczby w biogramach (ponad 3000 implantów, ponad 2000 zakończonych leczeń): zakres, źródło, data. Strony usług ich nie powtarzają.
+- [x] Liczby w biogramach: ponad 8000 implantów (lek. dent. Radosław Zaniewicz) i ponad 2000 pacjentów z zakończonym leczeniem (lek. dent. Monika Małek), potwierdzone jako aktualne 2026-11-06. Strony usług ich nie powtarzają; landingi tak (hero i „Stawiamy na jakość”), więc przy aktualizacji zmienić biogram i `src/data/landing.ts`.
 - [ ] Medycyna estetyczna na stronie stomatologii ogólnej (kwas hialuronowy, hydroksyapatyt wapnia, botoks): czy jest nadal w ofercie.
 
 ## Implanty (lek. dent. Radosław Zaniewicz)
@@ -51,6 +51,18 @@ Stan: teksty stron implantów, ortodoncji, Invisalign®, zespołu i strony głó
 - [ ] Skan 3D: tekst mówi, że gabinet „kieruje na skan” (nie, że wykonuje go na miejscu).
 - [ ] Porównanie z aparatem stałym: ogólne, bez przeciwstawiania zalet jednej metody wadom drugiej.
 - [ ] Koszt konsultacji przed Invisalign®.
+
+## Strony lądowania pod Google Ads (`/lp/implanty`, `/lp/ortodoncja`)
+
+Landingi powtarzają fakty ze stron usług (czasy, kwalifikacje, kolejność etapów), więc każda poprawka na liście powyżej dotyczy też `src/data/landing.ts`. Dodatkowo do potwierdzenia:
+
+- [ ] Odpowiedzi w FAQ na landingach (8 pytań na stronę, m.in. ból, powrót do pracy, rozłożenie leczenia w czasie, aparat a dyskomfort, usuwanie zębów): zgodność z praktyką lekarza.
+- [ ] Sekcja „Stawiamy na jakość”: systemy Straumann i Bego, „plan i koszty przed startem”, „czas na rozmowę” (implanty); dobór metody po badaniu, plan na podstawie zdjęć i modeli zgryzu (ortodoncja).
+- [ ] Ceny konsultacji na stronie ortodoncji: 350 zł dla dorosłych (z modelami) i 150 zł dla dziecka: które konsultacje dotyczą jakiej grupy (pozycja 12 otwartych spraw).
+- [ ] Orientacyjne wieki w opisie metod ortodoncji (pierwsze badanie ok. 3. r. ż., aparaty ruchome od ok. 6–8 lat, aparaty stałe najczęściej po 12. r. ż.).
+- [ ] Status „Rejestracja czynna dziś do 20:00”: godziny rejestracji telefonicznej równe godzinom gabinetu (pon.–pt. 10:00–20:00)?
+- [ ] Wezwanie „Zadzwoń, napisz e-mail albo zostaw kontakt, a oddzwonimy” i obietnica „Odezwiemy się w godzinach pracy rejestracji”: kto odbiera zgłoszenia z formularza (e-mail na vitadentica@vitadentica.pl) i oddzwania.
+- [ ] Formularz „Zostaw kontakt, oddzwonimy”: treść zgody i klauzuli informacyjnej (`src/components/landing/LpCallback.astro`): pełna nazwa i dane administratora, podstawa prawna, okres przechowywania (proponowane 30 dni), odbiorcy danych. Do zatwierdzenia przez gabinet i prawnika.
 
 ## Po zatwierdzeniu
 

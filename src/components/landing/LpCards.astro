@@ -1,0 +1,38 @@
+---
+/** Sekcja z kartami informacyjnymi (kiedy leczenie, metody). Karty nie są linkami: nie wyprowadzają ze strony. */
+import type { LandingCardsSection } from '../../data/landing';
+
+interface Props {
+  section: LandingCardsSection;
+  /** Co druga sekcja ma jasne tło, żeby strona nie zlewała się w jeden pas. */
+  tone?: 'plain' | 'off';
+}
+
+const { section, tone = 'plain' } = Astro.props;
+---
+
+<section
+  aria-labelledby={`lp-${section.id}-h`}
+  class:list={['section', tone === 'off' ? 'section--off' : 'section--aurora']}
+  data-section={section.id}
+>
+  <div class="wrap">
+    <div class="reveal">
+      <p class="kicker">{section.kicker}</p>
+      <h2 id={`lp-${section.id}-h`}>{section.title}</h2>
+      <span class="rule"></span>
+      {section.intro && <p class="lp-intro">{section.intro}</p>}
+    </div>
+    <ul class="lp-cards stg" role="list">
+      {
+        section.cards.map((card) => (
+          <li class="lp-card glass">
+            <h3>{card.title}</h3>
+            <p>{card.text}</p>
+          </li>
+        ))
+      }
+    </ul>
+    {section.note && <p class="lp-note">{section.note}</p>}
+  </div>
+</section>

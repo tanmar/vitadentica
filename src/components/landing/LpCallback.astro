@@ -1,0 +1,91 @@
+---
+/**
+ * Formularz „Zostaw kontakt, oddzwonimy” (decyzja 29): imię, telefon lub e-mail, na stronie ortodoncji pytanie
+ * „dorosły czy dziecko”, wymagana zgoda z klauzulą informacyjną. Wysyła do public/api/callback.php, obsługa w
+ * src/scripts/callback-form.ts. Treść zgody i klauzuli wymaga akceptacji gabinetu; zmieniając ją, zmień
+ * `CALLBACK_CONSENT_VERSION` w src/data/landing.ts i `CONSENT_VERSION` w PHP (pilnuje tego test).
+ */
+import { clinic, formatAddress, formatHours } from '../../lib/clinic';
+import { CALLBACK_CONSENT_VERSION, type LandingContent } from '../../data/landing';
+
+interface Props {
+  lp: LandingContent['lp'];
+  /** Pytanie, czy konsultacja dotyczy dorosłego, czy dziecka (strona ortodoncji). */
+  withAudience: boolean;
+}
+
+const { lp, withAudience } = Astro.props;
+const hours = formatHours(clinic.hours).join('; ');
+const scope = withAudience
+  ? 'imię, telefon lub e-mail oraz informację, czy konsultacja dotyczy dorosłego, czy dziecka'
+  : 'imię oraz telefon lub e-mail';
+---
+
+<div class="lp-cb" id="oddzwonimy" data-cta="callback">
+  <h3 class="lp-cb__title">Zostaw kontakt, oddzwonimy</h3>
+  <p class="lp-cb__lead">Podaj imię i telefon albo e-mail. Odezwiemy się w godzinach pracy rejestracji ({hours}).</p>
+  <form
+    class="lp-cb__form"
+    action="/api/callback.php"
+    method="post"
+    data-callback
+    data-consent-version={CALLBACK_CONSENT_VERSION}
+    data-msg-sent={`Dziękujemy! Odezwiemy się w godzinach pracy rejestracji (${hours}).`}
+    data-msg-fail={`Nie udało się wysłać zgłoszenia. Zadzwoń: ${clinic.phone.display} albo napisz: ${clinic.email}.`}
+    data-msg-limit={`Z tego połączenia wysłano już kilka zgłoszeń. Zadzwoń: ${clinic.phone.display}.`}
+  >
+    <div class="lp-cb__fields" data-callback-fields>
+      <input type="hidden" name="lp" value={lp} />
+      <input type="hidden" name="elapsed" value="" />
+      <div class="lp-cb__hp" aria-hidden="true">
+        <label>Nie wypełniaj tego pola <input type="text" name="website" tabindex="-1" autocomplete="off" /></label>
+      </div>
+      <label class="lp-cb__field lp-cb__wide">
+        <span>Imię</span>
+        <input type="text" name="name" autocomplete="given-name" maxlength="80" required />
+      </label>
+      <label class="lp-cb__field">
+        <span>Telefon</span>
+        <input type="tel" name="phone" autocomplete="tel" inputmode="tel" maxlength="20" />
+      </label>
+      <label class="lp-cb__field">
+        <span>lub e-mail</span>
+        <input type="email" name="email" autocomplete="email" maxlength="120" />
+      </label>
+      {
+        withAudience && (
+          <fieldset class="lp-cb__aud lp-cb__wide">
+            <legend>Konsultacja dotyczy</legend>
+            <label>
+              <input type="radio" name="audience" value="dorosli" /> dorosłego
+            </label>
+            <label>
+              <input type="radio" name="audience" value="dzieci" /> dziecka
+            </label>
+          </fieldset>
+        )
+      }
+      <label class="lp-cb__consent lp-cb__wide">
+        <input type="checkbox" name="consent" value="1" required />
+        <span>Zgadzam się na przetwarzanie podanych danych przez {clinic.legalName} w celu kontaktu w sprawie konsultacji.</span>
+      </label>
+      <details class="lp-cb__info lp-cb__wide">
+        <summary>Informacja o danych osobowych</summary>
+        <p>
+          Administratorem Twoich danych jest {clinic.legalName}, {formatAddress(clinic.address)}, e-mail: {clinic.email}.
+          Przetwarzamy {scope} wyłącznie po to, żeby skontaktować się z Tobą w sprawie konsultacji, na podstawie Twojej
+          zgody (art. 6 ust. 1 lit. a i art. 9 ust. 2 lit. a RODO). Dane przechowujemy do czasu kontaktu, nie dłużej niż 30
+          dni. Odbiorcą danych jest dostawca hostingu i poczty gabinetu.
+        </p>
+        <p>
+          Podanie danych jest dobrowolne, ale bez telefonu lub e-maila nie możemy się odezwać. Zgodę możesz cofnąć w każdej
+          chwili (nie wpływa to na zgodność z prawem wcześniejszego przetwarzania). Masz prawo dostępu do danych, ich
+          sprostowania, usunięcia i ograniczenia przetwarzania oraz prawo wniesienia skargi do Prezesa Urzędu Ochrony
+          Danych Osobowych.
+        </p>
+      </details>
+      <button type="submit" class="btn btn--white lp-cb__wide">Poproś o kontakt</button>
+    </div>
+    <p class="lp-cb__msg" role="status" aria-live="polite" tabindex="-1" data-callback-msg></p>
+  </form>
+</div>

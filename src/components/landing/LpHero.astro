@@ -1,0 +1,48 @@
+---
+/**
+ * Pierwszy ekran strony lądowania: nagłówek zgodny z hasłem reklamy, jedno główne wezwanie (telefon), status
+ * rejestracji i krótkie fakty. Ilustracja tylko na szerokich ekranach: na telefonie przycisk ma być nad zgięciem.
+ */
+import { clinic } from '../../lib/clinic';
+import { bindLastWords } from '../../lib/landing';
+import Art from '../ui/Art.astro';
+import LpStatus from './LpStatus.astro';
+import type { LandingContent } from '../../data/landing';
+
+interface Props {
+  hero: LandingContent['hero'];
+}
+
+const { hero } = Astro.props;
+---
+
+<section aria-labelledby="lp-h1" class="hero lp-hero on-night" data-section="hero">
+  <div class="wrap hero__g lp-hero__g">
+    <div class="hero__c">
+      <p class="hero__badge">
+        <span class="hero__badge-dot" aria-hidden="true"></span>
+        {hero.badge}
+      </p>
+      <h1 id="lp-h1">{hero.title} <em>{bindLastWords(hero.accent)}</em></h1>
+      <p class="hero__lead">{hero.lead}</p>
+      <div class="hero__cta" data-cta="hero">
+        <div class="hero__btns">
+          <a href={clinic.phone.href} class="btn btn--red btn--glow">{hero.ctaLabel}</a>
+          <a href={`mailto:${clinic.email}`} class="btn btn--ghost">Napisz e-mail</a>
+        </div>
+        <p class="hero__tel">Rejestracja telefoniczna: <a href={clinic.phone.href}>{clinic.phone.display}</a></p>
+        <LpStatus />
+        <a class="lp-cb-link" href="#oddzwonimy">Wolisz, żebyśmy oddzwonili? Zostaw kontakt</a>
+        <a class="lp-hero__more" href={hero.more.href}>{hero.more.label}</a>
+      </div>
+      <ul class="lp-facts" aria-label="Najważniejsze informacje">
+        {hero.facts.map((fact) => <li>{fact}</li>)}
+      </ul>
+    </div>
+    <div class="hero__media lp-hero__media">
+      <div class="hero__art">
+        <Art id={hero.art} sizes="460px" eager />
+      </div>
+    </div>
+  </div>
+</section>

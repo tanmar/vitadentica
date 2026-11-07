@@ -1,0 +1,99 @@
+---
+/**
+ * Układ stron lądowania pod Google Ads (`/lp/*`): bez nawigacji i stopki serwisu, z nagłówkiem z telefonem,
+ * paskiem „Zadzwoń" na telefonie i pomiarem konwersji (src/scripts/lp-events.ts). Strona zawsze `noindex`
+ * (to kopia tematu /implanty i /ortodoncja pod reklamy), poza sitemapą, llms.txt i wersjami .md.
+ * Zgody i tagi działają tak samo jak w BaseLayout (consent.ts); staging nie wysyła danych do analityki.
+ */
+import '../styles/global.css';
+import '../styles/landing.css';
+import LpHeader from '../components/landing/LpHeader.astro';
+import LpFooter from '../components/landing/LpFooter.astro';
+import LpMobileBar from '../components/landing/LpMobileBar.astro';
+import { clinic } from '../lib/clinic';
+import { hoursForScript } from '../lib/landing';
+import { isStaging } from '../lib/site';
+import themeInit from '../scripts/theme-init.js?raw';
+import textFont from '@fontsource/roboto-condensed/files/roboto-condensed-latin-400-normal.woff2?url';
+import headingFont from '@fontsource/lora/files/lora-latin-700-normal.woff2?url';
+
+interface Props {
+  title: string;
+  description: string;
+  /** Ścieżka strony, np. `/lp/implanty`. */
+  path: string;
+  /** Nazwa strony w zdarzeniach GA4 (`lp_name`). */
+  lp: string;
+}
+
+const { title, description, path, lp } = Astro.props;
+const canonical = new URL(path, Astro.site).toString();
+const trackingEnabled = !isStaging;
+const imageUrl = new URL(clinic.image, Astro.site).toString();
+const imageAlt = `${clinic.name}: gabinet stomatologiczny, ${clinic.address.districts[0]}, ${clinic.address.city}`;
+const hours = JSON.stringify(hoursForScript(clinic.hours));
+---
+
+<!doctype html>
+<html
+  lang="pl"
+  data-gtm-id={trackingEnabled ? clinic.gtmId : undefined}
+  data-google-tag-id={trackingEnabled ? clinic.googleTagId : undefined}
+  data-gtm-mode={clinic.gtmLoadMode}
+>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0f1120" media="(prefers-color-scheme: dark)" />
+    <!-- Zapisany wybór motywu przed pierwszym renderem (hash skryptu jest w public/_headers, pilnuje go tests/theme.test.ts). -->
+    <script is:inline set:html={themeInit.trim()} />
+    <link rel="canonical" href={canonical} />
+    <meta name="robots" content="noindex, nofollow" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="pl_PL" />
+    <meta property="og:site_name" content={clinic.name} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={imageUrl} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={imageAlt} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={imageUrl} />
+    <meta name="twitter:image:alt" content={imageAlt} />
+
+    <link rel="preload" href={textFont} as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href={headingFont} as="font" type="font/woff2" crossorigin />
+    <link rel="icon" href="/favicon-32.png" type="image/png" sizes="32x32" />
+    <link rel="apple-touch-icon" href="/favicon.png" />
+  </head>
+  <body class="min-h-screen" data-lp={lp} data-hours={hours}>
+    <a
+      href="#main"
+      class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[500] focus:rounded focus:bg-brand focus:px-4 focus:py-2 focus:text-paper"
+    >
+      Przejdź do treści
+    </a>
+    <LpHeader />
+    <main id="main">
+      <slot />
+    </main>
+    <LpFooter />
+    <LpMobileBar />
+    <script>
+      import '../scripts/callback-form';
+      import '../scripts/consent';
+      import '../scripts/lp-events';
+      import '../scripts/maps-links';
+      import '../scripts/motion';
+    </script>
+  </body>
+</html>

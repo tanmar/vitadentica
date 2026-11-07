@@ -1,0 +1,81 @@
+---
+/**
+ * Ceny z cennika (`price-list.json`): karty z najważniejszymi kwotami i tabela pozycji, niżej na stronie niż jakość
+ * i lekarz (decyzja 28). Pokazujemy cenę aktualną,
+ * bez przekreśleń i haseł promocyjnych (decyzja właściciela: ostrożność wobec ograniczeń reklamy usług medycznych).
+ */
+import { getPriceItems } from '../../lib/content';
+import { formatPrice } from '../../lib/price';
+import { findPriceItem } from '../../lib/price-tokens.mjs';
+import type { LandingContent } from '../../data/landing';
+
+interface Props {
+  prices: LandingContent['prices'];
+  tone?: 'plain' | 'off';
+}
+
+const { prices, tone = 'off' } = Astro.props;
+const items = await getPriceItems();
+const highlights = prices.highlights.map((highlight) => ({
+  ...highlight,
+  value: formatPrice(findPriceItem(items, highlight.priceId)),
+}));
+const rows = prices.tableIds.map((id) => findPriceItem(items, id));
+---
+
+<section
+  aria-labelledby="lp-prices-h"
+  class:list={['section', tone === 'off' ? 'section--off' : 'section--aurora']}
+  id="ceny" data-section="ceny" data-cta="prices">
+  <div class="wrap">
+    <div class="reveal">
+      <p class="kicker">{prices.kicker}</p>
+      <h2 id="lp-prices-h">{prices.title}</h2>
+      <span class="rule"></span>
+      <p class="lp-intro">{prices.intro}</p>
+    </div>
+    <div class="price-hl lp-price-hl">
+      {
+        highlights.map((highlight) => (
+          <div class="price-hl__card glass">
+            <p class="price-hl__title">{highlight.title}</p>
+            {highlight.sub && <p class="price-hl__sub">{highlight.sub}</p>}
+            <p class="price-hl__v">
+              <span class="price-hl__now">{highlight.value}</span>
+            </p>
+          </div>
+        ))
+      }
+    </div>
+    <h3 class="lp-table-title">{prices.tableTitle}</h3>
+    <div class="cmp-w lp-table">
+      <table class="cmp">
+        <thead>
+          <tr>
+            <th scope="col">Usługa</th>
+            <th scope="col">Cena</th>
+          </tr>
+        </thead>
+        <tbody>
+          {
+            rows.map((item) => (
+              <tr>
+                <th scope="row">
+                  {item.name}
+                  {item.note && (
+                    <>
+                      {' '}
+                      <span class="cmp__note">{item.note}</span>
+                    </>
+                  )}
+                </th>
+                <td>{formatPrice(item)}</td>
+              </tr>
+            ))
+          }
+        </tbody>
+      </table>
+    </div>
+    <p class="lp-note">{prices.note} <a href={prices.link.href}>{prices.link.label}</a>.</p>
+  </div>
+</section>

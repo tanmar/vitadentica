@@ -1,0 +1,31 @@
+---
+import type { LandingContent } from '../../data/landing';
+
+interface Props {
+  steps: LandingContent['steps'];
+  tone?: 'plain' | 'off';
+}
+
+const { steps, tone = 'plain' } = Astro.props;
+---
+
+<section aria-labelledby="lp-steps-h" class:list={['section', tone === 'off' ? 'section--off' : 'section--aurora']} data-section="etapy">
+  <div class="wrap">
+    <div class="reveal">
+      <p class="kicker">{steps.kicker}</p>
+      <h2 id="lp-steps-h">{steps.title}</h2>
+      <span class="rule"></span>
+    </div>
+    <ol class="steps stg" role="list">
+      {
+        steps.items.map((step) => (
+          <li class="step glass">
+            <h3>{step.title}</h3>
+            <p>{step.text}</p>
+          </li>
+        ))
+      }
+    </ol>
+    {steps.note && <p class="lp-note">{steps.note}</p>}
+  </div>
+</section>

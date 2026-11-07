@@ -1,0 +1,14 @@
+---
+/**
+ * Status rejestracji telefonicznej. Bez JS: statyczne godziny z `clinic.hours`. Z JS (`lp-events.ts`): „czynna do 20:00"
+ * albo kiedy gabinet otwiera się następnym razem. Kropka zmienia kolor wg `data-reg-state`.
+ */
+import { clinic, formatHours } from '../../lib/clinic';
+
+const hours = formatHours(clinic.hours);
+---
+
+<p class="lp-status" data-reg-status data-reg-state="unknown">
+  <span class="lp-status__dot" aria-hidden="true"></span>
+  <span data-reg-text>Rejestracja telefoniczna: {hours.join('; ')}</span>
+</p>

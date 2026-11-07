@@ -18,7 +18,8 @@ export default defineConfig({
   // Czyste URL-e bez ukośnika: /implanty (plik implanty.html serwowany przez Cloudflare Pages)
   trailingSlash: 'never',
   build: { format: 'file', inlineStylesheets: 'always' },
-  integrations: [sitemap()],
+  // Strony lądowania pod reklamy (/lp/*) są noindex, więc nie trafiają do mapy witryny.
+  integrations: [sitemap({ filter: (page) => !new URL(page).pathname.startsWith('/lp/') })],
   // Kolejność ma znaczenie: ceny najpierw, bo FAQ do JSON-LD powstaje z drzewa po zamianie znaczników.
   markdown: { rehypePlugins: [rehypePrices, rehypeContent] },
   vite: { plugins: [tailwindcss()] },

@@ -1,6 +1,6 @@
 import { expect, test, type Page } from '@playwright/test';
 
-const PAGES = ['/', '/implanty', '/ortodoncja', '/invisalign', '/stomatologia-ogolna', '/cennik', '/kontakt', '/nasz-zespol'];
+const PAGES = ['/', '/implanty', '/ortodoncja', '/invisalign', '/stomatologia-ogolna', '/cennik', '/kontakt', '/nasz-zespol', '/lp/implanty', '/lp/ortodoncja'];
 const WIDTHS = [320, 375, 390, 430];
 const SCHEMES = ['light', 'dark'] as const;
 const MIN_TOUCH_PX = 44;
@@ -11,6 +11,9 @@ async function scrollThrough(page: Page): Promise<void> {
   const height = await page.evaluate(() => document.documentElement.scrollHeight);
   for (let y = 0; y < height; y += 500) {
     await page.evaluate((top) => window.scrollTo({ top, behavior: 'instant' }), y);
+    // Dwie klatki: IntersectionObserver musi zobaczyć element w widoku, zanim przewiniemy dalej (na długich
+    // stronach lądowania stały odstęp 40 ms czasem nie wystarczał przy kilku równoległych testach).
+    await page.evaluate(() => new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve))));
     await page.waitForTimeout(40);
   }
   await page.evaluate(() => window.scrollTo({ top: 0, behavior: 'instant' }));

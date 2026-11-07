@@ -1,0 +1,48 @@
+---
+/**
+ * Lekarz prowadzący: karta z kolekcji `team` (zdjęcie, rola, zakres, dni przyjęć), opis doświadczenia i przyciski
+ * kontaktu. Sekcja stoi zaraz po „Stawiamy na jakość”, więc to tu zapada decyzja (`cta_location=doctor`).
+ */
+import { getEntry } from 'astro:content';
+import DoctorCard from '../team/DoctorCard.astro';
+import { clinic } from '../../lib/clinic';
+import type { LandingContent } from '../../data/landing';
+
+interface Props {
+  doctor: LandingContent['doctor'];
+  /** Etykieta głównego przycisku (ta sama co w hero). */
+  ctaLabel: string;
+  tone?: 'plain' | 'off';
+}
+
+const { doctor, ctaLabel, tone = 'plain' } = Astro.props;
+const entry = await getEntry('team', doctor.id);
+if (!entry) throw new Error(`Strona lądowania: brak lekarza "${doctor.id}" w kolekcji team`);
+---
+
+<section
+  aria-labelledby="lp-doctor-h"
+  class:list={['section', tone === 'off' ? 'section--off' : 'section--aurora']}
+  id="lekarz"
+  data-section="lekarz"
+  data-cta="doctor"
+>
+  <div class="wrap">
+    <div class="reveal">
+      <p class="kicker">{doctor.kicker}</p>
+      <h2 id="lp-doctor-h">{doctor.title}</h2>
+      <span class="rule"></span>
+    </div>
+    <div class="lp-doctor">
+      <DoctorCard doctor={entry} />
+      <div class="lp-doctor__text">
+        {doctor.text.map((paragraph) => <p>{paragraph}</p>)}
+        <div class="lp-cta-row">
+          <a href={clinic.phone.href} class="btn btn--red">{ctaLabel}</a>
+          <a href={`mailto:${clinic.email}`} class="btn btn--ghost-red">Napisz e-mail</a>
+        </div>
+        <a class="lp-cb-link lp-cb-link--light" href="#oddzwonimy">albo zostaw kontakt, a oddzwonimy</a>
+      </div>
+    </div>
+  </div>
+</section>

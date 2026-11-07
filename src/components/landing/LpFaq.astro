@@ -1,0 +1,35 @@
+---
+/**
+ * Pytania i odpowiedzi jako akordeon `details.fq`: ten sam znacznik co w treści stron usług, więc działają style
+ * (`.prose-vd details.fq`), animacja otwierania (`motion.ts`) i zdarzenie `faq_open` (`lp-events.ts`).
+ */
+import type { LandingContent } from '../../data/landing';
+
+interface Props {
+  faq: LandingContent['faq'];
+  tone?: 'plain' | 'off';
+}
+
+const { faq, tone = 'plain' } = Astro.props;
+---
+
+<section aria-labelledby="lp-faq-h" class:list={['section', tone === 'off' ? 'section--off' : 'section--aurora']} id="pytania" data-section="pytania" data-cta="faq">
+  <div class="wrap">
+    <div class="reveal">
+      <h2 id="lp-faq-h">{faq.title}</h2>
+      <span class="rule"></span>
+    </div>
+    <div class="prose-vd lp-faq">
+      {
+        faq.items.map((item) => (
+          <details class="fq">
+            <summary>{item.question}</summary>
+            <div class="fq__a">
+              {item.answer.map((paragraph) => <p>{paragraph}</p>)}
+            </div>
+          </details>
+        ))
+      }
+    </div>
+  </div>
+</section>

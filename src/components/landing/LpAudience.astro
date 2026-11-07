@@ -1,0 +1,51 @@
+---
+/**
+ * Dwa wejścia (dorośli / dziecko) z ceną właściwej konsultacji. Każdy przycisk to telefon z parametrem `audience`
+ * (`data-audience` na karcie), więc w GA4 widać, kogo dotyczył kontakt. Numer jest też w tekście: na komputerze
+ * `tel:` nie zawsze otwiera aplikację.
+ */
+import { clinic } from '../../lib/clinic';
+import { formatPrice } from '../../lib/price';
+import { findPriceItem } from '../../lib/price-tokens.mjs';
+import { getPriceItems } from '../../lib/content';
+import type { LandingContent } from '../../data/landing';
+
+interface Props {
+  audiences: NonNullable<LandingContent['audiences']>;
+  tone?: 'plain' | 'off';
+}
+
+const { audiences, tone = 'plain' } = Astro.props;
+const priceItems = await getPriceItems();
+---
+
+<section aria-labelledby="lp-aud-h" class:list={['section', tone === 'off' ? 'section--off' : 'section--aurora']} data-section="odbiorcy" data-cta="audience">
+  <div class="wrap">
+    <div class="reveal">
+      <p class="kicker">{audiences.kicker}</p>
+      <h2 id="lp-aud-h">{audiences.title}</h2>
+      <span class="rule"></span>
+    </div>
+    <ul class="lp-aud stg" role="list">
+      {
+        audiences.items.map((item) => (
+          <li data-audience={item.id}>
+            <article class="lp-aud__card glass" aria-labelledby={`lp-aud-${item.id}`}>
+              <h3 id={`lp-aud-${item.id}`}>{item.title}</h3>
+              <p class="lp-aud__price">
+                <span class="lp-aud__label">{item.priceLabel}</span>
+                <strong>{formatPrice(findPriceItem(priceItems, item.priceId))}</strong>
+              </p>
+              <ul class="lp-aud__list" role="list">
+                {item.bullets.map((bullet) => <li>{bullet}</li>)}
+              </ul>
+              <a href={clinic.phone.href} class="btn btn--red">{item.ctaLabel}</a>
+              <p class="lp-aud__tel">Rejestracja telefoniczna: {clinic.phone.display}</p>
+            </article>
+          </li>
+        ))
+      }
+    </ul>
+    <p class="lp-note">{audiences.note}</p>
+  </div>
+</section>

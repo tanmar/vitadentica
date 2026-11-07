@@ -30,6 +30,8 @@ function exists(path) {
 for (const file of pageFiles) {
   const html = readFileSync(join(DIST, file), 'utf8');
   const page = file.replace(/\.html$/, '') || '/';
+  // Strony lądowania pod reklamy (/lp/*): zawsze noindex, bez JSON-LD i wersji .md, poza sitemapą (sprawdzamy niżej).
+  const isLanding = file.startsWith('/lp/');
 
   const title = /<title>([^<]*)<\/title>/.exec(html)?.[1] ?? '';
   const description = /<meta name="description" content="([^"]*)"/.exec(html)?.[1] ?? '';
@@ -99,9 +101,10 @@ for (const file of pageFiles) {
 
   // Dyrektywa robots: produkcja `index, follow`, staging i strona błędu `noindex`.
   const robotsMeta = /<meta name="robots" content="([^"]*)"/.exec(html)?.[1] ?? '';
-  const mustBeNoindex = isStagingDist || file === '/404.html';
+  const mustBeNoindex = isStagingDist || file === '/404.html' || isLanding;
   if (mustBeNoindex && !/noindex/.test(robotsMeta)) {
-    warn(page, `${isStagingDist ? 'build stagingowy' : 'strona błędu'} bez noindex (robots: "${robotsMeta}")`);
+    const kind = isStagingDist ? 'build stagingowy' : isLanding ? 'strona lądowania' : 'strona błędu';
+    warn(page, `${kind} bez noindex (robots: "${robotsMeta}")`);
   }
   if (!mustBeNoindex && !/(^|, )index, follow(,|$)/.test(robotsMeta)) {
     warn(page, `brak jawnego "index, follow" (robots: "${robotsMeta}")`);
@@ -123,8 +126,8 @@ for (const file of pageFiles) {
   const blocks = [...html.matchAll(/<script type="application\/ld\+json">(.*?)<\/script>/gs)].map((m) =>
     JSON.parse(m[1]),
   );
-  // Każda strona (poza 404) definiuje witrynę, siebie i gabinet, więc wszystkie odwołania da się rozwiązać.
-  if (file !== '/404.html') {
+  // Każda strona (poza 404 i stronami lądowania) definiuje witrynę, siebie i gabinet, więc wszystkie odwołania da się rozwiązać.
+  if (file !== '/404.html' && !isLanding) {
     const types = blocks.flatMap((b) => (Array.isArray(b['@type']) ? b['@type'] : [b['@type']]));
     for (const required of ['WebSite', 'Dentist']) {
       if (!types.includes(required)) warn(page, `JSON-LD: brak encji ${required}`);
@@ -227,7 +230,7 @@ const decodeText = (text) =>
     .replace(/[\s\u00a0]+/g, ' ')
     .trim();
 for (const file of pageFiles) {
-  if (file === '/404.html') continue;
+  if (file === '/404.html' || file.startsWith('/lp/')) continue;
   const md = file.replace(/\.html$/, '.md');
   if (!existsSync(join(DIST, md))) {
     warn(file, `brak wersji ${md}`);
@@ -252,6 +255,45 @@ for (const file of pageFiles) {
   const amounts = new Set([...mdText.matchAll(/\d{1,3}(?: \d{3})*(?:,\d+)? zł/g)].map((m) => m[0]));
   for (const amount of amounts) {
     if (!htmlText.includes(amount)) warn(file, `kwota „${amount}” z ${md} nie występuje w HTML (nieaktualny cache treści? uruchom build z --force)`);
+  }
+}
+
+// Strony lądowania (/lp/*): jedno wezwanie do kontaktu (telefon), bez nawigacji serwisu, poza sitemapą i plikami dla AI,
+// z atrybutami pomiaru konwersji. Zmiana któregoś z tych punktów psuje analizę konwersji albo indeksację, więc pilnujemy ich tu.
+const landingFiles = pageFiles.filter((f) => f.startsWith('/lp/'));
+if (landingFiles.length > 0 && !files.includes('/api/callback.php')) {
+  warn('/api/callback.php', 'brak endpointu formularza oddzwonienia (public/api/callback.php)');
+}
+for (const file of landingFiles) {
+  const html = readFileSync(join(DIST, file), 'utf8');
+  const page = file.replace(/\.html$/, '');
+  if (!/<a\b[^>]*\bhref="tel:/.test(html)) warn(page, 'brak linku tel: (główne wezwanie do kontaktu)');
+  if (!/<a\b[^>]*\bhref="mailto:/.test(html)) warn(page, 'brak linku mailto:');
+  if (/<nav\b/.test(html)) warn(page, 'strona lądowania nie powinna mieć nawigacji serwisu (<nav>)');
+  // Formularz „Zostaw kontakt, oddzwonimy” (decyzja 29): endpoint PHP, wymagana zgoda, pole-pułapka na boty.
+  if (!/<form\b[^>]*\baction="\/api\/callback\.php"/.test(html)) warn(page, 'brak formularza oddzwonienia (action="/api/callback.php")');
+  if (!/<input\b[^>]*\bname="consent"[^>]*\brequired/.test(html)) warn(page, 'formularz oddzwonienia bez wymaganej zgody (consent)');
+  if (!/<input\b[^>]*\bname="website"/.test(html)) warn(page, 'formularz oddzwonienia bez pola-pułapki (website)');
+  if (!/\bid="oddzwonimy"/.test(html)) warn(page, 'brak kotwicy #oddzwonimy (linki z hero, sekcji lekarza i paska)');
+  if (!/<body[^>]*\bdata-lp="[a-z-]+"/.test(html)) warn(page, 'brak data-lp na <body> (parametr lp_name w zdarzeniach)');
+  if (!/<body[^>]*\bdata-hours="/.test(html)) warn(page, 'brak data-hours na <body> (status rejestracji)');
+  for (const section of ['hero', 'kontakt']) {
+    if (!html.includes(`data-section="${section}"`)) warn(page, `brak sekcji data-section="${section}"`);
+  }
+  if (!/\bdata-cta="(hero|sticky|contact)"/.test(html)) warn(page, 'brak oznaczonych wezwań data-cta');
+  const lp = /\bdata-lp="([a-z-]+)"/.exec(html)?.[1];
+  if (lp && !file.endsWith(`/${lp}.html`)) warn(page, `data-lp="${lp}" nie zgadza się z adresem strony`);
+  if (existsSync(join(DIST, file.replace(/\.html$/, '.md')))) warn(page, 'strona lądowania ma wersję .md (nie powinna)');
+}
+if (landingFiles.length > 0) {
+  const sitemaps = files.filter((f) => /^\/sitemap.*\.xml$/.test(f));
+  for (const name of sitemaps) {
+    if (/\/lp\//.test(readFileSync(join(DIST, name), 'utf8'))) warn(name, 'sitemap zawiera stronę lądowania (/lp/)');
+  }
+  for (const name of ['/llms.txt', '/llms-full.txt']) {
+    if (files.includes(name) && /\/lp\//.test(readFileSync(join(DIST, name), 'utf8'))) {
+      warn(name, 'plik dla AI zawiera stronę lądowania (/lp/)');
+    }
   }
 }
 
