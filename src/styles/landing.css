@@ -201,12 +201,26 @@
 .lp-cb-link--light:hover { color: var(--color-brand-ink-hover); }
 /* Poza godzinami rejestracji link w hero wygląda jak przycisk: to wtedy główna droga kontaktu. */
 body[data-reg-open='no'] .lp-hero .lp-cb-link {
-  margin-top: 8px;
-  padding: 0 18px;
-  border: 1px solid rgb(76 195 236 / 0.55);
+  margin-top: 12px;
+  min-height: 52px;
+  padding: 0 28px;
+  border: 2px solid #4cc3ec;
   border-radius: 100px;
-  background: rgb(76 195 236 / 0.14);
+  background: linear-gradient(180deg, #7fdaf7 0%, #4cc3ec 100%);
+  color: #0a1030;
+  font-size: 1rem;
   text-decoration: none;
+  box-shadow: 0 8px 28px rgb(76 195 236 / 0.4);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+body[data-reg-open='no'] .lp-hero .lp-cb-link:hover {
+  color: #0a1030;
+  background: linear-gradient(180deg, #98e2fa 0%, #5fcdf2 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 34px rgb(76 195 236 / 0.55);
+}
+@media (max-width: 640px) {
+  body[data-reg-open='no'] .lp-hero .lp-cb-link { width: 100%; justify-content: center; text-align: center; }
 }
 
 .lp-contact .lp-cb { max-width: 600px; margin: 30px auto 0; padding-top: 28px; border-top: 1px solid rgb(255 255 255 / 0.16); text-align: left; }
